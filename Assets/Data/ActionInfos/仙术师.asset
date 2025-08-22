@@ -1,0 +1,1006 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac33f3d1c00aa4d4cbc80173680c5a65, type: 3}
+  m_Name: "\u4ED9\u672F\u5E08"
+  m_EditorClassIdentifier: 
+  characterActionClacify: 1
+  actionClacify: 0
+  ActionInfos:
+  - id: "\u521D\u59CB\u5316"
+    nextActionIds: "\u5F85\u673A"
+    animationName: {fileID: 7400000, guid: b278f8f8f8afa3e449d1ba455c607e13, type: 2}
+    audioInfos: []
+    actionLifeRange: {x: 0, y: 76}
+    frameIndexEvent:
+    - eventLifeRange: {x: 1, y: 1}
+      actionName: Rotate
+      MoveFunctionParam:
+        useRig: 0
+        useLocalSpace: 1
+        useActionDir: 0
+        moveDir: {x: 0, y: 0, z: 0}
+        useDataSpeed: 0
+        dataName: 0
+        speed: 0
+        layerMask:
+          serializedVersion: 2
+          m_Bits: 0
+        moveTransform: {fileID: 0}
+        moveRig: {fileID: 0}
+      SubmitFuncParam:
+        submitTag: 0
+        actionId: 
+        cantTranslate: 0
+        waitFrame: 0
+        delay: 0
+      RotateFuncParam:
+        useActionDir: 1
+        rotateDir: {x: 0, y: 0, z: 0}
+        useSmooth: 1
+        rotationSpeed: 1500
+      OnInstantiateObjFunctionParam:
+        vfxName: 
+        startDirection: {x: 0, y: 0, z: 0}
+        distance: 0
+        selfAsparent: 0
+        useMousePosition: 0
+        instantiatePos: {x: 0, y: 0, z: 0}
+        VfxLifeTime: -1
+        destroyByActionEnd: 1
+      RigidbodyParam:
+        isKenamicActive: 0
+        colliderActive: 0
+    tag: 5
+    canCancelTags: []
+    priority: 0
+  - id: "\u5F85\u673A"
+    nextActionIds: "\u5F85\u673A"
+    animationName: {fileID: 7400000, guid: a38a9f3b4efb8e64493c94baefaa23c8, type: 2}
+    audioInfos: []
+    actionLifeRange: {x: 0, y: 60}
+    frameIndexEvent:
+    - eventLifeRange: {x: 0, y: 60}
+      actionName: Rotate
+      MoveFunctionParam:
+        useRig: 1
+        useLocalSpace: 1
+        useActionDir: 0
+        moveDir: {x: 0, y: 0, z: 0}
+        useDataSpeed: 0
+        dataName: 0
+        speed: 5
+        layerMask:
+          serializedVersion: 2
+          m_Bits: 0
+        moveTransform: {fileID: 0}
+        moveRig: {fileID: 0}
+      SubmitFuncParam:
+        submitTag: 0
+        actionId: 
+        cantTranslate: 0
+        waitFrame: 0
+        delay: 0
+      RotateFuncParam:
+        useActionDir: 1
+        rotateDir: {x: 0, y: 0, z: 0}
+        useSmooth: 0
+        rotationSpeed: 1500
+      OnInstantiateObjFunctionParam:
+        vfxName: 
+        startDirection: {x: 0, y: 0, z: 0}
+        distance: 0
+        selfAsparent: 0
+        useMousePosition: 0
+        instantiatePos: {x: 0, y: 0, z: 0}
+        VfxLifeTime: -1
+        destroyByActionEnd: 1
+      RigidbodyParam:
+        isKenamicActive: 0
+        colliderActive: 0
+    - eventLifeRange: {x: 1, y: 1}
+      actionName: Move
+      MoveFunctionParam:
+        useRig: 1
+        useLocalSpace: 0
+        useActionDir: 0
+        moveDir: {x: 0, y: 0, z: 0}
+        useDataSpeed: 0
+        dataName: 0
+        speed: 0
+        layerMask:
+          serializedVersion: 2
+          m_Bits: 0
+        moveTransform: {fileID: 0}
+        moveRig: {fileID: 0}
+      SubmitFuncParam:
+        submitTag: 0
+        actionId: 
+        cantTranslate: 0
+        waitFrame: 0
+        delay: 0
+      RotateFuncParam:
+        useActionDir: 1
+        rotateDir: {x: 0, y: 0, z: 0}
+        useSmooth: 0
+        rotationSpeed: 1500
+      OnInstantiateObjFunctionParam:
+        vfxName: 
+        startDirection: {x: 0, y: 0, z: 0}
+        distance: 0
+        selfAsparent: 0
+        useMousePosition: 0
+        instantiatePos: {x: 0, y: 0, z: 0}
+        VfxLifeTime: -1
+        destroyByActionEnd: 1
+      RigidbodyParam:
+        isKenamicActive: 0
+        colliderActive: 0
+    tag: 0
+    canCancelTags:
+    - canBeCancelRange:
+      - {x: 0, y: 60}
+      canCancelTag: 1
+      proprity: 1
+      nextActionStartPercent: 0
+    - canBeCancelRange:
+      - {x: 0, y: 60}
+      canCancelTag: 2
+      proprity: 2
+      nextActionStartPercent: 0.2
+    - canBeCancelRange:
+      - {x: 0, y: -1}
+      canCancelTag: 3
+      proprity: 3
+      nextActionStartPercent: 0
+    - canBeCancelRange:
+      - {x: 0, y: -1}
+      canCancelTag: 6
+      proprity: 4
+      nextActionStartPercent: 0
+    - canBeCancelRange:
+      - {x: 0, y: -1}
+      canCancelTag: 7
+      proprity: 5
+      nextActionStartPercent: 0
+    - canBeCancelRange:
+      - {x: 0, y: -1}
+      canCancelTag: 11
+      proprity: 3
+      nextActionStartPercent: 0
+    - canBeCancelRange:
+      - {x: 0, y: -1}
+      canCancelTag: 12
+      proprity: 3
+      nextActionStartPercent: 0
+    - canBeCancelRange:
+      - {x: 0, y: -1}
+      canCancelTag: 13
+      proprity: 3
+      nextActionStartPercent: 0
+    priority: 0
+  - id: "\u8DD1\u6B65"
+    nextActionIds: "\u5F85\u673A"
+    animationName: {fileID: 7400000, guid: 1833e33c4c8228b4aa43b879c507ab5f, type: 2}
+    audioInfos: []
+    actionLifeRange: {x: 0, y: 40}
+    frameIndexEvent:
+    - eventLifeRange: {x: 0, y: 40}
+      actionName: Move
+      MoveFunctionParam:
+        useRig: 1
+        useLocalSpace: 0
+        useActionDir: 1
+        moveDir: {x: 0, y: 0, z: 0}
+        useDataSpeed: 1
+        dataName: 1
+        speed: 15
+        layerMask:
+          serializedVersion: 2
+          m_Bits: 64
+        moveTransform: {fileID: 0}
+        moveRig: {fileID: 0}
+      SubmitFuncParam:
+        submitTag: 0
+        actionId: 
+        cantTranslate: 0
+        waitFrame: 0
+        delay: 0
+      RotateFuncParam:
+        useActionDir: 0
+        rotateDir: {x: 0, y: 0, z: 0}
+        useSmooth: 1
+        rotationSpeed: 1500
+      OnInstantiateObjFunctionParam:
+        vfxName: 
+        startDirection: {x: 0, y: 0, z: 0}
+        distance: 0
+        selfAsparent: 0
+        useMousePosition: 0
+        instantiatePos: {x: 0, y: 0, z: 0}
+        VfxLifeTime: -1
+        destroyByActionEnd: 1
+      RigidbodyParam:
+        isKenamicActive: 0
+        colliderActive: 0
+    - eventLifeRange: {x: 0, y: 40}
+      actionName: Rotate
+      MoveFunctionParam:
+        useRig: 0
+        useLocalSpace: 0
+        useActionDir: 0
+        moveDir: {x: 0, y: 0, z: 0}
+        useDataSpeed: 0
+        dataName: 0
+        speed: 0
+        layerMask:
+          serializedVersion: 2
+          m_Bits: 0
+        moveTransform: {fileID: 0}
+        moveRig: {fileID: 0}
+      SubmitFuncParam:
+        submitTag: 0
+        actionId: 
+        cantTranslate: 0
+        waitFrame: 0
+        delay: 0
+      RotateFuncParam:
+        useActionDir: 1
+        rotateDir: {x: 0, y: 0, z: 0}
+        useSmooth: 1
+        rotationSpeed: 1500
+      OnInstantiateObjFunctionParam:
+        vfxName: 
+        startDirection: {x: 0, y: 0, z: 0}
+        distance: 0
+        selfAsparent: 0
+        useMousePosition: 0
+        instantiatePos: {x: 0, y: 0, z: 0}
+        VfxLifeTime: -1
+        destroyByActionEnd: 1
+      RigidbodyParam:
+        isKenamicActive: 0
+        colliderActive: 0
+    tag: 1
+    canCancelTags:
+    - canBeCancelRange:
+      - {x: 0, y: 40}
+      canCancelTag: 1
+      proprity: 0
+      nextActionStartPercent: 0
+    - canBeCancelRange:
+      - {x: 0, y: 40}
+      canCancelTag: 2
+      proprity: 2
+      nextActionStartPercent: 0.2
+    - canBeCancelRange:
+      - {x: 0, y: 40}
+      canCancelTag: 3
+      proprity: 3
+      nextActionStartPercent: 0
+    - canBeCancelRange:
+      - {x: 0, y: 40}
+      canCancelTag: 0
+      proprity: 1
+      nextActionStartPercent: 0
+    - canBeCancelRange:
+      - {x: 0, y: 40}
+      canCancelTag: 6
+      proprity: 4
+      nextActionStartPercent: 0
+    - canBeCancelRange:
+      - {x: 0, y: 40}
+      canCancelTag: 7
+      proprity: 5
+      nextActionStartPercent: 0
+    - canBeCancelRange:
+      - {x: 0, y: 40}
+      canCancelTag: 11
+      proprity: 3
+      nextActionStartPercent: 0
+    - canBeCancelRange:
+      - {x: 0, y: 40}
+      canCancelTag: 12
+      proprity: 3
+      nextActionStartPercent: 0
+    - canBeCancelRange:
+      - {x: 0, y: 40}
+      canCancelTag: 13
+      proprity: 3
+      nextActionStartPercent: 0
+    priority: 1
+  - id: "\u653B\u51FB"
+    nextActionIds: "\u5F85\u673A"
+    animationName: {fileID: 7400000, guid: b51172141e42d064f885696a409fc4c3, type: 2}
+    audioInfos: []
+    actionLifeRange: {x: 0, y: 40}
+    frameIndexEvent:
+    - eventLifeRange: {x: 0, y: 80}
+      actionName: Rotate
+      MoveFunctionParam:
+        useRig: 0
+        useLocalSpace: 0
+        useActionDir: 0
+        moveDir: {x: 0, y: 0, z: 0}
+        useDataSpeed: 0
+        dataName: 0
+        speed: 0
+        layerMask:
+          serializedVersion: 2
+          m_Bits: 0
+        moveTransform: {fileID: 0}
+        moveRig: {fileID: 0}
+      SubmitFuncParam:
+        submitTag: 0
+        actionId: 
+        cantTranslate: 0
+        waitFrame: 0
+        delay: 0
+      RotateFuncParam:
+        useActionDir: 1
+        rotateDir: {x: 0, y: 0, z: 0}
+        useSmooth: 1
+        rotationSpeed: 1500
+      OnInstantiateObjFunctionParam:
+        vfxName: 
+        startDirection: {x: 0, y: 0, z: 0}
+        distance: 0
+        selfAsparent: 0
+        useMousePosition: 0
+        instantiatePos: {x: 0, y: 0, z: 0}
+        VfxLifeTime: -1
+        destroyByActionEnd: 1
+      RigidbodyParam:
+        isKenamicActive: 0
+        colliderActive: 0
+    - eventLifeRange: {x: 25, y: 30}
+      actionName: Move
+      MoveFunctionParam:
+        useRig: 1
+        useLocalSpace: 1
+        useActionDir: 0
+        moveDir: {x: 0, y: 0, z: 0}
+        useDataSpeed: 0
+        dataName: 0
+        speed: 3
+        layerMask:
+          serializedVersion: 2
+          m_Bits: 8
+        moveTransform: {fileID: 0}
+        moveRig: {fileID: 0}
+      SubmitFuncParam:
+        submitTag: 0
+        actionId: 
+        cantTranslate: 0
+        waitFrame: 0
+        delay: 0
+      RotateFuncParam:
+        useActionDir: 1
+        rotateDir: {x: 0, y: 0, z: 0}
+        useSmooth: 1
+        rotationSpeed: 1500
+      OnInstantiateObjFunctionParam:
+        vfxName: 
+        startDirection: {x: 0, y: 0, z: 0}
+        distance: 0
+        selfAsparent: 0
+        useMousePosition: 0
+        instantiatePos: {x: 0, y: 0, z: 0}
+        VfxLifeTime: -1
+        destroyByActionEnd: 1
+      RigidbodyParam:
+        isKenamicActive: 0
+        colliderActive: 0
+    tag: 2
+    canCancelTags:
+    - canBeCancelRange:
+      - {x: 0, y: 40}
+      canCancelTag: 3
+      proprity: 1
+      nextActionStartPercent: 0
+    - canBeCancelRange:
+      - {x: 0, y: 40}
+      canCancelTag: 6
+      proprity: 2
+      nextActionStartPercent: 0
+    - canBeCancelRange:
+      - {x: 0, y: 40}
+      canCancelTag: 7
+      proprity: 3
+      nextActionStartPercent: 0
+    priority: 3
+  - id: "\u53D7\u4F24"
+    nextActionIds: "\u5F85\u673A"
+    animationName: {fileID: 7400000, guid: e234034d006d20241a2800b03d05f00d, type: 2}
+    audioInfos:
+    - audioLifeRange: {x: 1, y: 20}
+      audioClip: {fileID: 8300000, guid: 7d447f30976341b47ace0cfac1d012c5, type: 3}
+    actionLifeRange: {x: 0, y: 20}
+    frameIndexEvent: []
+    tag: 6
+    canCancelTags:
+    - canBeCancelRange:
+      - {x: 0, y: 20}
+      canCancelTag: 7
+      proprity: 1
+      nextActionStartPercent: 0
+    priority: 5
+  - id: "\u6B7B\u4EA1"
+    nextActionIds: 
+    animationName: {fileID: 7400000, guid: ce1ef99889fdc6f4e8f25b1ade556dbf, type: 2}
+    audioInfos: []
+    actionLifeRange: {x: 0, y: 60}
+    frameIndexEvent: []
+    tag: 7
+    canCancelTags: []
+    priority: 10
+  - id: "\u7FFB\u6EDA"
+    nextActionIds: "\u5F85\u673A"
+    animationName: {fileID: 7400000, guid: fca5128abf182184eb3170f4a900e243, type: 2}
+    audioInfos: []
+    actionLifeRange: {x: 0, y: 10}
+    frameIndexEvent:
+    - eventLifeRange: {x: 0, y: 10}
+      actionName: Move
+      MoveFunctionParam:
+        useRig: 0
+        useLocalSpace: 0
+        useActionDir: 1
+        moveDir: {x: 0, y: 0, z: 0}
+        useDataSpeed: 1
+        dataName: 2
+        speed: 20
+        layerMask:
+          serializedVersion: 2
+          m_Bits: 0
+        moveTransform: {fileID: 0}
+        moveRig: {fileID: 0}
+      SubmitFuncParam:
+        submitTag: 0
+        actionId: 
+        cantTranslate: 0
+        waitFrame: 0
+        delay: 0
+      RotateFuncParam:
+        useActionDir: 0
+        rotateDir: {x: 0, y: 0, z: 0}
+        useSmooth: 1
+        rotationSpeed: 1500
+      OnInstantiateObjFunctionParam:
+        vfxName: 
+        startDirection: {x: 0, y: 0, z: 0}
+        distance: 0
+        selfAsparent: 0
+        useMousePosition: 0
+        instantiatePos: {x: 0, y: 0, z: 0}
+        VfxLifeTime: -1
+        destroyByActionEnd: 1
+      RigidbodyParam:
+        isKenamicActive: 0
+        colliderActive: 0
+    - eventLifeRange: {x: 1, y: 1}
+      actionName: Rotate
+      MoveFunctionParam:
+        useRig: 0
+        useLocalSpace: 0
+        useActionDir: 0
+        moveDir: {x: 0, y: 0, z: 0}
+        useDataSpeed: 0
+        dataName: 0
+        speed: 0
+        layerMask:
+          serializedVersion: 2
+          m_Bits: 0
+        moveTransform: {fileID: 0}
+        moveRig: {fileID: 0}
+      SubmitFuncParam:
+        submitTag: 0
+        actionId: 
+        cantTranslate: 0
+        waitFrame: 0
+        delay: 0
+      RotateFuncParam:
+        useActionDir: 1
+        rotateDir: {x: 0, y: 0, z: 0}
+        useSmooth: 0
+        rotationSpeed: 1500
+      OnInstantiateObjFunctionParam:
+        vfxName: 
+        startDirection: {x: 0, y: 0, z: 0}
+        distance: 0
+        selfAsparent: 0
+        useMousePosition: 0
+        instantiatePos: {x: 0, y: 0, z: 0}
+        VfxLifeTime: -1
+        destroyByActionEnd: 1
+      RigidbodyParam:
+        isKenamicActive: 0
+        colliderActive: 0
+    - eventLifeRange: {x: 1, y: 1}
+      actionName: SubmitActionChangeQuest
+      MoveFunctionParam:
+        useRig: 0
+        useLocalSpace: 0
+        useActionDir: 0
+        moveDir: {x: 0, y: 0, z: 0}
+        useDataSpeed: 0
+        dataName: 0
+        speed: 0
+        layerMask:
+          serializedVersion: 2
+          m_Bits: 0
+        moveTransform: {fileID: 0}
+        moveRig: {fileID: 0}
+      SubmitFuncParam:
+        submitTag: 3
+        actionId: 
+        cantTranslate: 1
+        waitFrame: 30
+        delay: 0
+      RotateFuncParam:
+        useActionDir: 1
+        rotateDir: {x: 0, y: 0, z: 0}
+        useSmooth: 1
+        rotationSpeed: 1500
+      OnInstantiateObjFunctionParam:
+        vfxName: 
+        startDirection: {x: 0, y: 0, z: 0}
+        distance: 0
+        selfAsparent: 0
+        useMousePosition: 0
+        instantiatePos: {x: 0, y: 0, z: 0}
+        VfxLifeTime: -1
+        destroyByActionEnd: 1
+      RigidbodyParam:
+        isKenamicActive: 0
+        colliderActive: 0
+    - eventLifeRange: {x: 1, y: 1}
+      actionName: SetRigidBody
+      MoveFunctionParam:
+        useRig: 0
+        useLocalSpace: 0
+        useActionDir: 0
+        moveDir: {x: 0, y: 0, z: 0}
+        useDataSpeed: 0
+        dataName: 0
+        speed: 0
+        layerMask:
+          serializedVersion: 2
+          m_Bits: 0
+        moveTransform: {fileID: 0}
+        moveRig: {fileID: 0}
+      SubmitFuncParam:
+        submitTag: 3
+        actionId: 
+        cantTranslate: 1
+        waitFrame: 30
+        delay: 0
+      RotateFuncParam:
+        useActionDir: 1
+        rotateDir: {x: 0, y: 0, z: 0}
+        useSmooth: 1
+        rotationSpeed: 1500
+      OnInstantiateObjFunctionParam:
+        vfxName: 
+        startDirection: {x: 0, y: 0, z: 0}
+        distance: 0
+        selfAsparent: 0
+        useMousePosition: 0
+        instantiatePos: {x: 0, y: 0, z: 0}
+        VfxLifeTime: -1
+        destroyByActionEnd: 1
+      RigidbodyParam:
+        isKenamicActive: 1
+        colliderActive: 0
+    - eventLifeRange: {x: 5, y: 5}
+      actionName: SetRigidBody
+      MoveFunctionParam:
+        useRig: 0
+        useLocalSpace: 0
+        useActionDir: 0
+        moveDir: {x: 0, y: 0, z: 0}
+        useDataSpeed: 0
+        dataName: 0
+        speed: 0
+        layerMask:
+          serializedVersion: 2
+          m_Bits: 0
+        moveTransform: {fileID: 0}
+        moveRig: {fileID: 0}
+      SubmitFuncParam:
+        submitTag: 3
+        actionId: 
+        cantTranslate: 1
+        waitFrame: 30
+        delay: 0
+      RotateFuncParam:
+        useActionDir: 1
+        rotateDir: {x: 0, y: 0, z: 0}
+        useSmooth: 1
+        rotationSpeed: 1500
+      OnInstantiateObjFunctionParam:
+        vfxName: 
+        startDirection: {x: 0, y: 0, z: 0}
+        distance: 0
+        selfAsparent: 0
+        useMousePosition: 0
+        instantiatePos: {x: 0, y: 0, z: 0}
+        VfxLifeTime: -1
+        destroyByActionEnd: 1
+      RigidbodyParam:
+        isKenamicActive: 0
+        colliderActive: 1
+    tag: 3
+    canCancelTags:
+    - canBeCancelRange:
+      - {x: 5, y: 15}
+      canCancelTag: 2
+      proprity: 0
+      nextActionStartPercent: 0.2
+    - canBeCancelRange:
+      - {x: 0, y: 10}
+      canCancelTag: 7
+      proprity: 2
+      nextActionStartPercent: 0.25
+    priority: 2
+  - id: "\u6280\u80FD1_\u8D77\u52BF"
+    nextActionIds: "\u6280\u80FD1"
+    animationName: {fileID: 7400000, guid: 8e497fcccec48c24ead0bb5e8b1ea8a3, type: 2}
+    audioInfos: []
+    actionLifeRange: {x: 0, y: 30}
+    frameIndexEvent:
+    - eventLifeRange: {x: 0, y: 30}
+      actionName: Rotate
+      MoveFunctionParam:
+        useRig: 0
+        useLocalSpace: 0
+        useActionDir: 0
+        moveDir: {x: 0, y: 0, z: 0}
+        useDataSpeed: 0
+        dataName: 0
+        speed: 0
+        layerMask:
+          serializedVersion: 2
+          m_Bits: 0
+        moveTransform: {fileID: 0}
+        moveRig: {fileID: 0}
+      SubmitFuncParam:
+        submitTag: 0
+        actionId: 
+        cantTranslate: 0
+        waitFrame: 0
+        delay: 0
+      RotateFuncParam:
+        useActionDir: 1
+        rotateDir: {x: 0, y: 0, z: 1}
+        useSmooth: 0
+        rotationSpeed: 1500
+      OnInstantiateObjFunctionParam:
+        vfxName: 
+        startDirection: {x: 0, y: 0, z: 0}
+        distance: 0
+        selfAsparent: 0
+        useMousePosition: 0
+        instantiatePos: {x: 0, y: 0, z: 0}
+        VfxLifeTime: -1
+        destroyByActionEnd: 1
+      RigidbodyParam:
+        isKenamicActive: 0
+        colliderActive: 0
+    tag: 11
+    canCancelTags:
+    - canBeCancelRange:
+      - {x: 0, y: 30}
+      canCancelTag: 6
+      proprity: 2
+      nextActionStartPercent: 0.2
+    - canBeCancelRange:
+      - {x: 0, y: 30}
+      canCancelTag: 7
+      proprity: 3
+      nextActionStartPercent: 0.25
+    - canBeCancelRange:
+      - {x: 0, y: 30}
+      canCancelTag: 11
+      proprity: 0
+      nextActionStartPercent: 0.25
+    - canBeCancelRange:
+      - {x: 0, y: 30}
+      canCancelTag: 8
+      proprity: 1
+      nextActionStartPercent: 0.25
+    priority: 2
+  - id: "\u6280\u80FD1"
+    nextActionIds: "\u5F85\u673A"
+    animationName: {fileID: 7400000, guid: ba161ca9131d3d244b45b3a1ef149578, type: 2}
+    audioInfos: []
+    actionLifeRange: {x: 0, y: 60}
+    frameIndexEvent:
+    - eventLifeRange: {x: 1, y: 1}
+      actionName: Rotate
+      MoveFunctionParam:
+        useRig: 0
+        useLocalSpace: 0
+        useActionDir: 0
+        moveDir: {x: 0, y: 0, z: 0}
+        useDataSpeed: 0
+        dataName: 0
+        speed: 0
+        layerMask:
+          serializedVersion: 2
+          m_Bits: 0
+        moveTransform: {fileID: 0}
+        moveRig: {fileID: 0}
+      SubmitFuncParam:
+        submitTag: 0
+        actionId: 
+        cantTranslate: 0
+        waitFrame: 0
+        delay: 0
+      RotateFuncParam:
+        useActionDir: 1
+        rotateDir: {x: 0, y: 0, z: 0}
+        useSmooth: 0
+        rotationSpeed: 1500
+      OnInstantiateObjFunctionParam:
+        vfxName: 
+        startDirection: {x: 0, y: 0, z: 0}
+        distance: 0
+        selfAsparent: 0
+        useMousePosition: 0
+        instantiatePos: {x: 0, y: 0, z: 0}
+        VfxLifeTime: -1
+        destroyByActionEnd: 1
+      RigidbodyParam:
+        isKenamicActive: 0
+        colliderActive: 0
+    tag: 8
+    canCancelTags:
+    - canBeCancelRange:
+      - {x: 0, y: 60}
+      canCancelTag: 6
+      proprity: 0
+      nextActionStartPercent: 0.2
+    - canBeCancelRange:
+      - {x: 0, y: 60}
+      canCancelTag: 7
+      proprity: 1
+      nextActionStartPercent: 0.25
+    priority: 3
+  - id: "\u6280\u80FD2_\u8D77\u52BF"
+    nextActionIds: "\u6280\u80FD2"
+    animationName: {fileID: 7400000, guid: 5d5290b31098ad64e8380d1d637ae6de, type: 2}
+    audioInfos: []
+    actionLifeRange: {x: 0, y: 30}
+    frameIndexEvent:
+    - eventLifeRange: {x: 1, y: 30}
+      actionName: Rotate
+      MoveFunctionParam:
+        useRig: 0
+        useLocalSpace: 0
+        useActionDir: 0
+        moveDir: {x: 0, y: 0, z: 0}
+        useDataSpeed: 0
+        dataName: 0
+        speed: 0
+        layerMask:
+          serializedVersion: 2
+          m_Bits: 0
+        moveTransform: {fileID: 0}
+        moveRig: {fileID: 0}
+      SubmitFuncParam:
+        submitTag: 0
+        actionId: 
+        cantTranslate: 0
+        waitFrame: 0
+        delay: 0
+      RotateFuncParam:
+        useActionDir: 1
+        rotateDir: {x: 0, y: 0, z: 0}
+        useSmooth: 0
+        rotationSpeed: 1500
+      OnInstantiateObjFunctionParam:
+        vfxName: 
+        startDirection: {x: 0, y: 0, z: 0}
+        distance: 0
+        selfAsparent: 0
+        useMousePosition: 0
+        instantiatePos: {x: 0, y: 0, z: 0}
+        VfxLifeTime: -1
+        destroyByActionEnd: 1
+      RigidbodyParam:
+        isKenamicActive: 0
+        colliderActive: 0
+    tag: 12
+    canCancelTags:
+    - canBeCancelRange:
+      - {x: 0, y: 30}
+      canCancelTag: 6
+      proprity: 2
+      nextActionStartPercent: 0
+    - canBeCancelRange:
+      - {x: 0, y: 30}
+      canCancelTag: 7
+      proprity: 3
+      nextActionStartPercent: 0
+    - canBeCancelRange:
+      - {x: 0, y: 30}
+      canCancelTag: 12
+      proprity: 0
+      nextActionStartPercent: 0
+    - canBeCancelRange:
+      - {x: 0, y: 30}
+      canCancelTag: 9
+      proprity: 1
+      nextActionStartPercent: 0
+    priority: 2
+  - id: "\u6280\u80FD2"
+    nextActionIds: "\u5F85\u673A"
+    animationName: {fileID: 7400000, guid: ae83f2eda76c63e499ddd3a48cf709d9, type: 2}
+    audioInfos: []
+    actionLifeRange: {x: 0, y: 180}
+    frameIndexEvent:
+    - eventLifeRange: {x: 1, y: 180}
+      actionName: Rotate
+      MoveFunctionParam:
+        useRig: 0
+        useLocalSpace: 0
+        useActionDir: 0
+        moveDir: {x: 0, y: 0, z: 0}
+        useDataSpeed: 0
+        dataName: 0
+        speed: 0
+        layerMask:
+          serializedVersion: 2
+          m_Bits: 0
+        moveTransform: {fileID: 0}
+        moveRig: {fileID: 0}
+      SubmitFuncParam:
+        submitTag: 0
+        actionId: 
+        cantTranslate: 0
+        waitFrame: 0
+        delay: 0
+      RotateFuncParam:
+        useActionDir: 1
+        rotateDir: {x: 0, y: 0, z: 0}
+        useSmooth: 0
+        rotationSpeed: 1500
+      OnInstantiateObjFunctionParam:
+        vfxName: 
+        startDirection: {x: 0, y: 0, z: 0}
+        distance: 0
+        selfAsparent: 0
+        useMousePosition: 0
+        instantiatePos: {x: 0, y: 0, z: 0}
+        VfxLifeTime: -1
+        destroyByActionEnd: 1
+      RigidbodyParam:
+        isKenamicActive: 0
+        colliderActive: 0
+    - eventLifeRange: {x: 1, y: 180}
+      actionName: Move
+      MoveFunctionParam:
+        useRig: 1
+        useLocalSpace: 0
+        useActionDir: 0
+        moveDir: {x: 0, y: 0, z: 0}
+        useDataSpeed: 0
+        dataName: 0
+        speed: 3
+        layerMask:
+          serializedVersion: 2
+          m_Bits: 8
+        moveTransform: {fileID: 0}
+        moveRig: {fileID: 0}
+      SubmitFuncParam:
+        submitTag: 0
+        actionId: 
+        cantTranslate: 0
+        waitFrame: 0
+        delay: 0
+      RotateFuncParam:
+        useActionDir: 1
+        rotateDir: {x: 0, y: 0, z: 0}
+        useSmooth: 0
+        rotationSpeed: 1500
+      OnInstantiateObjFunctionParam:
+        vfxName: 
+        startDirection: {x: 0, y: 0, z: 0}
+        distance: 0
+        selfAsparent: 0
+        useMousePosition: 0
+        instantiatePos: {x: 0, y: 0, z: 0}
+        VfxLifeTime: -1
+        destroyByActionEnd: 1
+      RigidbodyParam:
+        isKenamicActive: 0
+        colliderActive: 0
+    tag: 9
+    canCancelTags:
+    - canBeCancelRange:
+      - {x: 0, y: 180}
+      canCancelTag: 6
+      proprity: 2
+      nextActionStartPercent: 0.2
+    - canBeCancelRange:
+      - {x: 0, y: 180}
+      canCancelTag: 7
+      proprity: 3
+      nextActionStartPercent: 0.25
+    - canBeCancelRange:
+      - {x: 0, y: 180}
+      canCancelTag: 9
+      proprity: 1
+      nextActionStartPercent: 0.25
+    - canBeCancelRange:
+      - {x: 0, y: 180}
+      canCancelTag: 0
+      proprity: 0
+      nextActionStartPercent: 0
+    priority: 3
+  - id: "\u6280\u80FD3_\u8D77\u52BF"
+    nextActionIds: "\u5F85\u673A"
+    animationName: {fileID: 7400000, guid: b278f8f8f8afa3e449d1ba455c607e13, type: 2}
+    audioInfos: []
+    actionLifeRange: {x: 0, y: 60}
+    frameIndexEvent:
+    - eventLifeRange: {x: 0, y: 1}
+      actionName: Rotate
+      MoveFunctionParam:
+        useRig: 0
+        useLocalSpace: 0
+        useActionDir: 0
+        moveDir: {x: 0, y: 0, z: 0}
+        useDataSpeed: 0
+        dataName: 0
+        speed: 0
+        layerMask:
+          serializedVersion: 2
+          m_Bits: 0
+        moveTransform: {fileID: 0}
+        moveRig: {fileID: 0}
+      SubmitFuncParam:
+        submitTag: 0
+        actionId: 
+        cantTranslate: 0
+        waitFrame: 0
+        delay: 0
+      RotateFuncParam:
+        useActionDir: 1
+        rotateDir: {x: 0, y: 0, z: 0}
+        useSmooth: 0
+        rotationSpeed: 1500
+      OnInstantiateObjFunctionParam:
+        vfxName: 
+        startDirection: {x: 0, y: 0, z: 0}
+        distance: 0
+        selfAsparent: 0
+        useMousePosition: 0
+        instantiatePos: {x: 0, y: 0, z: 0}
+        VfxLifeTime: -1
+        destroyByActionEnd: 1
+      RigidbodyParam:
+        isKenamicActive: 0
+        colliderActive: 0
+    tag: 13
+    canCancelTags:
+    - canBeCancelRange:
+      - {x: 0, y: 60}
+      canCancelTag: 6
+      proprity: 1
+      nextActionStartPercent: 0
+    - canBeCancelRange:
+      - {x: 0, y: 60}
+      canCancelTag: 7
+      proprity: 2
+      nextActionStartPercent: 0
+    priority: 3
