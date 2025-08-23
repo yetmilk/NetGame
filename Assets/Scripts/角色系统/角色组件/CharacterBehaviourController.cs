@@ -42,8 +42,8 @@ public class CharacterBehaviourController : NetMonobehavior, IDealActionCommand,
         base.Start();
         //Init(charaTag);
 
-
-        StartCoroutine(InitCol());
+        Init(charaTag);
+        // StartCoroutine(InitCol());
 
         EventCenter.Subscribe(EventCenter.EventId.LogicFrameUpdate, LogicUpdate);
     }
@@ -57,7 +57,7 @@ public class CharacterBehaviourController : NetMonobehavior, IDealActionCommand,
             yield return null;
         }
 
-        Init(playerInfo.character);
+
     }
 
     public void Init(CharacterClacify character)

@@ -33,7 +33,6 @@ public class PlayerTestEditor : MonoBehaviour
                 if (obj.Status == UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationStatus.Succeeded)
                 {
                     var player = Instantiate(obj.Result);
-                    player.GetComponent<CharacterBehaviourController>().Init(character);
                     player.transform.position = transform.position;
                     //player.AddComponent<CharacterInput>().Init();
 
