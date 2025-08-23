@@ -6,4 +6,6 @@ public enum CharacterClacify
 {
     //角色
     侠客 = 0, 仙术师 = 1,
+    //怪物
+    蜘蛛 = 2,
 }

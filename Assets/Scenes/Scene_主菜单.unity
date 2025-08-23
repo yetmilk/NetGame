@@ -7179,7 +7179,7 @@ PrefabInstance:
     - target: {fileID: 8373833435487354797, guid: dcabeb67b58731f42a604f4b2a3e766a,
         type: 3}
       propertyPath: ConnectIp
-      value: 127.0.0.1
+      value: 47.105.122.120
       objectReference: {fileID: 0}
     - target: {fileID: 8373833435487354798, guid: dcabeb67b58731f42a604f4b2a3e766a,
         type: 3}
