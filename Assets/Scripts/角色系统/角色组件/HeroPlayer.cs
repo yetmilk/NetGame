@@ -28,7 +28,7 @@ public class HeroPlayer : CharacterBehaviourController
             if (checkSucc)
             {
                 Vector3 dir = (MousePos - transform.position).normalized;
-                PlayerInputManager.Instance.HandleInput(new InputCommand(InputCommandType.技能1_起势, dir));
+                PlayerInputManager.Instance.HandleInput(new InputCommand(InputCommandType.技能1_起势, dir), NetID);
             }
 
         }
@@ -97,7 +97,7 @@ public class HeroPlayer : CharacterBehaviourController
             if (checkSucc)
             {
                 Vector3 dir = (MousePos - transform.position).normalized;
-                PlayerInputManager.Instance.HandleInput(new InputCommand(InputCommandType.技能2_起势, dir));
+                PlayerInputManager.Instance.HandleInput(new InputCommand(InputCommandType.技能2_起势, dir), NetID);
             }
 
         }

@@ -269,12 +269,12 @@ MonoBehaviour:
       actionName: Move
       MoveFunctionParam:
         useRig: 1
-        useLocalSpace: 1
-        useActionDir: 0
+        useLocalSpace: 0
+        useActionDir: 1
         moveDir: {x: 0, y: 0, z: 0}
         useDataSpeed: 0
         dataName: 0
-        speed: 15
+        speed: 5
         layerMask:
           serializedVersion: 2
           m_Bits: 0

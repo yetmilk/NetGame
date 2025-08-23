@@ -7,4 +7,7 @@ using UnityEngine;
 public interface IDealActionCommand
 {
     public void HandleInputCommand(InputCommand command);
+
+    public void HandleInputCommand(string actionName, ActionTag actionTag, Vector3 dir);
+
 }

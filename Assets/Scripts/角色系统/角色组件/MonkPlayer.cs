@@ -31,7 +31,7 @@ public class MonkPlayer : CharacterBehaviourController
             if (checkSucc)
             {
                 Vector3 dir = (MousePos - transform.position).normalized;
-                PlayerInputManager.Instance.HandleInput(new InputCommand(InputCommandType.技能1_起势, dir));
+                PlayerInputManager.Instance.HandleInput(new InputCommand(InputCommandType.技能1_起势, dir), NetID);
             }
             if (Vector3.Distance(MousePos, transform.position) < 5f)
             {
@@ -106,7 +106,7 @@ public class MonkPlayer : CharacterBehaviourController
             if (checkSucc)
             {
                 Vector3 dir = (MousePos - transform.position).normalized;
-                PlayerInputManager.Instance.HandleInput(new InputCommand(InputCommandType.技能2_起势, dir));
+                PlayerInputManager.Instance.HandleInput(new InputCommand(InputCommandType.技能2_起势, dir), NetID);
             }
 
         }
@@ -148,7 +148,7 @@ public class MonkPlayer : CharacterBehaviourController
             if (checkSucc)
             {
                 Vector3 dir = (MousePos - transform.position).normalized;
-                PlayerInputManager.Instance.HandleInput(new InputCommand(InputCommandType.技能2, dir));
+                PlayerInputManager.Instance.HandleInput(new InputCommand(InputCommandType.技能2, dir), NetID);
             }
 
             Vector3 inputDir = PlayerInputManager.Instance.GetInputDiraction();
@@ -157,7 +157,7 @@ public class MonkPlayer : CharacterBehaviourController
         }
         if (Time.time - timer > 3f)
         {
-            PlayerInputManager.Instance.HandleInput(new InputCommand(InputCommandType.待机));
+            PlayerInputManager.Instance.HandleInput(new InputCommand(InputCommandType.待机), NetID);
 
         }
     }

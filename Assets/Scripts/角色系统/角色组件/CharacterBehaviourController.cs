@@ -253,7 +253,7 @@ public class CharacterBehaviourController : NetMonobehavior, IDealActionCommand,
             Vector3 inputDir = PlayerInputManager.Instance.GetInputDiraction();
             if (inputDir != Vector3.zero)
             {
-                PlayerInputManager.Instance.HandleInput(new InputCommand(InputCommandType.移动, inputDir));
+                PlayerInputManager.Instance.HandleInput(new InputCommand(InputCommandType.移动, inputDir),NetID);
             }
         }
     }
@@ -423,6 +423,10 @@ public class CharacterBehaviourController : NetMonobehavior, IDealActionCommand,
                 break;
         }
     }
+    public void HandleInputCommand(string actionName, ActionTag actionTag, Vector3 dir)
+    {
+        selfActionCtrl.AddCommand(actionName, actionTag, dir);
+    }
 
     #endregion
 
@@ -431,10 +435,11 @@ public class CharacterBehaviourController : NetMonobehavior, IDealActionCommand,
     {
         //Debug.Log(hurtDir.normalized);
 
-        PlayerInputManager.Instance.HandleInput(new InputCommand(InputCommandType.无, hurtDir, ActionTag.Hurt));
+        PlayerInputManager.Instance.HandleInput(new InputCommand(InputCommandType.无, hurtDir, ActionTag.Hurt),NetID);
         //TODO:数据同步
         curCharaData.data.curHealth -= damage;
-        if (curCharaData.data.curHealth <= 0f) selfActionCtrl.AddCommand("", ActionTag.Dead, Vector3.zero);
+        if (curCharaData.data.curHealth <= 0f)
+            PlayerInputManager.Instance.HandleInput(new InputCommand(InputCommandType.无, hurtDir, ActionTag.Dead), NetID);
     }
 
     public virtual bool CanBeAttack(CampFlag attackercamp)
@@ -462,5 +467,5 @@ public class CharacterBehaviourController : NetMonobehavior, IDealActionCommand,
         EventCenter.Unsubscribe(EventCenter.EventId.LogicFrameUpdate, LogicUpdate);
     }
 
-
+    
 }

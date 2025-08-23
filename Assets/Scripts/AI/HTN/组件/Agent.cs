@@ -23,7 +23,7 @@ public class Agent : MonoBehaviour
     {
         // 初始化世界状态
         // doMain.state.StateChanged += OnWorldStateChanged;
-        state = doMainModule.state.Clone();
+        state = doMainModule.state;
 
         state.ReplanNeeded += OnReplanNeeded;
 
@@ -58,7 +58,7 @@ public class Agent : MonoBehaviour
     public void Plan()
     {
         if (isPlanning) return;
-
+        Debug.Log(7777);
         isPlanning = true;
         lastPlanTime = Time.time;
 
@@ -73,7 +73,7 @@ public class Agent : MonoBehaviour
         currentPlan = newPlan;
         if (currentPlan.IsValid)
         {
-           
+
         }
         else
         {
@@ -132,6 +132,7 @@ public class Agent : MonoBehaviour
 
     private void OnDestroy()
     {
+        state.ReplanNeeded -= OnReplanNeeded;
     }
 
 
