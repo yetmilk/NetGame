@@ -104,32 +104,22 @@ MonoBehaviour:
     - canBeCancelRange:
       - {x: 0, y: 600}
       canCancelTag: 1
-      proprity: 0
+      proprity: 1
       nextActionStartPercent: 0
     - canBeCancelRange:
       - {x: 0, y: 600}
       canCancelTag: 2
-      proprity: 0
+      proprity: 2
       nextActionStartPercent: 0.2
     - canBeCancelRange:
       - {x: 0, y: 600}
-      canCancelTag: 3
-      proprity: 0
-      nextActionStartPercent: 0
-    - canBeCancelRange:
-      - {x: 0, y: 600}
-      canCancelTag: 4
-      proprity: 0
-      nextActionStartPercent: 0
-    - canBeCancelRange:
-      - {x: 0, y: 600}
       canCancelTag: 6
-      proprity: 0
+      proprity: 3
       nextActionStartPercent: 0
     - canBeCancelRange:
       - {x: 0, y: 600}
       canCancelTag: 7
-      proprity: 0
+      proprity: 4
       nextActionStartPercent: 0
     - canBeCancelRange:
       - {x: 0, y: 600}
@@ -226,32 +216,22 @@ MonoBehaviour:
     - canBeCancelRange:
       - {x: 0, y: 180}
       canCancelTag: 1
-      proprity: 0
+      proprity: 1
       nextActionStartPercent: 0
     - canBeCancelRange:
       - {x: 0, y: 180}
       canCancelTag: 2
-      proprity: 0
+      proprity: 2
       nextActionStartPercent: 0.2
     - canBeCancelRange:
       - {x: 0, y: 180}
-      canCancelTag: 3
-      proprity: 0
-      nextActionStartPercent: 0
-    - canBeCancelRange:
-      - {x: 0, y: 180}
-      canCancelTag: 4
-      proprity: 0
-      nextActionStartPercent: 0
-    - canBeCancelRange:
-      - {x: 0, y: 180}
       canCancelTag: 6
-      proprity: 0
+      proprity: 3
       nextActionStartPercent: 0
     - canBeCancelRange:
       - {x: 0, y: 180}
       canCancelTag: 7
-      proprity: 0
+      proprity: 4
       nextActionStartPercent: 0
     - canBeCancelRange:
       - {x: 0, y: 180}
@@ -346,23 +326,13 @@ MonoBehaviour:
     - canBeCancelRange:
       - {x: 0, y: 120}
       canCancelTag: 1
-      proprity: 0
+      proprity: 1
       nextActionStartPercent: 0
     - canBeCancelRange:
       - {x: 0, y: 120}
       canCancelTag: 2
-      proprity: 0
+      proprity: 2
       nextActionStartPercent: 0.2
-    - canBeCancelRange:
-      - {x: 0, y: 120}
-      canCancelTag: 3
-      proprity: 0
-      nextActionStartPercent: 0
-    - canBeCancelRange:
-      - {x: 0, y: 120}
-      canCancelTag: 4
-      proprity: 0
-      nextActionStartPercent: 0
     - canBeCancelRange:
       - {x: 0, y: 120}
       canCancelTag: 0
@@ -371,12 +341,12 @@ MonoBehaviour:
     - canBeCancelRange:
       - {x: 0, y: 120}
       canCancelTag: 6
-      proprity: 0
+      proprity: 3
       nextActionStartPercent: 0
     - canBeCancelRange:
       - {x: 0, y: 120}
       canCancelTag: 7
-      proprity: 0
+      proprity: 4
       nextActionStartPercent: 0
     priority: 1
   - id: "\u540E\u9000"
@@ -391,10 +361,10 @@ MonoBehaviour:
         useRig: 1
         useLocalSpace: 1
         useActionDir: 0
-        moveDir: {x: 0, y: 0, z: 0}
+        moveDir: {x: 0, y: 0, z: -1}
         useDataSpeed: 0
         dataName: 0
-        speed: 15
+        speed: 5
         layerMask:
           serializedVersion: 2
           m_Bits: 0
@@ -466,23 +436,13 @@ MonoBehaviour:
     - canBeCancelRange:
       - {x: 0, y: 120}
       canCancelTag: 1
-      proprity: 0
+      proprity: 1
       nextActionStartPercent: 0
     - canBeCancelRange:
       - {x: 0, y: 120}
       canCancelTag: 2
-      proprity: 0
+      proprity: 2
       nextActionStartPercent: 0.2
-    - canBeCancelRange:
-      - {x: 0, y: 120}
-      canCancelTag: 3
-      proprity: 0
-      nextActionStartPercent: 0
-    - canBeCancelRange:
-      - {x: 0, y: 120}
-      canCancelTag: 4
-      proprity: 0
-      nextActionStartPercent: 0
     - canBeCancelRange:
       - {x: 0, y: 120}
       canCancelTag: 0
@@ -491,12 +451,12 @@ MonoBehaviour:
     - canBeCancelRange:
       - {x: 0, y: 120}
       canCancelTag: 6
-      proprity: 0
+      proprity: 3
       nextActionStartPercent: 0
     - canBeCancelRange:
       - {x: 0, y: 120}
       canCancelTag: 7
-      proprity: 0
+      proprity: 4
       nextActionStartPercent: 0
     priority: 1
   - id: "\u53D7\u4F24"
@@ -531,7 +491,7 @@ MonoBehaviour:
     actionLifeRange: {x: 0, y: 50}
     frameIndexEvent:
     - eventLifeRange: {x: 20, y: 20}
-      actionName: OnInstantiateVFX
+      actionName: InstantiateObj
       MoveFunctionParam:
         useRig: 0
         useLocalSpace: 0
@@ -557,14 +517,14 @@ MonoBehaviour:
         useSmooth: 1
         rotationSpeed: 1500
       OnInstantiateObjFunctionParam:
-        vfxName: 
-        startDirection: {x: 0, y: 0, z: 0}
-        distance: 0
+        vfxName: AttackBox
+        startDirection: {x: 0, y: 0, z: 1}
+        distance: 1
         selfAsparent: 0
         useMousePosition: 0
         instantiatePos: {x: 0, y: 0, z: 0}
-        VfxLifeTime: -1
-        destroyByActionEnd: 1
+        VfxLifeTime: 0.5
+        destroyByActionEnd: 0
       RigidbodyParam:
         isKenamicActive: 0
         colliderActive: 0

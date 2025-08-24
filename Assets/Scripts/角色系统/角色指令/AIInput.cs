@@ -19,7 +19,7 @@ public class AIInput : MonoBehaviour
     {
         MsgInputCommand msg = msgBase as MsgInputCommand;
 
-       Debug.Log("当前角色名"+character.gameObject.name+"当前角色netid"+character.NetID+" 传来netid"+msg.NetId);
+        //Debug.Log("当前角色名"+character.gameObject.name+"当前角色netid"+character.NetID+" 传来netid"+msg.NetId);
         if (msg.NetId == character.NetID)
         {
             if (msg.type != -1)

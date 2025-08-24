@@ -42,7 +42,7 @@ public class SpiderEnemy : CharacterBehaviourController
             yield return null;
         }
         //agent.GetComponent<IDealActionCommand>().HandleInputCommand(new InputCommand(InputCommandType.移动));
-       //PlayerInputManager.Instance.HandleInput(new InputCommand(InputCommandType.待机), agent.GetComponent<NetMonobehavior>().NetID);
+        //PlayerInputManager.Instance.HandleInput(new InputCommand(InputCommandType.待机), agent.GetComponent<NetMonobehavior>().NetID);
         Debug.Log("Arrived at enemy position");
         onComplete?.Invoke();
     }
@@ -81,9 +81,9 @@ public class SpiderEnemy : CharacterBehaviourController
 
             PlayerInputManager.Instance.HandleInput(new InputCommand(InputCommandType.待机, -dir), agent.GetComponent<NetMonobehavior>().NetID);
             // 仅在距离变化时更新动作（避免重复添加相同命令）
-            if (Vector3.Distance(agent.transform.position, targetPos) <= 2f)
+            if (Vector3.Distance(agent.transform.position, targetPos) <= 5f)
             {
-                PlayerInputManager.Instance.HandleInput("后退", ActionTag.Move, -dir);
+                PlayerInputManager.Instance.HandleInput("后退", ActionTag.Move, -dir, agent.GetComponent<NetMonobehavior>().NetID);
             }
 
 
