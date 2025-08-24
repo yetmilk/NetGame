@@ -24,14 +24,22 @@ public class PlayerInputManager : Singleton<PlayerInputManager>
     {
         activeInput.Disable();
     }
-    public void HandleInput(InputCommand command)
+    public void HandleInput(InputCommand command, string netId)
     {
 
         MsgInputCommand msg = new MsgInputCommand((int)command.type, command.direction);
+        msg.NetId = netId;
+        NetManager.Send(msg);
+    }
+    public void HandleInput(string actionName, ActionTag actionTag, Vector3 dir, string netId)
+    {
+        MsgInputCommand msg = new MsgInputCommand(-1, dir);
 
-        string selfId = PlayerManager.Instance.selfId;
-        msg.NetId = PlayerManager.Instance.curActivePlayer[selfId].playerObj.NetID;
-        msg.questIp = NetManager.LocalEndPoint;
+        msg.NetId = netId;
+
+        msg.actionName = actionName;
+        msg.actionTag = (int)actionTag;
+
         NetManager.Send(msg);
     }
     public Vector3 GetInputDiraction()

@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AddressableAssets;
 
 public class PlayerTestEditor : MonoBehaviour
 {
@@ -15,31 +12,59 @@ public class PlayerTestEditor : MonoBehaviour
     {
         if (isTest)
         {
-
-            //gameObject.AddComponent<FrameManager>();
-            CharacterDataSO data = null;
-            ActionCollection actionInfos = null;
-            var handle = Addressables.LoadAssetAsync<CharacterDataSO>(character.ToString());
-            handle.WaitForCompletion();
-            if (handle.Status == UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationStatus.Succeeded)
-                data = handle.Result;
-
-            var handle1 = Addressables.LoadAssetAsync<ActionCollection>(character.ToString());
-            handle1.WaitForCompletion();
-            if (handle1.Status == UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationStatus.Succeeded)
-                actionInfos = handle1.Result;
-            Addressables.LoadAssetAsync<GameObject>(character.ToString()).Completed += (obj) =>
-            {
-                if (obj.Status == UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationStatus.Succeeded)
-                {
-                    var player = Instantiate(obj.Result);
-                    player.transform.position = transform.position;
-                    //player.AddComponent<CharacterInput>().Init();
-
-                }
-            };
+           // SpawnCharacter();
         }
     }
 
+    /// <summary>
+    /// 生成角色的方法
+    /// </summary>
+    private void SpawnCharacter()
+    {
+        if (LoadManager.Instance != null)
+        {
+            
+                LoadManager.Instance.NetInstantiate(character.ToString());
+            
+           
+        }
+        else
+        {
+            Debug.LogError("LoadManager实例不存在!");
+        }
+    }
 
+    /// <summary>
+    /// 在Inspector右键菜单中添加"生成角色"按钮
+    /// </summary>
+    [ContextMenu("生成角色")]
+    public void SpawnCharacterFromButton()
+    {
+        SpawnCharacter();
+    }
+
+    /// <summary>
+    /// 在Inspector中显示一个按钮
+    /// 需要引入UnityEditor命名空间
+    /// </summary>
+#if UNITY_EDITOR
+    [UnityEditor.CustomEditor(typeof(PlayerTestEditor))]
+    public class PlayerTestEditorInspector : UnityEditor.Editor
+    {
+        public override void OnInspectorGUI()
+        {
+            // 绘制默认的Inspector
+            DrawDefaultInspector();
+
+            // 获取当前脚本实例
+            PlayerTestEditor testEditor = (PlayerTestEditor)target;
+
+            // 添加一个按钮
+            if (GUILayout.Button("生成角色"))
+            {
+                testEditor.SpawnCharacter();
+            }
+        }
+    }
+#endif
 }

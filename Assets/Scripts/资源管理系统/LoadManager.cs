@@ -131,7 +131,7 @@ public class LoadManager : Singleton<LoadManager>
             string netID;
             if (string.IsNullOrEmpty(netId))
             {
-                Guid guid = new Guid();
+                Guid guid = Guid.NewGuid();
                 netID = guid.ToString();
             }
             else

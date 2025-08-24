@@ -76,7 +76,7 @@ public class InstantiateObj_AttackDetector : InstantiateObjBase, IAttackDetector
             while (detectedColliders.Count > 0)
             {
                 CollisionInfo target = detectedColliders.Dequeue();
-                if (target.target.GetComponent<NetMonobehavior>() && target.target.GetComponent<NetMonobehavior>().NetID != ownerTransform.GetComponent<NetMonobehavior>().NetID)
+                if (target.target.GetComponent<NetMonobehavior>() != null && target.target.GetComponent<NetMonobehavior>().NetID != ownerTransform.GetComponent<NetMonobehavior>().NetID)
                     OnTargetDetected(target);
             }
             isDealAttack = false;
@@ -102,8 +102,8 @@ public class InstantiateObj_AttackDetector : InstantiateObjBase, IAttackDetector
             {
                 var go = LoadManager.Instance.NetInstantiate(vfxName);
 
-                go.transform.position = colInfo.collisionPoint;
-                go.transform.rotation = Quaternion.LookRotation(colInfo.collisionNormal);
+                //go.transform.position = colInfo.collisionPoint;
+                //go.transform.rotation = Quaternion.LookRotation(colInfo.collisionNormal);
             }
 
 

@@ -18,9 +18,11 @@ public class MsgInputCommand : MsgBase
     public MsgInputCommand() { protoName = "MsgInputCommand"; }
 
     public string NetId;
-    public string questIp;
 
-    public int type;
+    public int type = -1;
+
+    public string actionName;
+    public int actionTag;
 
     public float directionX;
     public float directionY;

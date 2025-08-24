@@ -55,8 +55,12 @@ public class WorldState : ScriptableObject, ISerializationCallbackReceiver
         return (T)runTimeValues[key].value;
     }
 
-    public void SetState(string key, object value)
+
+
+    public void SetState(string key, object value, bool isPlan = false)
     {
+
+
         Value oldValue = null;
         bool existed = runTimeValues.TryGetValue(key, out oldValue);
 
@@ -66,13 +70,14 @@ public class WorldState : ScriptableObject, ISerializationCallbackReceiver
             runTimeValues.Add(key, new Value(value));
 
         // 触发状态变更事件
-        if (existed && !Equals(oldValue, value) || !existed)
+        if ((existed && !Equals(oldValue, value) || !existed) && !isPlan)
         {
             StateChanged?.Invoke(this, new WorldStateChangedEventArgs(key, value, oldValue));
 
             // 检查是否需要触发重新规划
             if (runTimeValues[key].changeTriggerReplan)
             {
+                Debug.Log("SetState调用  " + isPlan);
                 ReplanNeeded?.Invoke(this, key);
             }
         }
@@ -105,13 +110,13 @@ public class WorldState : ScriptableObject, ISerializationCallbackReceiver
         return clone;
     }
 
-    public void ApplyEffect(Effect effect)
+    public void ApplyEffect(Effect effect, bool isPlan = false)
     {
         Value value = GetValue(effect.worldStateName);
         if (value != null)
         {
             var ChangeValue = StringConversionHelper.ConvertStringToType(effect.changeValue, value.value);
-            SetState(effect.worldStateName, ChangeValue);
+            SetState(effect.worldStateName, ChangeValue, isPlan);
         }
 
     }

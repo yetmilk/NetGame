@@ -248,14 +248,14 @@ public class CharacterBehaviourController : NetMonobehavior, IDealActionCommand,
     }
     protected virtual void OnMoveUpdate(ActionObj curActionObj)
     {
-        if (IsLocal)
-        {
-            Vector3 inputDir = PlayerInputManager.Instance.GetInputDiraction();
-            if (inputDir != Vector3.zero)
-            {
-                PlayerInputManager.Instance.HandleInput(new InputCommand(InputCommandType.移动, inputDir));
-            }
-        }
+        //if (IsLocal)
+        //{
+        //    Vector3 inputDir = PlayerInputManager.Instance.GetInputDiraction();
+        //    if (inputDir != Vector3.zero)
+        //    {
+        //        PlayerInputManager.Instance.HandleInput(new InputCommand(InputCommandType.移动, inputDir),NetID);
+        //    }
+        //}
     }
     protected virtual void OnMoveExit(ActionObj curActionObj, ActionObj nextActionObj) { }
     #endregion
@@ -423,6 +423,10 @@ public class CharacterBehaviourController : NetMonobehavior, IDealActionCommand,
                 break;
         }
     }
+    public void HandleInputCommand(string actionName, ActionTag actionTag, Vector3 dir)
+    {
+        selfActionCtrl.AddCommand(actionName, actionTag, dir);
+    }
 
     #endregion
 
@@ -431,10 +435,11 @@ public class CharacterBehaviourController : NetMonobehavior, IDealActionCommand,
     {
         //Debug.Log(hurtDir.normalized);
 
-        PlayerInputManager.Instance.HandleInput(new InputCommand(InputCommandType.无, hurtDir, ActionTag.Hurt));
+        PlayerInputManager.Instance.HandleInput("",ActionTag.Hurt,-hurtDir, NetID);
         //TODO:数据同步
         curCharaData.data.curHealth -= damage;
-        if (curCharaData.data.curHealth <= 0f) selfActionCtrl.AddCommand("", ActionTag.Dead, Vector3.zero);
+        if (curCharaData.data.curHealth <= 0f)
+            PlayerInputManager.Instance.HandleInput("", ActionTag.Dead,Vector3.zero, NetID);
     }
 
     public virtual bool CanBeAttack(CampFlag attackercamp)
