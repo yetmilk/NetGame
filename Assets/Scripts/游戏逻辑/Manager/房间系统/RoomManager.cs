@@ -133,17 +133,16 @@ public class RoomManager : Singleton<RoomManager>
         {
             if (msg.addMemberId == PlayerManager.Instance.selfId)
             {
+                curRoom = msg.roomState;
                 OnRoomUpdate?.Invoke();
                 TipManager.Instance.ShowTip(TipType.LogTip, "正在加入 " + msg.roomState.hostId.ToString() + " 的房间", null, 2f);
-                curRoom = msg.roomState;
                 LoadToRoomScene();
-                
+
             }
             else
             {
                 curRoom = msg.roomState;
                 OnRoomUpdate?.Invoke();
-                LoadToRoomScene();
                 TipManager.Instance.ShowTip(TipType.LogTip, "玩家 " + msg.addMemberId.ToString() + " 加入房间", null, 2f);
             }
 

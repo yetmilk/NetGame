@@ -14,6 +14,8 @@ public class PlayerManager : Singleton<PlayerManager>
 
     public Transform playerInstantiatePos;
 
+    public Action onPlayerChange;
+
     [System.Serializable]
     public class PlayerInfo
     {
@@ -32,19 +34,19 @@ public class PlayerManager : Singleton<PlayerManager>
         RoomManager.Instance.OnCreateRoomComplete += UpdatePlayerList;
         RoomManager.Instance.OnRoomUpdate += UpdatePlayerList;
 
-        StartCoroutine(UpdatePlayer());
+        //StartCoroutine(UpdatePlayer());
         NetManager.AddMsgListener("MsgUpdatePlayerClacify", UpdateCharacterFromServer);
         NetManager.AddMsgListener("MsgGetPlayerInfo", GetPlayerInfoFromServer);
     }
 
-    IEnumerator UpdatePlayer()
-    {
-        while (true)
-        {
-            UpdatePlayerList();
-            yield return new WaitForSeconds(.5f);
-        }
-    }
+    //IEnumerator UpdatePlayer()
+    //{
+    //    while (true)
+    //    {
+    //        UpdatePlayerList();
+    //        yield return new WaitForSeconds(.5f);
+    //    }
+    //}
 
     public void UpdatePlayerList()
     {
@@ -54,9 +56,12 @@ public class PlayerManager : Singleton<PlayerManager>
             if (!activeplayerNameList.Contains(member))
             {
                 InitPlayer(member);
+
             }
 
         }
+
+        onPlayerChange?.Invoke();
     }
 
     public void InitPlayer(string playerName, string netID = "", CharacterClacify clacify = CharacterClacify.ою©м)
@@ -86,7 +91,8 @@ public class PlayerManager : Singleton<PlayerManager>
     public GameObject CreatePlayer(string playerId)
     {
 
-        var player = LoadManager.Instance.NetInstantiate(curActivePlayer[playerId].character.ToString(), curActivePlayer[playerId].netID);
+        var obj = LoadManager.Instance.GetResourceByName<GameObject>(curActivePlayer[playerId].character.ToString());
+        var player = Instantiate(obj);
         player.transform.position = playerInstantiatePos.position;
 
         player.GetComponent<CampFlag>().Init(CampType.Player);
@@ -96,8 +102,12 @@ public class PlayerManager : Singleton<PlayerManager>
         if (playerId == selfId)
         {
             CameraManager.Instance.Init(curActivePlayer[playerId].playerObj.transform);
+            player.GetComponent<NetMonobehavior>().ClientInit(curActivePlayer[playerId].netID, "Local");
         }
-
+        else
+        {
+            player.GetComponent<NetMonobehavior>().ClientInit(curActivePlayer[playerId].netID, "Remote");
+        }
         return player;
 
     }
