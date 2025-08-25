@@ -51,7 +51,7 @@ public class CharacterDataObj
 
     public CharacterDataObj(CharacterDataSO charaData)
     {
-        this.charaData = ScriptableObjectCloner.Clone<CharacterDataSO>(charaData);
+        this.charaData =Utility.ScriptableObjectCloner.Clone<CharacterDataSO>(charaData);
         curHealth = charaData.maxhealth;
     }
 

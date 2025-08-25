@@ -1,45 +1,28 @@
 ﻿using System.Linq;
 using UnityEngine;
 using Newtonsoft.Json;
+using Unity.VisualScripting;
+using System.Collections.Generic;
 
 namespace Map
 {
-    public class MapManager : MonoBehaviour
+    public class MapManager : Singleton<MapManager>
     {
-        public MapConfig config;
+        public List<MapConfig> configs;
         //public MapView view;
 
         public Map CurrentMap { get; private set; }
 
         private void Start()
         {
-            if (PlayerPrefs.HasKey("Map"))
-            {
-                string mapJson = PlayerPrefs.GetString("Map");
-                Map map = JsonConvert.DeserializeObject<Map>(mapJson);
-                // using this instead of .Contains()
-                if (map.path.Any(p => p.Equals(map.GetBossNode().point)))
-                {
-                    // payer has already reached the boss, generate a new map
-                    GenerateNewMap();
-                }
-                else
-                {
-                    CurrentMap = map;
-                    Debug.Log(map.ToJson());
-                    // player has not reached the boss yet, load the current map
-                    //view.ShowMap(map);
-                }
-            }
-            else
-            {
-                GenerateNewMap();
-            }
+
+            GenerateNewMap(0);
+
         }
 
-        public void GenerateNewMap()
+        public void GenerateNewMap(int index)
         {
-            Map map = MapGenerator.GetMap(config);
+            Map map = MapGenerator.GetMap(Utility.ScriptableObjectCloner.Clone<MapConfig>(configs[index]));
             CurrentMap = map;
             Debug.Log(map.ToJson());
             // view.ShowMap(map);

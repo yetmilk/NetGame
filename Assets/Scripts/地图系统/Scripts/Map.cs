@@ -9,20 +9,20 @@ namespace Map
     {
         public List<Node> nodes;
         public List<Vector2Int> path;
-        public string bossNodeName;
+        public string lastNodeName;
         public string configName; // similar to the act name in Slay the Spire
 
-        public Map(string configName, string bossNodeName, List<Node> nodes, List<Vector2Int> path)
+        public Map(string configName, string lastNodeName, List<Node> nodes, List<Vector2Int> path)
         {
             this.configName = configName;
-            this.bossNodeName = bossNodeName;
+            this.lastNodeName = lastNodeName;
             this.nodes = nodes;
             this.path = path;
         }
 
         public Node GetBossNode()
         {
-            return nodes.FirstOrDefault(n => n.nodeType == NodeType.Boss);
+            return nodes.FirstOrDefault(n => n.nodeType == NodeType.Boss房);
         }
 
         public float DistanceBetweenFirstAndLastLayers()

@@ -259,7 +259,7 @@ public static class NetManager
         }
         if (isConnecting)
         {
-            Debug.Log("Connect fail,isConnecting");
+            //Debug.Log("Connect fail,isConnecting");
             return;
         }
         //初始化成员
