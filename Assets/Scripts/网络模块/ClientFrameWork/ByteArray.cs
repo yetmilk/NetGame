@@ -75,25 +75,38 @@ public class ByteArray
         // （整理缓冲区的工作交给CheckAndMoveBytes方法）
     }
 
+    private readonly object bufferLock = new object();
     // 检查并移动数据（放宽触发条件，减少碎片）
     public void CheckAndMoveBytes()
     {
-        // 当已读取数据超过一半时，整理缓冲区（更合理的触发条件）
-        if (readIdx > capacity / 2)
+        lock(bufferLock)
         {
-            MoveBytes();
+            // 有效数据长度 = writeIdx - readIdx
+            int validLength = writeIdx - readIdx;
+            // 两种情况需要整理：
+            // 1. 已读取数据超过有效数据的2倍（说明碎片过多）
+            // 2. 剩余空间不足（避免新数据溢出）
+            if (readIdx > validLength * 2 || remain < 1024) // 1024为预估的最小剩余空间
+            {
+                MoveBytes();
+            }
         }
+       
     }
 
     // 移动数据（将有效数据移到缓冲区头部）
     public void MoveBytes()
     {
-        if (length > 0)
+        lock(bufferLock)
         {
-            Array.Copy(bytes, readIdx, bytes, 0, length);
+            if (length > 0)
+            {
+                Array.Copy(bytes, readIdx, bytes, 0, length);
+            }
+            writeIdx = length;
+            readIdx = 0;
         }
-        writeIdx = length;
-        readIdx = 0;
+        
     }
 
     // 写入数据

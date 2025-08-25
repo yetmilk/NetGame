@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -25,6 +26,7 @@ public class MsgLogin : MsgBase
     //客户端发
     public string id = "";
     public string pw = "";
+    public string guid = Guid.NewGuid().ToString();
 
     //服务端回应（0-成功，1-失败）
     public int result = 0;

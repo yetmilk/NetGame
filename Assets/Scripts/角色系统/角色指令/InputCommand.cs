@@ -1,4 +1,4 @@
-using Unity.AppUI.UI;
+
 using UnityEngine;
 /// <summary>
 /// 玩家原始输入
@@ -27,7 +27,7 @@ public class InputCommand
     public ActionTag actionTag;
     public Vector3 direction;
 
-    public InputCommand(InputCommandType type,Vector3 direction = default,ActionTag actionTag = ActionTag.None)
+    public InputCommand(InputCommandType type, Vector3 direction = default, ActionTag actionTag = ActionTag.None)
     {
         this.type = type;
         this.actionTag = actionTag;

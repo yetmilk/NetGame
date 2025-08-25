@@ -1,6 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
-using Unity.AppUI.Core;
 using UnityEngine;
 
 public class MonkPlayer : CharacterBehaviourController

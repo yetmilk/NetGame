@@ -1,13 +1,20 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
+
+public enum SceneName
+{
+    主菜单, 玩家房间, 地牢
+}
 public class GameSceneManager : Singleton<GameSceneManager>
 {
     public string curSceneName;
 
+    public GameObject ScreenFade;
+    public Animator fadeAnim;
     private Action onComplete;
 
     private void Start()
@@ -16,11 +23,12 @@ public class GameSceneManager : Singleton<GameSceneManager>
 
     }
 
-    public void LoadSceneToServer(string sceneName, Action onComplete = null)
+    public void LoadSceneToServer(SceneName sceneName, Action onComplete = null)
     {
+        FadeIn();
         MsgTransScene msg = new MsgTransScene();
 
-        msg.sceneName = sceneName;
+        msg.sceneName = "Scene_" + sceneName.ToString();
 
         NetManager.Send(msg);
 
@@ -37,6 +45,16 @@ public class GameSceneManager : Singleton<GameSceneManager>
         {
             onComplete?.Invoke();
             curSceneName = msg.sceneName;
+            FadeOut();
         };
+    }
+
+    public void FadeIn()
+    {
+        fadeAnim.CrossFade("In", 0);
+    }
+    public void FadeOut()
+    {
+        fadeAnim.CrossFade("Out", 0);
     }
 }

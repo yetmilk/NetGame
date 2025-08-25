@@ -19,8 +19,8 @@ public class SceneInstantiate : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(3f);
             UpdateOtherPlayer();
+            yield return new WaitForSeconds(3f);
         }
     }
     private void UpdateOtherPlayer()

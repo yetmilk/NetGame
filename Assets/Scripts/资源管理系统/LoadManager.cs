@@ -8,8 +8,7 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 
 public class LoadManager : Singleton<LoadManager>
 {
-    public GameObject ScreenFade;
-    public Animator fadeAnim;
+
     public Dictionary<string, Dictionary<string, object>> resourceDic = new Dictionary<string, Dictionary<string, object>>();
 
     protected void Start()
@@ -72,14 +71,7 @@ public class LoadManager : Singleton<LoadManager>
         // 对于其他类型，使用其ToString()或类型名称
         return resource?.ToString() ?? "UnknownResource";
     }
-    public void FadeIn()
-    {
-        fadeAnim.CrossFade("In", 0);
-    }
-    public void FadeOut()
-    {
-        fadeAnim.CrossFade("Out", 0);
-    }
+
 
     public T GetResourceByName<T>(string name)
     {

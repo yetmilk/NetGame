@@ -5,15 +5,9 @@ using UnityEngine.AddressableAssets;
 
 public class Interact_StartGame : InteractObjBase
 {
+
     protected override void OnInteract()
     {
-        LoadManager.Instance.FadeIn();
-        Addressables.LoadSceneAsync("Scene_µÿ¿Œ").Completed += (obj) =>
-        {
-            if (obj.Status == UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationStatus.Succeeded)
-            {
-                LoadManager.Instance.FadeOut();
-            }
-        };
+        GameSceneManager.Instance.LoadSceneToServer(SceneName.µÿ¿Œ);
     }
 }

@@ -9,6 +9,8 @@ using UnityEngine.SceneManagement;
 
 public class RoomManager : Singleton<RoomManager>
 {
+
+    public List<RoomState> allOnlineRoom;
     public RoomState curRoom;
     /// <summary>
     /// 房间创建成功的回调
@@ -17,6 +19,8 @@ public class RoomManager : Singleton<RoomManager>
     public Action OnRoomUpdate;
 
     public RoomUIController uiCtrl;
+
+    public SceneName roomScene;
 
     /// <summary>
     /// 
@@ -58,6 +62,7 @@ public class RoomManager : Singleton<RoomManager>
         {
             RoomState room = new RoomState(msg.roomId, msg.hostId, msg.membersId, msg.roomData);
             curRoom = room;
+
             LoadToRoomScene();
 
             OnCreateRoomComplete?.Invoke();
@@ -136,6 +141,7 @@ public class RoomManager : Singleton<RoomManager>
                 curRoom = msg.roomState;
                 OnRoomUpdate?.Invoke();
                 TipManager.Instance.ShowTip(TipType.LogTip, "正在加入 " + msg.roomState.hostId.ToString() + " 的房间", null, 2f);
+
                 LoadToRoomScene();
 
             }
@@ -211,16 +217,8 @@ public class RoomManager : Singleton<RoomManager>
 
     public void LoadToRoomScene()
     {
-        var op = Addressables.LoadSceneAsync("Scene_玩家房间", LoadSceneMode.Single);
-        LoadManager.Instance.FadeIn();
-        op.Completed += (op) =>
-        {
-            if (op.Status == AsyncOperationStatus.Succeeded)
-            {
-                LoadManager.Instance.FadeOut();
 
-            }
-        };
+        GameSceneManager.Instance.LoadSceneToServer(roomScene);
     }
 
     protected override void OnDestroy()
