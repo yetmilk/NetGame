@@ -11,15 +11,27 @@ public class SceneInstantiate : MonoBehaviour
     }
     private void Start()
     {
-        PlayerManager.Instance.playerInstantiatePos = transform; ;
-        InstantiatePlayer();
+        PlayerManager.Instance.playerInstantiatePos = transform;
+        StartCoroutine(CheckPlayer());
     }
 
-    private void InstantiatePlayer()
+    IEnumerator CheckPlayer()
     {
-        Debug.Log(666);
-        var go = PlayerManager.Instance.CreatePlayer(PlayerManager.Instance.selfId);
-        CameraManager.Instance.Init(go.transform);
+        while (true)
+        {
+            UpdateOtherPlayer();
+            yield return new WaitForSeconds(3f);
+        }
+    }
+    private void UpdateOtherPlayer()
+    {
+        foreach (var item in PlayerManager.Instance.curPlayerInfos)
+        {
+            if (item.playerObj == null && !string.IsNullOrEmpty(item.netID))
+            {
+                var go = PlayerManager.Instance.CreatePlayer(item.name);
+            }
+        }
     }
 
     private void OnDestroy()

@@ -1,0 +1,111 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a21f71146b25f5f4faa3957f18d627ba, type: 3}
+  m_Name: MapConfig
+  m_EditorClassIdentifier: 
+  nodeBlueprints:
+  - {fileID: 11400000, guid: aa620700fd982de49bef1d0597919316, type: 2}
+  - {fileID: 11400000, guid: 0f17435199e45c54ab6786bd6f4c1ed5, type: 2}
+  - {fileID: 11400000, guid: 45b365e996a268f48974c6a23ded1781, type: 2}
+  - {fileID: 11400000, guid: aa412ab6de5a7b240beb75521be71552, type: 2}
+  - {fileID: 11400000, guid: 1a14cb81488bee146b65b4871a91757e, type: 2}
+  - {fileID: 11400000, guid: 270186d7d47ae554dbcf9ab17af446bf, type: 2}
+  randomNodes:
+  - nodeType: 0
+    startChance: 55
+    effect:
+    - node: 0
+      effect: -5
+    - node: 1
+      effect: 5
+  - nodeType: 1
+    startChance: 20
+    effect: []
+  - nodeType: 2
+    startChance: 10
+    effect: []
+  - nodeType: 4
+    startChance: 15
+    effect: []
+  layers:
+  - nodeNum: 1
+    nodeType: 00000000
+    randomizeNodes: 0
+    distanceFromPreviousLayer:
+      min: 0
+      max: 0
+    nodesApartDistance: 0
+    randomizePosition: 0
+  - nodeNum: 2
+    nodeType: 
+    randomizeNodes: 1
+    distanceFromPreviousLayer:
+      min: 0
+      max: 0
+    nodesApartDistance: 0
+    randomizePosition: 0
+  - nodeNum: 2
+    nodeType: 
+    randomizeNodes: 1
+    distanceFromPreviousLayer:
+      min: 0
+      max: 0
+    nodesApartDistance: 0
+    randomizePosition: 0
+  - nodeNum: 3
+    nodeType: 
+    randomizeNodes: 1
+    distanceFromPreviousLayer:
+      min: 0
+      max: 0
+    nodesApartDistance: 0
+    randomizePosition: 0
+  - nodeNum: 3
+    nodeType: 
+    randomizeNodes: 1
+    distanceFromPreviousLayer:
+      min: 0
+      max: 0
+    nodesApartDistance: 0
+    randomizePosition: 0
+  - nodeNum: 3
+    nodeType: 
+    randomizeNodes: 1
+    distanceFromPreviousLayer:
+      min: 0
+      max: 0
+    nodesApartDistance: 0
+    randomizePosition: 0
+  - nodeNum: 3
+    nodeType: 
+    randomizeNodes: 1
+    distanceFromPreviousLayer:
+      min: 0
+      max: 0
+    nodesApartDistance: 0
+    randomizePosition: 0
+  - nodeNum: 1
+    nodeType: 03000000
+    randomizeNodes: 0
+    distanceFromPreviousLayer:
+      min: 0
+      max: 0
+    nodesApartDistance: 0
+    randomizePosition: 0
+  - nodeNum: 1
+    nodeType: 05000000
+    randomizeNodes: 0
+    distanceFromPreviousLayer:
+      min: 0
+      max: 0
+    nodesApartDistance: 0
+    randomizePosition: 0

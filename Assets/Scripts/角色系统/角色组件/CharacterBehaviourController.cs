@@ -66,6 +66,12 @@ public class CharacterBehaviourController : NetMonobehavior, IDealActionCommand,
         charaTag = character;
         curCharaData.Init(character);
 
+        PlayerManager.PlayerInfo playerInfo = PlayerManager.Instance.GetPlayerInfoByNetId(NetID);
+        if (playerInfo != null)
+        {
+            playerInfo.playerObj = this;
+        }
+
         selfActionCtrl.InitializeAction(character, this);
         selfActionCtrl.OnActionEnter += DealActionEnter;
         selfActionCtrl.OnActionUpdate += DealActionUpdate;
@@ -435,11 +441,11 @@ public class CharacterBehaviourController : NetMonobehavior, IDealActionCommand,
     {
         //Debug.Log(hurtDir.normalized);
 
-        PlayerInputManager.Instance.HandleInput("",ActionTag.Hurt,-hurtDir, NetID);
+        PlayerInputManager.Instance.HandleInput("", ActionTag.Hurt, -hurtDir, NetID);
         //TODO:数据同步
         curCharaData.data.curHealth -= damage;
         if (curCharaData.data.curHealth <= 0f)
-            PlayerInputManager.Instance.HandleInput("", ActionTag.Dead,Vector3.zero, NetID);
+            PlayerInputManager.Instance.HandleInput("", ActionTag.Dead, Vector3.zero, NetID);
     }
 
     public virtual bool CanBeAttack(CampFlag attackercamp)

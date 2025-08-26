@@ -6389,7 +6389,8 @@ MonoBehaviour:
   netFlag: 
   selfActionCtrl: {fileID: 0}
   curCharaData: {fileID: 0}
-  charaTag: 0
+  charaTag: 1
+  charaType: 0
   audioSource: {fileID: 0}
   rb: {fileID: 0}
 --- !u!114 &7182450816698314688

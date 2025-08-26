@@ -23,7 +23,7 @@ public class Agent : MonoBehaviour
     {
         // 初始化世界状态
         // doMain.state.StateChanged += OnWorldStateChanged;
-        state = doMainModule.state;
+        state = doMainModule.state.Clone();
 
         state.ReplanNeeded += OnReplanNeeded;
 

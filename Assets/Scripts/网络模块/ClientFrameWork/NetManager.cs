@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Sockets;
+using System.Threading;
 using UnityEngine;
 
 public static class NetManager
@@ -14,7 +16,10 @@ public static class NetManager
     static ByteArray readBuff;
 
     //写入队列(发送队列)
-    static Queue<ByteArray> writeQueue;
+    static ConcurrentQueue<ByteArray> writeQueue;
+
+    static readonly object sendLock = new object();
+    static bool isSending = false;
 
     //事件委托类型
     public delegate void EventListener(string err);
@@ -25,11 +30,19 @@ public static class NetManager
     public delegate void MsgListener(MsgBase msgBase);
     //消息监听队列
     private static Dictionary<string, MsgListener> msgListeners = new Dictionary<string, MsgListener>();
+    private static readonly object listenerLock = new object(); // 监听字典专用锁
 
-    //消息列表
-    static List<MsgBase> msgList = new List<MsgBase>();
-    //消息列表长度
-    static int msgCount = 0;
+    // 主线程消息队列（用于存放需要主线程处理的消息）
+    static ConcurrentQueue<Action> mainThreadActions = new ConcurrentQueue<Action>();
+
+
+    static ConcurrentQueue<MsgBase> msgQueue = new ConcurrentQueue<MsgBase>();
+
+    static readonly AutoResetEvent msgEvent = new AutoResetEvent(false);
+
+    //独立的消息分发线程
+    static Thread dispatchThread;
+
     //每一次Update处理的消息量
     readonly static int MAX_MESSAGE_FIRE = 60;
 
@@ -57,7 +70,7 @@ public static class NetManager
         //接收缓冲区
         readBuff = new ByteArray();
         //写入队列
-        writeQueue = new Queue<ByteArray>();
+        writeQueue = new ConcurrentQueue<ByteArray>();
 
         //是否正在连接
         isConnecting = false;
@@ -65,10 +78,9 @@ public static class NetManager
         //是否正在关闭
         isClosing = false;
 
-        //消息列表
-        msgList = new List<MsgBase>();
-        //消息列表长度
-        msgCount = 0;
+        // 重置消息队列
+        msgQueue = new ConcurrentQueue<MsgBase>();
+        msgEvent.Reset(); // 重置信号
 
         //上一次发送Ping的时间
         lastPingTime = 0;
@@ -80,9 +92,21 @@ public static class NetManager
         {
             AddMsgListener("MsgPong", OnMsgPong);
         }
+        if (dispatchThread != null && dispatchThread.IsAlive)
+        {
+            // 若线程已存在，无需重复创建（可加终止逻辑，视需求而定）
+            return;
+        }
+        dispatchThread = new Thread(DispatchLoop);
+        dispatchThread.IsBackground = true; // 后台线程：主程序退出时自动终止
+        dispatchThread.Start();
     }
 
-
+    private static void QueueOnMainThread(Action action)
+    {
+        if (action == null) return;
+        mainThreadActions.Enqueue(action);
+    }
 
     #region-----------------事件操作-------------------
     //添加监听事件
@@ -131,14 +155,18 @@ public static class NetManager
     /// <param name="listener"></param>
     public static void AddMsgListener(string msgName, MsgListener listener)
     {
-        //添加事件
-        if (msgListeners.ContainsKey(msgName))
+        if (string.IsNullOrEmpty(msgName) || listener == null) return;
+
+        lock (listenerLock) // 仅锁定字典操作
         {
-            msgListeners[msgName] += listener;
-        }
-        else
-        {
-            msgListeners.Add(msgName, listener);
+            if (msgListeners.ContainsKey(msgName))
+            {
+                msgListeners[msgName] += listener;
+            }
+            else
+            {
+                msgListeners.Add(msgName, listener);
+            }
         }
     }
 
@@ -149,13 +177,21 @@ public static class NetManager
     /// <param name="listener"></param>
     public static void RemoveMsgListener(string msgName, MsgListener listener)
     {
-        if (msgListeners.ContainsKey(msgName))
-        {
-            msgListeners[msgName] -= listener;
+        if (string.IsNullOrEmpty(msgName) || listener == null) return;
 
-            if (msgListeners[msgName] == null)
+        lock (listenerLock) // 仅锁定字典操作
+        {
+            if (msgListeners.TryGetValue(msgName, out var existing))
             {
-                msgListeners.Remove(msgName);
+                existing -= listener;
+                if (existing == null)
+                {
+                    msgListeners.Remove(msgName);
+                }
+                else
+                {
+                    msgListeners[msgName] = existing;
+                }
             }
         }
     }
@@ -167,9 +203,49 @@ public static class NetManager
     /// <param name="msgBase"></param>
     private static void FireMsg(string msgName, MsgBase msgBase)
     {
-        if (msgListeners.ContainsKey(msgName))
+        MsgListener listener = null;
+        lock (listenerLock)
         {
-            msgListeners[msgName].Invoke(msgBase);
+            msgListeners.TryGetValue(msgName, out listener);
+        }
+
+        if (listener != null)
+        {
+
+            QueueOnMainThread(() =>
+            {
+                try
+                {
+                    Debug.Log($"分发消息: {msgName} 实例: {msgBase.GetHashCode()}");
+                    listener.Invoke(msgBase);
+                }
+                catch (Exception ex)
+                {
+                    Debug.LogError($"消息[{msgName}]回调异常: {ex.Message}");
+                }
+            });
+        }
+    }
+
+    private static bool isDispatchThreadRunning = true;
+    private static void DispatchLoop()
+    {
+        while (isDispatchThreadRunning)
+        {
+            try
+            {
+                msgEvent.WaitOne(); // 等待消息信号（无消息时阻塞，不占用CPU）
+                int processed = 0;
+                while (processed < MAX_MESSAGE_FIRE && msgQueue.TryDequeue(out MsgBase msg))
+                {
+                    FireMsg(msg.protoName, msg);
+                    processed++;
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.LogError($"消息分发线程异常: {ex.Message}");
+            }
         }
     }
     #endregion
@@ -183,7 +259,7 @@ public static class NetManager
         }
         if (isConnecting)
         {
-            Debug.Log("Connect fail,isConnecting");
+            //Debug.Log("Connect fail,isConnecting");
             return;
         }
         //初始化成员
@@ -224,17 +300,33 @@ public static class NetManager
     //关闭连接
     public static void Close()
     {
-        //状态判断
         if (socket == null || !socket.Connected) return;
-
         if (isConnecting) return;
 
-        //还有数据正在发送
-        if (writeQueue.Count > 0) isClosing = true;
-        else
+        lock (sendLock)
         {
-            socket.Close();
-            FireEvent(NetEvent.Close, "");
+            // 情况1：有数据正在发送或队列有数据，标记为关闭中
+            if (isSending || writeQueue.Count > 0)
+            {
+                isClosing = true;
+                Debug.Log("关闭中：等待发送队列清空...");
+            }
+            // 情况2：无发送任务，直接关闭
+            else
+            {
+                socket.Close();
+                FireEvent(NetEvent.Close, "无发送任务，直接关闭");
+                isClosing = false;
+            }
+        }
+
+        // 终止分发线程
+        isDispatchThreadRunning = false;
+        msgEvent.Set(); // 唤醒阻塞的线程，使其退出循环
+        if (dispatchThread != null && dispatchThread.IsAlive)
+        {
+            dispatchThread.Join(1000); // 等待1秒，确保线程退出
+            dispatchThread = null;
         }
     }
 
@@ -269,8 +361,10 @@ public static class NetManager
 
     public static void OnReceiveData()
     {
+        readBuff.CheckAndMoveBytes();
         //消息长度
         if (readBuff.length <= 2) return;
+
 
         //获取消息体长度
         int readIdx = readBuff.readIdx;
@@ -292,12 +386,15 @@ public static class NetManager
         MsgBase msgBase = MsgBase.Decode(protoName, readBuff.bytes, readBuff.readIdx, bodyCount);
         readBuff.readIdx += bodyCount;
         readBuff.CheckAndMoveBytes();
-        //添加到消息队列
-        lock (msgList)
+        if (msgBase != null)
         {
-            msgList.Add(msgBase);
+            msgQueue.Enqueue(msgBase);
+            msgEvent.Set(); // 触发消息处理信号
         }
-        msgCount++;
+        else
+        {
+            Debug.LogError($"消息 {protoName} 解析失败");
+        }
         //继续获取消息
         if (readBuff.length > 2)
         {
@@ -308,138 +405,160 @@ public static class NetManager
     //发送数据
     public static void Send(MsgBase msg)
     {
-        //状态判断
+        // 状态判断（保留原有校验）
         if (socket == null || !socket.Connected) return;
-
         if (isConnecting) return;
-
         if (isClosing) return;
 
-        //数据编码
+        string msgId = $"{DateTime.Now.Ticks}_{msg.protoName}";
+        //Debug.Log($"客户端发送消息: {msg.protoName}，唯一标识: {msgId}");
+
+        // 1. 数据编码（原有逻辑保留）
         byte[] nameBytes = MsgBase.EncodeName(msg);
         byte[] bodyBytes = MsgBase.Encode(msg);
-        int len = nameBytes.Length + bodyBytes.Length;
-        byte[] sendBytes = new byte[2 + len];
-        //组装长度
-        sendBytes[0] = (byte)(len % 256);
-        sendBytes[1] = (byte)(len / 256);
-        //组装名字
+        int totalLen = nameBytes.Length + bodyBytes.Length;
+        byte[] sendBytes = new byte[2 + totalLen]; // 2字节长度头 + 消息体
+
+        // 组装长度（小端序：低字节在前，高字节在后）
+        sendBytes[0] = (byte)(totalLen % 256);    // 低8位
+        sendBytes[1] = (byte)(totalLen / 256);    // 高8位
+                                                  // 组装协议名
         Array.Copy(nameBytes, 0, sendBytes, 2, nameBytes.Length);
-        //组装消息体
+        // 组装协议体
         Array.Copy(bodyBytes, 0, sendBytes, 2 + nameBytes.Length, bodyBytes.Length);
 
-        //写入队列
+        // 2. 加入发送队列（仅这一步，删除直接BeginSend）
         ByteArray ba = new ByteArray(sendBytes);
-        int count = 0;
-        lock (writeQueue)
+        writeQueue.Enqueue(ba);
+
+        // 3. 触发发送（双重检查锁，确保仅一个线程启动发送）
+        lock (sendLock)
         {
-            writeQueue.Enqueue(ba);
-            count = writeQueue.Count;
-        }
-        //send
-        if (count == 1)
-        {
-            socket.BeginSend(sendBytes, 0, sendBytes.Length, 0, SendCallback, socket);
-        }
-
-    }
-
-    private static void SendCallback(IAsyncResult ar)
-    {
-        //获取state、EndSend的处理
-        Socket socket = (Socket)ar.AsyncState;
-
-        //状态判断
-        if (socket == null || !socket.Connected) return;
-
-        //EndSend
-        int count = socket.EndSend(ar);
-        //获取写入队列第一条数据
-        ByteArray ba;
-        lock (writeQueue)
-        {
-            ba = writeQueue.First();
-
-        }
-        //完整发送
-        ba.readIdx += count;
-        if (ba.length == 0)
-        {
-            lock (writeQueue)
+            if (!isSending)
             {
-                writeQueue.Dequeue();
-                ba = writeQueue.FirstOrDefault();
+                isSending = true;
+                // 从队列取第一条数据发送
+                if (writeQueue.TryDequeue(out ByteArray firstBa))
+                {
+                    // 发送时需指定「有效数据范围」：从readIdx开始，长度为length
+                    socket.BeginSend(
+                        buffer: firstBa.bytes,
+                        offset: firstBa.readIdx,
+                        size: firstBa.length,
+                        socketFlags: 0,
+                        callback: SendCallback,
+                        state: socket
+                    );
+                }
+                else
+                {
+                    // 极端情况：队列刚被清空，重置发送状态
+                    isSending = false;
+                }
+                //重置发送状态
+                isSending = false;
             }
         }
-
-        //继续发送
-        if (ba != null)
-        {
-            socket.BeginSend(ba.bytes, ba.readIdx, ba.length, 0, SendCallback, socket);
-        }
-        else if (isClosing) socket.Close();
     }
 
-    //Update
-    public static void Update()
-    {
-        MsgUpdate();
-        PingUpdate();
-    }
-
-    //更新消息
-    private static void MsgUpdate()
-    {
-        //初步判断，提升效率
-        if (msgCount == 0) return;
-        //重复处理消息
-        for (int i = 0; i < MAX_MESSAGE_FIRE; i++)
+private static void SendCallback(IAsyncResult ar)
+{
+        lock (sendLock) // 确保isSending状态修改线程安全
         {
-            //获取第一条消息
-            MsgBase msgBase = null;
-            lock (msgList)
+            try
             {
-                if (msgList.Count > 0)
+                Socket socket = (Socket)ar.AsyncState;
+                if (socket == null || !socket.Connected)
                 {
-                    msgBase = msgList[0];
-                    msgList.RemoveAt(0);
-                    msgCount--;
+                    isSending = false;
+                    return;
+                }
+
+                // 1. 完成本次发送（获取实际发送字节数，用于校验）
+                int sentCount = socket.EndSend(ar);
+                Debug.Log($"本次发送字节数: {sentCount}");
+
+                // 2. 处理下一条消息（从队列取数据）
+                if (writeQueue.TryDequeue(out ByteArray nextBa))
+                {
+                    // 继续发送下一条
+                    socket.BeginSend(
+                        buffer: nextBa.bytes,
+                        offset: nextBa.readIdx,
+                        size: nextBa.length,
+                        socketFlags: 0,
+                        callback: SendCallback,
+                        state: socket
+                    );
+                }
+                else
+                {
+                    // 队列空了，重置发送状态
+                    isSending = false;
+                    // 若处于关闭中，此时可安全关闭socket
+                    if (isClosing)
+                    {
+                        socket.Close();
+                        FireEvent(NetEvent.Close, "发送队列清空后关闭");
+                        isClosing = false; // 重置关闭状态
+                    }
                 }
             }
-            //分发消息
-            if (msgBase != null)
+            catch (SocketException ex)
             {
-                FireMsg(msgBase.protoName, msgBase);
+                Debug.LogError($"发送回调异常: {ex.Message}，错误码: {ex.ErrorCode}");
+                isSending = false;
+                Close(); // 发送失败，触发关闭
             }
-            //没有消息了
-            else break;
+            catch (Exception ex)
+            {
+                Debug.LogError($"发送回调未知异常: {ex.Message}");
+                isSending = false;
+            }
         }
     }
 
-    private static void PingUpdate()
-    {
-        //是否启用
-        if (!isUsePing)
-        {
-            return;
-        }
-        //发送PING
-        if (Time.time - lastPingTime > pingInterval)
-        {
-            MsgPing msgPing = new MsgPing();
-            Send(msgPing);
-            lastPingTime = Time.time;
-        }
-        //检测PONG时间
-        if (Time.time - lastPingTime > pingInterval * 4)
-        {
-            Close();
-        }
-    }
+//Update
+public static void Update()
+{
+    MsgUpdate();
+    PingUpdate();
+}
 
-    //监听PONG协议
-    private static void OnMsgPong(MsgBase msgBase)
+//更新消息
+private static void MsgUpdate()
+{
+    // 每帧从主线程队列中取出所有Action并执行（确保在Unity主线程）
+    while (mainThreadActions.TryDequeue(out Action action))
     {
-        lastPongTime = Time.time;
+        action.Invoke();
     }
+}
+
+private static void PingUpdate()
+{
+    //是否启用
+    if (!isUsePing)
+    {
+        return;
+    }
+    //发送PING
+    if (Time.time - lastPingTime > pingInterval)
+    {
+        MsgPing msgPing = new MsgPing();
+        Send(msgPing);
+        lastPingTime = Time.time;
+    }
+    //检测PONG时间
+    if (Time.time - lastPingTime > pingInterval * 4)
+    {
+        Close();
+    }
+}
+
+//监听PONG协议
+private static void OnMsgPong(MsgBase msgBase)
+{
+    lastPongTime = Time.time;
+}
 }
