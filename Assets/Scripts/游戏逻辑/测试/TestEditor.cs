@@ -1,3 +1,4 @@
+using Map;
 using UnityEngine;
 
 public class TestEditor : MonoBehaviour
@@ -34,11 +35,6 @@ public class TestEditor : MonoBehaviour
             Debug.LogError("LoadManager实例不存在!");
         }
     }
-
-    /// <summary>
-    /// 在Inspector右键菜单中添加"生成角色"按钮
-    /// </summary>
-    [ContextMenu("生成角色")]
     public void SpawnCharacterFromButton()
     {
         SpawnCharacter();
@@ -50,6 +46,13 @@ public class TestEditor : MonoBehaviour
     public void TransToScene()
     {
         GameSceneManager.Instance.LoadSceneToServer(sceneName);
+    }
+    #endregion
+
+    #region----------------开启关卡--------------------
+    public void NextLevel()
+    {
+        MapManager.Instance.GoToNextLevel();
     }
     #endregion
 
@@ -81,6 +84,14 @@ public class TestEditor : MonoBehaviour
             if (GUILayout.Button("切换场景"))
             {
                 testEditor.TransToScene();
+            }
+            GUILayout.Space(10);
+
+            // 绘制开启关卡部分及按钮
+            UnityEditor.EditorGUILayout.LabelField("关卡控制", UnityEditor.EditorStyles.boldLabel);
+            if (GUILayout.Button("下一关"))
+            {
+                testEditor.NextLevel();
             }
             GUILayout.Space(10);
 

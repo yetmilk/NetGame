@@ -3259,51 +3259,6 @@ MonoBehaviour:
   password_logon_InputField: {fileID: 219194536}
   logon_logonBtn: {fileID: 774679859}
   blackAnim: {fileID: 1942878538}
---- !u!1 &959251614
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 959251616}
-  - component: {fileID: 959251615}
-  m_Layer: 0
-  m_Name: MapManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &959251615
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 959251614}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a37f4ff1d9fdcca4ea7c9bab9e16f0ee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  config: {fileID: 11400000, guid: ce5cd225597d2774cb6ff3b94479536f, type: 2}
---- !u!4 &959251616
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 959251614}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 15
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &994668676
 GameObject:
   m_ObjectHideFlags: 0
@@ -6825,28 +6780,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 996459003657225961, guid: 237e17c236baf3348bc3cfadfbcf77cd,
-        type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: 21c8aed5988e005498f20ad73c8477f8,
-        type: 2}
-    - target: {fileID: 996459003657225961, guid: 237e17c236baf3348bc3cfadfbcf77cd,
-        type: 3}
-      propertyPath: m_hasFontAssetChanged
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 996459004123282814, guid: 237e17c236baf3348bc3cfadfbcf77cd,
-        type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: 21c8aed5988e005498f20ad73c8477f8,
-        type: 2}
-    - target: {fileID: 996459004123282814, guid: 237e17c236baf3348bc3cfadfbcf77cd,
-        type: 3}
-      propertyPath: m_hasFontAssetChanged
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 237e17c236baf3348bc3cfadfbcf77cd, type: 3}
 --- !u!224 &1079815302863060103
@@ -8091,7 +8024,7 @@ PrefabInstance:
     - target: {fileID: 8373833435487354797, guid: dcabeb67b58731f42a604f4b2a3e766a,
         type: 3}
       propertyPath: ConnectIp
-      value: 127.0.0.1
+      value: 47.105.122.120
       objectReference: {fileID: 0}
     - target: {fileID: 8373833435487354797, guid: dcabeb67b58731f42a604f4b2a3e766a,
         type: 3}

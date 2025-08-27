@@ -17,6 +17,7 @@ public class LoadManager : Singleton<LoadManager>
         LoadResourceByLabel<GameObject>("Prefab");
         LoadResourceByLabel<CharacterDataSO>("DataSO");
         LoadResourceByLabel<ActionCollection>("ActionInfo");
+        LoadResourceByLabel<ProbabilityConfig>("ProbabilityConfig");
 
         NetManager.AddMsgListener("MsgInstantiateObj", InstantiateFromServer);
     }

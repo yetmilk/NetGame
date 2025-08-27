@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
@@ -5,9 +6,9 @@ using UnityEngine;
 
 namespace Utility
 {
-    public static class ScriptableObjectCloner
+    public static class ObjectCloner
     {
-        // 复制 ScriptableObject 实例
+        // 克隆ScriptableObject（保留原功能）
         public static T Clone<T>(T original) where T : ScriptableObject
         {
             if (original == null)
@@ -16,11 +17,32 @@ namespace Utility
                 return null;
             }
 
-            // 创建新实例
             T clone = ScriptableObject.CreateInstance<T>();
+            CopyFields(original, clone);
+            return clone;
+        }
 
-            // 获取所有字段（包括私有字段）
-            FieldInfo[] fields = typeof(T).GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+        // 克隆普通类（新增通用深拷贝方法）
+        public static T CloneObject<T>(T original) where T : class, new()
+        {
+            if (original == null)
+            {
+                Debug.LogError("Original object is null!");
+                return null;
+            }
+
+            T clone = new T();
+            CopyFields(original, clone);
+            return clone;
+        }
+
+        // 核心字段复制逻辑（递归处理引用类型）
+        private static void CopyFields(object source, object target)
+        {
+            if (source == null || target == null) return;
+
+            Type type = source.GetType();
+            FieldInfo[] fields = type.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
 
             foreach (FieldInfo field in fields)
             {
@@ -28,23 +50,67 @@ namespace Utility
                 if (field.IsStatic || field.IsLiteral)
                     continue;
 
-                // 复制字段值
-                object value = field.GetValue(original);
-
-                // 处理数组的深拷贝
-                if (field.FieldType.IsArray && value != null)
+                object value = field.GetValue(source);
+                if (value == null)
                 {
-                    System.Array originalArray = (System.Array)value;
-                    System.Array clonedArray = (System.Array)System.Activator.CreateInstance(field.FieldType, originalArray.Length);
-                    originalArray.CopyTo(clonedArray, 0);
-                    value = clonedArray;
+                    field.SetValue(target, null);
+                    continue;
                 }
 
-                field.SetValue(clone, value);
+                // 处理数组
+                if (field.FieldType.IsArray)
+                {
+                    Array originalArray = (Array)value;
+                    Array clonedArray = (Array)Activator.CreateInstance(field.FieldType, originalArray.Length);
+
+                    // 递归复制数组元素
+                    for (int i = 0; i < originalArray.Length; i++)
+                    {
+                        object element = originalArray.GetValue(i);
+                        clonedArray.SetValue(CloneElement(element), i);
+                    }
+
+                    field.SetValue(target, clonedArray);
+                }
+                // 处理值类型（直接复制）
+                else if (field.FieldType.IsValueType || field.FieldType == typeof(string))
+                {
+                    field.SetValue(target, value);
+                }
+                // 处理引用类型（递归克隆）
+                else
+                {
+                    object clonedValue = CloneElement(value);
+                    field.SetValue(target, clonedValue);
+                }
+            }
+        }
+
+        // 克隆单个元素（区分值类型和引用类型）
+        private static object CloneElement(object element)
+        {
+            if (element == null) return null;
+
+            Type elementType = element.GetType();
+
+            // 值类型或字符串直接返回（值类型会自动复制）
+            if (elementType.IsValueType || elementType == typeof(string))
+            {
+                return element;
             }
 
-            return clone;
+            // 引用类型：如果有默认构造函数则创建新实例并复制字段
+            ConstructorInfo ctor = elementType.GetConstructor(Type.EmptyTypes);
+            if (ctor != null)
+            {
+                object cloned = Activator.CreateInstance(elementType);
+                CopyFields(element, cloned);
+                return cloned;
+            }
+
+            // 不支持无参构造函数的类型（如某些系统类）
+            Debug.LogWarning($"不支持克隆类型 {elementType.Name}（缺少无参构造函数）");
+            return element;
         }
     }
-
 }

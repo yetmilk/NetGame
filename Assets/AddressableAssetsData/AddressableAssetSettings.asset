@@ -47,6 +47,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 37a2ab868b3939f47a52db7d6c8c04f5, type: 2}
   - {fileID: 11400000, guid: 76fcf0638b3db724ea3d3d8965fd8880, type: 2}
   - {fileID: 11400000, guid: 76678412db0d76e438965eb81d78dba2, type: 2}
+  - {fileID: 11400000, guid: 15318055a62ed54449351764bf7cc4ce, type: 2}
   m_BuildSettings:
     m_CompileScriptsInVirtualMode: 0
     m_CleanupStreamingAssetsAfterBuilds: 1
@@ -91,6 +92,7 @@ MonoBehaviour:
     - Prefab
     - DataSO
     - ActionInfo
+    - ProbabilityConfig
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: ce757ed3b1350334b86b43e8759c7356, type: 2}

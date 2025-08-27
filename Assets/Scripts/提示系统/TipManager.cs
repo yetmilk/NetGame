@@ -56,7 +56,8 @@ public class TipManager : Singleton<TipManager>
             }
 
             // 更新提示内容并显示
-            tip.tipText.text = content;
+            if (tip.tipText != null)
+                tip.tipText.text = content;
             tip.tipObj.SetActive(true);
             tip.tipObj.GetComponent<ITip>().Show();
             tip.isManualCloseMode = showTime < 0;
@@ -103,7 +104,8 @@ public class TipManager : Singleton<TipManager>
             }
 
             // 隐藏提示
-            tip.tipText.text = "";
+            if (tip.tipText != null)
+                tip.tipText.text = "";
             tip.tipObj.SetActive(false);
             tip.isManualCloseMode = false;
         }
@@ -151,5 +153,6 @@ public enum TipType
     LogTip,
     JoinRoomQuestTip,//加入房间申请的提示栏
     UpTip,
+    切换房间提示,
 
 }
