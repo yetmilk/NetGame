@@ -1,0 +1,82 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac33f3d1c00aa4d4cbc80173680c5a65, type: 3}
+  m_Name: "\u8717\u725B"
+  m_EditorClassIdentifier: 
+  characterActionClacify: 4
+  actionClacify: 0
+  ActionInfos:
+  - id: "\u5F85\u673A"
+    nextActionIds: "\u5F85\u673A"
+    animationName: {fileID: 7400000, guid: 5144d196952a54845b390ebc62471f21, type: 2}
+    audioInfos: []
+    actionLifeRange: {x: 0, y: 148}
+    frameIndexEvent: []
+    tag: 0
+    canCancelTags:
+    - canBeCancelRange:
+      - {x: 0, y: 600}
+      canCancelTag: 1
+      proprity: 1
+      nextActionStartPercent: 0
+    - canBeCancelRange:
+      - {x: 0, y: 600}
+      canCancelTag: 2
+      proprity: 2
+      nextActionStartPercent: 0
+    - canBeCancelRange:
+      - {x: 0, y: 600}
+      canCancelTag: 6
+      proprity: 3
+      nextActionStartPercent: 0
+    - canBeCancelRange:
+      - {x: 0, y: 600}
+      canCancelTag: 7
+      proprity: 4
+      nextActionStartPercent: 0
+    priority: 0
+  - id: "\u653B\u51FB"
+    nextActionIds: "\u5F85\u673A"
+    animationName: {fileID: 7400000, guid: 6acc2af04c00a7c439b8aac5b485d467, type: 2}
+    audioInfos: []
+    actionLifeRange: {x: 0, y: 124}
+    frameIndexEvent: []
+    tag: 2
+    canCancelTags: []
+    priority: 5
+  - id: "\u79FB\u52A8"
+    nextActionIds: "\u5F85\u673A"
+    animationName: {fileID: 7400000, guid: d4a0787d89d65134d897ad4ca80eb2b5, type: 2}
+    audioInfos: []
+    actionLifeRange: {x: 0, y: 60}
+    frameIndexEvent: []
+    tag: 1
+    canCancelTags: []
+    priority: 1
+  - id: "\u6B7B\u4EA1"
+    nextActionIds: 
+    animationName: {fileID: 7400000, guid: 004b3bab97e5e0046a0a44cb5e8adfde, type: 2}
+    audioInfos: []
+    actionLifeRange: {x: 0, y: 106}
+    frameIndexEvent: []
+    tag: 7
+    canCancelTags: []
+    priority: 10
+  - id: "\u53D7\u51FB"
+    nextActionIds: "\u5F85\u673A"
+    animationName: {fileID: 7400000, guid: 8712288f215fb1145b6513e3fa8509df, type: 2}
+    audioInfos: []
+    actionLifeRange: {x: 0, y: 60}
+    frameIndexEvent: []
+    tag: 6
+    canCancelTags: []
+    priority: 5

@@ -8,6 +8,7 @@ public enum CharacterClacify
     侠客 = 0, 仙术师 = 1,
     //怪物
     蜘蛛 = 2, 野牛 = 3,
+    蜗牛=4,
 }
 
 public enum CharacterType
