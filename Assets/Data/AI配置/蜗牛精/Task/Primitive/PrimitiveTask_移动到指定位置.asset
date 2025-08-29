@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 89894f3a4c440b444992b7bfbbbe15d9, type: 3}
-  m_Name: "PrimitiveTask_\u653B\u51FB"
+  m_Name: "PrimitiveTask_\u79FB\u52A8\u5230\u6307\u5B9A\u4F4D\u7F6E"
   m_EditorClassIdentifier: 
-  taskName: New Primitive Task
+  taskName: "PrimitiveTask_\u79FB\u52A8\u5230\u6307\u5B9A\u4F4D\u7F6E"
   precondition:
     logicOperator: 0
     conditions:
     - variableName: "\u654C\u4EBA\u8DDD\u79BB"
-      compareValue: 2
-      comparisonOperator: 3
+      compareValue: 3
+      comparisonOperator: 4
   _state: {fileID: 11400000, guid: 4453a6dc39bcdd744a1df506bbbbd505, type: 2}
   effect:
     worldStateName: "\u654C\u4EBA\u8DDD\u79BB"
-    changeValue: 
-  ActionName: Attack
+    changeValue: 2
+  ActionName: MoveTo
   className: "\u8717\u725B"

@@ -58,7 +58,45 @@ MonoBehaviour:
     animationName: {fileID: 7400000, guid: d4a0787d89d65134d897ad4ca80eb2b5, type: 2}
     audioInfos: []
     actionLifeRange: {x: 0, y: 60}
-    frameIndexEvent: []
+    frameIndexEvent:
+    - eventLifeRange: {x: 0, y: 60}
+      actionName: Move
+      MoveFunctionParam:
+        useRig: 1
+        useLocalSpace: 0
+        useActionDir: 1
+        moveDir: {x: 0, y: 0, z: 0}
+        useDataSpeed: 1
+        dataName: 1
+        speed: 0
+        layerMask:
+          serializedVersion: 2
+          m_Bits: 0
+        moveTransform: {fileID: 0}
+        moveRig: {fileID: 0}
+      SubmitFuncParam:
+        submitTag: 0
+        actionId: 
+        cantTranslate: 0
+        waitFrame: 0
+        delay: 0
+      RotateFuncParam:
+        useActionDir: 0
+        rotateDir: {x: 0, y: 0, z: 0}
+        useSmooth: 0
+        rotationSpeed: 0
+      OnInstantiateObjFunctionParam:
+        vfxName: 
+        startDirection: {x: 0, y: 0, z: 0}
+        distance: 0
+        selfAsparent: 0
+        useMousePosition: 0
+        instantiatePos: {x: 0, y: 0, z: 0}
+        VfxLifeTime: 0
+        destroyByActionEnd: 0
+      RigidbodyParam:
+        isKenamicActive: 0
+        colliderActive: 0
     tag: 1
     canCancelTags: []
     priority: 1

@@ -24,4 +24,4 @@ MonoBehaviour:
     worldStateName: "\u9700\u8981\u4F11\u606F"
     changeValue: True
   ActionName: Attack
-  className: "\u8718\u86DB"
+  className: "\u8717\u725B"

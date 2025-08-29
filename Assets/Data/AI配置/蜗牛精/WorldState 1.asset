@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05a0d68fd67a48c469cccc3cf0380bdc, type: 3}
+  m_Name: WorldState 1
+  m_EditorClassIdentifier: 
+  <Json>k__BackingField: "{\r\n  \"\u654C\u4EBA\u8DDD\u79BB\": {\r\n    \"value\":
+    5.56752968,\r\n    \"changeTriggerReplan\": false\r\n  },\r\n  \"\u654C\u4EBA\u4F4D\u7F6E\":
+    {\r\n    \"value\": {\r\n      \"$type\": \"UnityEngine.Vector3, UnityEngine.CoreModule\",\r\n     
+    \"x\": -12.0541115,\r\n      \"y\": 1.1920929E-07,\r\n      \"z\": -2.824207,\r\n     
+    \"normalized\": {\r\n        \"x\": -0.9736338,\r\n        \"y\": 9.62876445E-09,\r\n       
+    \"z\": -0.228116646,\r\n        \"magnitude\": 1.0,\r\n        \"sqrMagnitude\":
+    1.0\r\n      },\r\n      \"magnitude\": 12.3805389,\r\n      \"sqrMagnitude\":
+    153.277756\r\n    },\r\n    \"changeTriggerReplan\": false\r\n  },\r\n  \"\u9700\u8981\u4F11\u606F\":
+    {\r\n    \"value\": true,\r\n    \"changeTriggerReplan\": true\r\n  },\r\n  \"\u4F11\u606F\u65F6\u95F4\":
+    {\r\n    \"value\": 5.0,\r\n    \"changeTriggerReplan\": false\r\n  },\r\n  \"\u5F53\u524D\u4F11\u606F\u65F6\u95F4\":
+    {\r\n    \"value\": 1.59983826,\r\n    \"changeTriggerReplan\": false\r\n  }\r\n}"
