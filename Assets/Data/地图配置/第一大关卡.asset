@@ -20,83 +20,56 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1a14cb81488bee146b65b4871a91757e, type: 2}
   - {fileID: 11400000, guid: 4c557dd749c8d1842a8022d8416c64ff, type: 2}
   randomNodes:
-  - nodeType: 0
+  - nodeType: 1
     startChance: 55
     effect:
-    - node: 0
-      effect: -5
     - node: 1
+      effect: -5
+    - node: 2
       effect: 5
-  - nodeType: 1
+  - nodeType: 2
     startChance: 20
     effect: []
-  - nodeType: 2
+  - nodeType: 3
     startChance: 10
     effect: []
-  - nodeType: 4
+  - nodeType: 5
     startChance: 15
     effect: []
   layers:
   - nodeNum: 1
-    nodeType: 00000000
-    randomizeNodes: 0
+    nodeType: 01000000
     nodeBlueprint: {fileID: 11400000, guid: aa412ab6de5a7b240beb75521be71552, type: 2}
     randomizeEdges: 0
-    nodesApartDistance: 0
-    randomizePosition: 0
   - nodeNum: 2
     nodeType: 
-    randomizeNodes: 1
     nodeBlueprint: {fileID: 0}
     randomizeEdges: 1
-    nodesApartDistance: 0
-    randomizePosition: 0
   - nodeNum: 2
     nodeType: 
-    randomizeNodes: 1
     nodeBlueprint: {fileID: 0}
     randomizeEdges: 1
-    nodesApartDistance: 0
-    randomizePosition: 0
   - nodeNum: 3
     nodeType: 
-    randomizeNodes: 1
     nodeBlueprint: {fileID: 0}
     randomizeEdges: 1
-    nodesApartDistance: 0
-    randomizePosition: 0
   - nodeNum: 3
     nodeType: 
-    randomizeNodes: 1
     nodeBlueprint: {fileID: 0}
     randomizeEdges: 1
-    nodesApartDistance: 0
-    randomizePosition: 0
   - nodeNum: 3
     nodeType: 
-    randomizeNodes: 1
     nodeBlueprint: {fileID: 0}
     randomizeEdges: 1
-    nodesApartDistance: 0
-    randomizePosition: 0
   - nodeNum: 3
-    nodeType: 
-    randomizeNodes: 1
+    nodeType: 05000000
     nodeBlueprint: {fileID: 0}
     randomizeEdges: 1
-    nodesApartDistance: 0
-    randomizePosition: 0
   - nodeNum: 1
-    nodeType: 03000000
-    randomizeNodes: 0
+    nodeType: 04000000
     nodeBlueprint: {fileID: 11400000, guid: 504e6e3d6a198704bbe7e715c28a78f0, type: 2}
     randomizeEdges: 0
-    nodesApartDistance: 0
-    randomizePosition: 0
   - nodeNum: 1
-    nodeType: 05000000
-    randomizeNodes: 0
+    nodeType: 06000000
     nodeBlueprint: {fileID: 11400000, guid: 1a14cb81488bee146b65b4871a91757e, type: 2}
     randomizeEdges: 0
-    nodesApartDistance: 0
-    randomizePosition: 0

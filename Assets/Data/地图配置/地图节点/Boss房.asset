@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: "Boss\u623F"
   m_EditorClassIdentifier: 
   scene: 2
-  nodeType: 3
+  nodeType: 4
   rewardType: 0
   elementType: 0
   difficultProgress:

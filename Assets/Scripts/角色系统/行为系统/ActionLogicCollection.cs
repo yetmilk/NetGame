@@ -31,7 +31,7 @@ public static class ActionLogicCollection
 
     public static void Move(object questOwner, MoveFunctionParam param)
     {
-        CharacterBehaviourController fromCBCtrl = questOwner as CharacterBehaviourController;
+        CharacterController fromCBCtrl = questOwner as CharacterController;
         param.moveRig = fromCBCtrl.GetComponent<Rigidbody>();
         param.moveTransform = fromCBCtrl.transform;
 
@@ -46,7 +46,7 @@ public static class ActionLogicCollection
 
 
 
-        CharacterDataObj data = fromCBCtrl.curCharaData.data;
+        CharacterDataObj data = fromCBCtrl.curCharaData.GetDataObj();
         float speed = param.useDataSpeed ? (data != null ? data.GetDataByEnum(param.dataName) : param.speed) : param.speed;
 
         Ray ray = new Ray(fromCBCtrl.transform.position + fromCBCtrl.transform.up * 1f + fromCBCtrl.transform.forward * .3f, fromCBCtrl.transform.forward);
@@ -110,7 +110,7 @@ public static class ActionLogicCollection
     {
 
 
-        CharacterBehaviourController fromObj = questOwner as CharacterBehaviourController;
+        CharacterController fromObj = questOwner as CharacterController;
         if (!fromObj.IsLocal) return;
 
         var vfxObj = LoadManager.Instance.NetInstantiate(vfxParam.vfxName, fromObj.transform);
@@ -137,7 +137,7 @@ public static class ActionLogicCollection
 
     public static void RotateToDirection(object questOwner, RotateFuncParam param)
     {
-        CharacterBehaviourController fromObj = questOwner as CharacterBehaviourController;
+        CharacterController fromObj = questOwner as CharacterController;
         if (fromObj == null) return;
 
         RotateFuncParam rotParam = param as RotateFuncParam;
@@ -184,12 +184,11 @@ public static class ActionLogicCollection
 
             fromObj.transform.rotation = targetRotation;
         }
-        fromObj.curCharaData.data.faceDiraction = targetDirection;
     }
 
     private static void UpdateSubmitDic(object questOwner, SubmitFuncParam param)
     {
-        CharacterBehaviourController fromObj = questOwner as CharacterBehaviourController;
+        CharacterController fromObj = questOwner as CharacterController;
         ActionController acCtrl = fromObj.GetComponent<ActionController>();
         acCtrl.AddSubmitAction(param);
     }
@@ -215,7 +214,7 @@ public static class ActionLogicCollection
 
     private static void SetRigidBody(object questOwner, RigidbodyParam param)
     {
-        CharacterBehaviourController fromObj = questOwner as CharacterBehaviourController;
+        CharacterController fromObj = questOwner as CharacterController;
 
         fromObj.GetComponent<Rigidbody>().isKinematic = param.isKenamicActive;
         fromObj.GetComponent<Collider>().enabled = param.colliderActive;

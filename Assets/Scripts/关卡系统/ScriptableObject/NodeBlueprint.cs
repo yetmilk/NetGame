@@ -5,6 +5,7 @@ namespace Map
 {
     public enum NodeType
     {
+        无,
 
         普通怪房,
 

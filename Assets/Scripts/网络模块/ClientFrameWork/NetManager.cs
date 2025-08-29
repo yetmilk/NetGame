@@ -216,7 +216,7 @@ public static class NetManager
             {
                 try
                 {
-                    Debug.Log($"分发消息: {msgName} 实例: {msgBase.GetHashCode()}");
+                    //Debug.Log($"分发消息: {msgName} 实例: {msgBase.GetHashCode()}");
                     listener.Invoke(msgBase);
                 }
                 catch (Exception ex)
@@ -461,8 +461,8 @@ public static class NetManager
         }
     }
 
-private static void SendCallback(IAsyncResult ar)
-{
+    private static void SendCallback(IAsyncResult ar)
+    {
         lock (sendLock) // 确保isSending状态修改线程安全
         {
             try
@@ -476,7 +476,7 @@ private static void SendCallback(IAsyncResult ar)
 
                 // 1. 完成本次发送（获取实际发送字节数，用于校验）
                 int sentCount = socket.EndSend(ar);
-                Debug.Log($"本次发送字节数: {sentCount}");
+                //Debug.Log($"本次发送字节数: {sentCount}");
 
                 // 2. 处理下一条消息（从队列取数据）
                 if (writeQueue.TryDequeue(out ByteArray nextBa))
@@ -518,47 +518,47 @@ private static void SendCallback(IAsyncResult ar)
         }
     }
 
-//Update
-public static void Update()
-{
-    MsgUpdate();
-    PingUpdate();
-}
+    //Update
+    public static void Update()
+    {
+        MsgUpdate();
+        PingUpdate();
+    }
 
-//更新消息
-private static void MsgUpdate()
-{
-    // 每帧从主线程队列中取出所有Action并执行（确保在Unity主线程）
-    while (mainThreadActions.TryDequeue(out Action action))
+    //更新消息
+    private static void MsgUpdate()
     {
-        action.Invoke();
+        // 每帧从主线程队列中取出所有Action并执行（确保在Unity主线程）
+        while (mainThreadActions.TryDequeue(out Action action))
+        {
+            action.Invoke();
+        }
     }
-}
 
-private static void PingUpdate()
-{
-    //是否启用
-    if (!isUsePing)
+    private static void PingUpdate()
     {
-        return;
+        //是否启用
+        if (!isUsePing)
+        {
+            return;
+        }
+        //发送PING
+        if (Time.time - lastPingTime > pingInterval)
+        {
+            MsgPing msgPing = new MsgPing();
+            Send(msgPing);
+            lastPingTime = Time.time;
+        }
+        //检测PONG时间
+        if (Time.time - lastPingTime > pingInterval * 4)
+        {
+            Close();
+        }
     }
-    //发送PING
-    if (Time.time - lastPingTime > pingInterval)
-    {
-        MsgPing msgPing = new MsgPing();
-        Send(msgPing);
-        lastPingTime = Time.time;
-    }
-    //检测PONG时间
-    if (Time.time - lastPingTime > pingInterval * 4)
-    {
-        Close();
-    }
-}
 
-//监听PONG协议
-private static void OnMsgPong(MsgBase msgBase)
-{
-    lastPongTime = Time.time;
-}
+    //监听PONG协议
+    private static void OnMsgPong(MsgBase msgBase)
+    {
+        lastPongTime = Time.time;
+    }
 }

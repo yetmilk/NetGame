@@ -13,7 +13,7 @@ public class InstantiateObj_AttackDetector : InstantiateObjBase, IAttackDetector
 
     public string vfxName;
 
-    private CharacterBehaviourController fromChara;
+    private CharacterController fromChara;
 
     public class CollisionInfo
     {
@@ -45,7 +45,8 @@ public class InstantiateObj_AttackDetector : InstantiateObjBase, IAttackDetector
 
     public override void Init(object owner, float lifeTime = -1)
     {
-        fromChara = owner as CharacterBehaviourController;
+        if (!IsLocal) return;
+        fromChara = owner as CharacterController;
         if (fromChara != null)
         {
             blockList.Clear();
@@ -76,7 +77,8 @@ public class InstantiateObj_AttackDetector : InstantiateObjBase, IAttackDetector
             while (detectedColliders.Count > 0)
             {
                 CollisionInfo target = detectedColliders.Dequeue();
-                if (target.target.GetComponent<NetMonobehavior>() != null && target.target.GetComponent<NetMonobehavior>().NetID != ownerTransform.GetComponent<NetMonobehavior>().NetID)
+                if (target.target.GetComponent<NetMonobehavior>() != null
+                    && target.target.GetComponent<NetMonobehavior>().NetID != fromChara.NetID)
                     OnTargetDetected(target);
             }
             isDealAttack = false;
@@ -101,22 +103,24 @@ public class InstantiateObj_AttackDetector : InstantiateObjBase, IAttackDetector
             if (string.IsNullOrEmpty(vfxName))
             {
                 var go = LoadManager.Instance.NetInstantiate(vfxName);
-
-                //go.transform.position = colInfo.collisionPoint;
-                //go.transform.rotation = Quaternion.LookRotation(colInfo.collisionNormal);
             }
 
+            string attackerNetId = fromChara.NetID;
+            string beAttackerNetId = colInfo.target.GetComponent<CharacterController>().NetID;
+            CharacterController target = colInfo.target.GetComponent<CharacterController>();
+            float damageValue = DamageCaculateCollection.CaculateDamage(Type, fromChara.curCharaData.GetDataObj(), target.curCharaData.GetDataObj());
 
-            //CameraManager.Instance.ShakeCamera();
+            DamageInfo damageInfo = new DamageInfo()
+            {
+                damageValue = damageValue,
+                fromerNetId = fromChara.NetID,
+                targetNetId = beAttackerNetId,
 
-            //ownerTransform.GetComponent<AudioSource>().clip = clipList[Random.Range(0, clipList.Count)];
-            //ownerTransform.GetComponent<AudioSource>().Play();
+            };
 
-            CharacterDataObj attacker = fromChara.GetComponent<CharacterDataController>().data;
-            CharacterDataObj beAttacker = colInfo.target.GetComponent<CharacterDataController>().data;
+            MsgDamageInfo info = new MsgDamageInfo(damageInfo);
 
-            float damage = DamageCaculateCollection.CaculateDamage(damageFormulaType, attacker, beAttacker);
-            attackTarget.GetDamage(attackDirection, damage);
+            NetManager.Send(info);
 
             blockList.Remove(colInfo.target);
         }

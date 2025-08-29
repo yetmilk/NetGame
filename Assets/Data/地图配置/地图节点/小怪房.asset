@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: "\u5C0F\u602A\u623F"
   m_EditorClassIdentifier: 
   scene: 2
-  nodeType: 0
+  nodeType: 1
   rewardType: 0
   elementType: 0
   difficultProgress:

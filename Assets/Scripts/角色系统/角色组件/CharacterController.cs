@@ -7,7 +7,7 @@ using static PlayerManager;
 [RequireComponent(typeof(ActionController))]
 [RequireComponent(typeof(CharacterDataController))]
 [RequireComponent(typeof(CampFlag))]
-public class CharacterBehaviourController : NetMonobehavior, IDealActionCommand, ICanInteract
+public class CharacterController : NetMonobehavior, IDealActionCommand, ICanInteract
 {
     public ActionController selfActionCtrl;
 
@@ -46,6 +46,8 @@ public class CharacterBehaviourController : NetMonobehavior, IDealActionCommand,
         // StartCoroutine(InitCol());
 
         EventCenter.Subscribe(EventCenter.EventId.LogicFrameUpdate, LogicUpdate);
+
+        NetManager.AddMsgListener("MsgDamageInfo", GetDamage);
     }
     IEnumerator InitCol()
     {
@@ -64,7 +66,7 @@ public class CharacterBehaviourController : NetMonobehavior, IDealActionCommand,
     {
 
         charaTag = character;
-        curCharaData.Init(character);
+        curCharaData.Init(character, this);
 
         PlayerManager.PlayerInfo playerInfo = PlayerManager.Instance.GetPlayerInfoByNetId(NetID);
         if (playerInfo != null)
@@ -81,9 +83,6 @@ public class CharacterBehaviourController : NetMonobehavior, IDealActionCommand,
     protected virtual void LogicUpdate(object param = null)
     {
 
-
-
-        curCharaData.data.faceDiraction = transform.forward;
     }
 
     #region----------------------------状态逻辑------------------------
@@ -437,32 +436,34 @@ public class CharacterBehaviourController : NetMonobehavior, IDealActionCommand,
     #endregion
 
     #region--------------------------特殊状态处理--------------------------------------
-    public virtual void GetDamage(Vector3 hurtDir, float damage)
+    public virtual void GetDamage(MsgBase msgBase)
     {
-        //Debug.Log(hurtDir.normalized);
+        MsgDamageInfo msg = msgBase as MsgDamageInfo;
 
-        PlayerInputManager.Instance.HandleInput("", ActionTag.Hurt, -hurtDir, NetID);
+        DamageInfo damageInfo = new DamageInfo(msg);
+
+        HandleInputCommand("", ActionTag.Hurt, -damageInfo.DamageDir);
         //TODO:数据同步
-        curCharaData.data.curHealth -= damage;
-        if (curCharaData.data.curHealth <= 0f)
-            PlayerInputManager.Instance.HandleInput("", ActionTag.Dead, Vector3.zero, NetID);
+        curCharaData.CaculateDamage(damageInfo);
+        if (curCharaData.GetDataObj().curHealth <= 0f)
+            HandleInputCommand("", ActionTag.Dead, Vector3.zero);
     }
 
     public virtual bool CanBeAttack(CampFlag attackercamp)
     {
-        return curCharaData.data.curHealth > 0f && !GetComponent<CampFlag>().CheckIsFriendly(attackercamp.CampType);
+        return curCharaData.GetDataObj().curHealth > 0f && !GetComponent<CampFlag>().CheckIsFriendly(attackercamp.CampType);
     }
 
     public virtual bool CanBeHealth(CampFlag camp)
     {
-        return curCharaData.data.curHealth < curCharaData.data.charaData.maxhealth && !GetComponent<CampFlag>().CheckIsFriendly(camp.CampType);
+        return curCharaData.GetDataObj().curHealth < curCharaData.GetDataObj().maxhealth && !GetComponent<CampFlag>().CheckIsFriendly(camp.CampType);
     }
 
     public void GetHealth(float health)
     {
-        curCharaData.data.curHealth += health;
-        curCharaData.data.curHealth = curCharaData.data.curHealth > curCharaData.data.charaData.maxhealth
-            ? curCharaData.data.charaData.maxhealth : curCharaData.data.curHealth;
+        curCharaData.GetDataObj().curHealth += health;
+        curCharaData.GetDataObj().curHealth = curCharaData.GetDataObj().curHealth > curCharaData.GetDataObj().maxhealth
+            ? curCharaData.GetDataObj().maxhealth : curCharaData.GetDataObj().curHealth;
 
 
     }

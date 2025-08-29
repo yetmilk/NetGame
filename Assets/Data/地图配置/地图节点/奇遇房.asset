@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: "\u5947\u9047\u623F"
   m_EditorClassIdentifier: 
   scene: 2
-  nodeType: 2
+  nodeType: 3

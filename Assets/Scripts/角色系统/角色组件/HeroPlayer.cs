@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HeroPlayer : CharacterBehaviourController
+public class HeroPlayer : CharacterController
 {
 
 

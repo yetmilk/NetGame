@@ -14,7 +14,7 @@ public class ActionController : MonoBehaviour
     public List<ActionInfo> allActionInfo = new List<ActionInfo>(); // 此控制器管理的所有行为
 
 
-    private CharacterBehaviourController owner;
+    private CharacterController owner;
 
     Dictionary<ActionTag, List<SubmitFuncParam>> submitActionDic = new Dictionary<ActionTag, List<SubmitFuncParam>>(); // 存储条件转换行为的字典
     // 行为切换的两个队列
@@ -33,7 +33,7 @@ public class ActionController : MonoBehaviour
         animator = GetComponent<Animator>();
 
     }
-    public void InitializeAction(CharacterClacify character, CharacterBehaviourController owner)
+    public void InitializeAction(CharacterClacify character, CharacterController owner)
     {
 
         this.owner = owner;
@@ -48,7 +48,7 @@ public class ActionController : MonoBehaviour
         EventCenter.Subscribe(EventCenter.EventId.RenderFrameUpdate, OnRenderFrameUpdate);
     }
 
-    public void InitializeAction(ActionCollection actionCollection, CharacterBehaviourController owner)
+    public void InitializeAction(ActionCollection actionCollection, CharacterController owner)
     {
         this.owner = owner;
         LoadActionData(actionCollection);

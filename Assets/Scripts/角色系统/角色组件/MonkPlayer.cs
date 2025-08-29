@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class MonkPlayer : CharacterBehaviourController
+public class MonkPlayer : CharacterController
 {
 
 
@@ -67,7 +67,7 @@ public class MonkPlayer : CharacterBehaviourController
         {
             skill_1_Vfx = LoadManager.Instance.NetInstantiate("VFX_仙术师_技能1_特效", transform);
             skill_1_Vfx.transform.parent = null;
-            skill_1_Vfx.GetComponent<GrowFlower>().Init(this);
+            //skill_1_Vfx.GetComponent<GrowFlower>().Init(this);
             skill_1_Vfx.transform.position = insVfxPos;
         }
 

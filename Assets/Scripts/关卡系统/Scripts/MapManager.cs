@@ -91,19 +91,26 @@ namespace Map
 
         public void GoToNextLevel()
         {
+           
             curProgress.level++;
-            if (curProgress.level > progress.level)
+            if (curProgress.level >= progress.level)
             {
                 curProgress.level = 0;
                 curProgress.chapter++;
-                CurrentMap = chapterToMap[curProgress.chapter];
-                if (curProgress.chapter > progress.chapter)
+                if (curProgress.chapter >= progress.chapter)
                 {
                     ChapterEnd();
+                    return;
                 }
-            }
 
+                CurrentMap = chapterToMap[curProgress.chapter];
+
+
+            }
             TipManager.Instance.ShowTip(TipType.切换房间提示, "");
+
+
+
 
         }
 
@@ -147,7 +154,7 @@ namespace Map
                 switch (nodes[i].nodeType)
                 {
                     case NodeType.普通怪房:
-                    case NodeType.Boss房:
+
                     case NodeType.精英怪房:
                         // 尝试将节点蓝图转换为敌人蓝图
                         if (nodes[i].blueprint is EnemyBlueprint enemyBlueprint)
@@ -201,15 +208,9 @@ namespace Map
 
                         }
                         break;
+                    case NodeType.Boss房:
                     case NodeType.奇遇房:
-                        obj = new BlueprintObj(nodes[i].blueprint);
-                        blueprintObjs[i] = obj;
-                        break;
-
                     case NodeType.商店房:
-                        obj = new BlueprintObj(nodes[i].blueprint);
-                        blueprintObjs[i] = obj;
-                        break;
                     case NodeType.撤离房:
                         obj = new BlueprintObj(nodes[i].blueprint);
                         blueprintObjs[i] = obj;

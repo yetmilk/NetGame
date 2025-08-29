@@ -60,7 +60,7 @@ namespace Micosmo.SensorToolkit {
             }
         }
 
-        public void CharacterSeek(CharacterController cc, Vector3 pos, Vector3 up) {
+        public void CharacterSeek(UnityEngine.CharacterController cc, Vector3 pos, Vector3 up) {
             var dir = Vector3.ProjectOnPlane(Strafing.GetFaceTarget(cc.transform, pos), up).normalized;
             CharacterControllerSeek(cc, pos, dir, up);
         }
@@ -89,7 +89,7 @@ namespace Micosmo.SensorToolkit {
             AccelerateKinematic(rb, angularAccel, transAccel);
         }
 
-        void CharacterControllerSeek(CharacterController cc, Vector3 tpos, Vector3 tdir, Vector3 tup) {
+        void CharacterControllerSeek(UnityEngine.CharacterController cc, Vector3 tpos, Vector3 tdir, Vector3 tup) {
             var angularAccel = MotionUtils.SeekPlanarAngularAccel(SpringForce, DampForce, new ReferenceFrame(cc.transform), cc.transform.rotation * kinematicAngularVelocity, tdir, tup);
             var transAccel = MotionUtils.SeekAccel(SpringForce, DampForce, cc.transform.position - tpos, kinematicVelocity);
             AccelerateCharacterController(cc, angularAccel, transAccel);
@@ -145,7 +145,7 @@ namespace Micosmo.SensorToolkit {
             rb.position = rb.position + kinematicVelocity * Time.fixedDeltaTime;
         }
 
-        void AccelerateCharacterController(CharacterController cc, Vector3 angularAccel, Vector3 transAccel) {
+        void AccelerateCharacterController(UnityEngine.CharacterController cc, Vector3 angularAccel, Vector3 transAccel) {
             if (ConstrainMotion) {
                 angularAccel = Vector3.ClampMagnitude(angularAccel, maxAngularAccel);
                 transAccel = Vector3.ClampMagnitude(transAccel, MaxAccel);

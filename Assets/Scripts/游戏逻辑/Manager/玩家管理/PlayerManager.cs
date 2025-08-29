@@ -22,7 +22,7 @@ public class PlayerManager : Singleton<PlayerManager>
         public string name;
         public string netID;
         public CharacterClacify character;
-        public CharacterBehaviourController playerObj;
+        public CharacterController playerObj;
     }
 
     public event Action OnPlayerInit;
@@ -97,7 +97,7 @@ public class PlayerManager : Singleton<PlayerManager>
 
         player.GetComponent<CampFlag>().Init(CampType.Player);
 
-        curActivePlayer[playerId].playerObj = player.GetComponent<CharacterBehaviourController>();
+        curActivePlayer[playerId].playerObj = player.GetComponent<CharacterController>();
 
         if (playerId == selfId)
         {

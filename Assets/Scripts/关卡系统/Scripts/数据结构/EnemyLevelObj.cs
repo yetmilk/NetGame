@@ -26,7 +26,7 @@ public class EnemyLevelObj : BlueprintObj
         {
             var types = ((ElementType[])Enum.GetValues(typeof(ElementType))).ToList();
             types.Remove(ElementType.нч);
-            elementType = types.Random();
+            this.elementType = types.Random();
         }
 
     }

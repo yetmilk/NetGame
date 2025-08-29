@@ -59,7 +59,7 @@ namespace Map
         /// </summary>
         /// <param name="num">需要生成的节点数量</param>
         /// <returns>随机节点类型数组</returns>
-        public NodeType[] GetRandomNode(int num)
+        public NodeType[] GetRandomNode(int num, int layerIndex)
         {
             List<NodeType> resultNodes = new List<NodeType>();
 
@@ -68,7 +68,9 @@ namespace Map
             {
                 if (!dynamicProbDict.ContainsKey(nodeInfo.nodeType))
                 {
-                    dynamicProbDict.Add(nodeInfo.nodeType, nodeInfo.startChance);
+                    if (!layers[layerIndex].nodeType.Contains(nodeInfo.nodeType) ||
+                        (nodeInfo.nodeType == NodeType.普通怪房 || nodeInfo.nodeType == NodeType.精英怪房))
+                        dynamicProbDict.Add(nodeInfo.nodeType, nodeInfo.startChance);
                 }
             }
 

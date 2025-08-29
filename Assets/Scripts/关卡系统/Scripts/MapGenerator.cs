@@ -66,8 +66,8 @@ namespace Map
             MapLayer layer = config.layers[layerIndex];
             List<Node> nodesOnThisLayer = new List<Node>();
 
-            float offset = layer.nodesApartDistance * config.GridWidth / 2f;
-            NodeType[] nodeTypes = config.GetRandomNode(layer.nodeNum);
+
+            NodeType[] nodeTypes = config.GetRandomNode(layer.nodeNum, layerIndex);
 
             for (int i = 0; i < layer.nodeNum; i++)
             {
@@ -75,7 +75,8 @@ namespace Map
                     .Where(t => config.nodeBlueprints.Any(b => b.nodeType == t.nodeType))
                     .ToList();
 
-                NodeType nodeType = layer.randomizeNodes && supportedRandomNodeTypes.Count > 0
+
+                NodeType nodeType = i >= layer.nodeType.Count
                     ? nodeTypes[i]
                     : layer.nodeType[i];
 

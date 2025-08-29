@@ -40,7 +40,7 @@ namespace Micosmo.SensorToolkit {
         public Rigidbody RigidBody;
 
         [Tooltip("The CharacterController to control with built-in locomotion.")]
-        public CharacterController CharacterController;
+        public UnityEngine.CharacterController CharacterController;
 
         // Configurations struct for the built-in locomotion behaviours.
         public LocomotionSystem Locomotion;

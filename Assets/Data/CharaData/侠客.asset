@@ -13,5 +13,9 @@ MonoBehaviour:
   m_Name: "\u4FA0\u5BA2"
   m_EditorClassIdentifier: 
   maxhealth: 100
+  attackValue: 5
+  skillValue: 5
   moveSpeed: 5
   parrySpeed: 20
+  normalDefense: 5
+  skillDefense: 5

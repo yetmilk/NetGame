@@ -1,9 +1,9 @@
-using System;
+ï»¿using System;
 using System.Collections;
 using UnityEngine;
 
-[PrimitiveTaskClass("Ö©Öë")]
-public class SpiderEnemy : CharacterBehaviourController
+[PrimitiveTaskClass("èœ˜è››")]
+public class SpiderEnemy : CharacterController
 {
     [SelectableMethod]
     public static void MoveTo(Agent agent, Action onComplete)
@@ -15,16 +15,16 @@ public class SpiderEnemy : CharacterBehaviourController
 
     static IEnumerator MoveCoro(Agent agent, Action onComplete)
     {
-        Vector3 targetPos = agent.state.GetState<Vector3>("µĞÈËÎ»ÖÃ");
+        Vector3 targetPos = agent.state.GetState<Vector3>("æ•Œäººä½ç½®");
 
 
-        float maxMoveTime = 10f; // ÉèÖÃ×î´óÒÆ¶¯Ê±¼ä
+        float maxMoveTime = 10f; // è®¾ç½®æœ€å¤§ç§»åŠ¨æ—¶é—´
         float startTime = Time.time;
 
-        while (Vector3.Distance(agent.transform.position, agent.state.GetState<Vector3>("µĞÈËÎ»ÖÃ")) > 2f)
+        while (Vector3.Distance(agent.transform.position, agent.state.GetState<Vector3>("æ•Œäººä½ç½®")) > 2f)
         {
-            targetPos = agent.state.GetState<Vector3>("µĞÈËÎ»ÖÃ");
-            // ³¬Ê±ÍË³ö
+            targetPos = agent.state.GetState<Vector3>("æ•Œäººä½ç½®");
+            // è¶…æ—¶é€€å‡º
             //if (Time.time - startTime > maxMoveTime)
             //{
             //    Debug.Log("Move timed out");
@@ -34,13 +34,13 @@ public class SpiderEnemy : CharacterBehaviourController
 
             Vector3 dir = (targetPos - agent.transform.position).normalized;
             Debug.Log(dir);
-            //agent.GetComponent<IDealActionCommand>().HandleInputCommand(new InputCommand(InputCommandType.ÒÆ¶¯, dir));
-            PlayerInputManager.Instance.HandleInput(new InputCommand(InputCommandType.ÒÆ¶¯, dir), agent.GetComponent<NetMonobehavior>().NetID);
+            //agent.GetComponent<IDealActionCommand>().HandleInputCommand(new InputCommand(InputCommandType.ç§»åŠ¨, dir));
+            PlayerInputManager.Instance.HandleInput(new InputCommand(InputCommandType.ç§»åŠ¨, dir), agent.GetComponent<NetMonobehavior>().NetID);
 
             yield return null;
         }
-        //agent.GetComponent<IDealActionCommand>().HandleInputCommand(new InputCommand(InputCommandType.ÒÆ¶¯));
-        //PlayerInputManager.Instance.HandleInput(new InputCommand(InputCommandType.´ı»ú), agent.GetComponent<NetMonobehavior>().NetID);
+        //agent.GetComponent<IDealActionCommand>().HandleInputCommand(new InputCommand(InputCommandType.ç§»åŠ¨));
+        //PlayerInputManager.Instance.HandleInput(new InputCommand(InputCommandType.å¾…æœº), agent.GetComponent<NetMonobehavior>().NetID);
         Debug.Log("Arrived at enemy position");
         onComplete?.Invoke();
     }
@@ -50,8 +50,8 @@ public class SpiderEnemy : CharacterBehaviourController
     {
 
         if (!agent.GetComponent<NetMonobehavior>().IsLocal) return;
-        Vector3 attackDir = (agent.state.GetState<Vector3>("µĞÈËÎ»ÖÃ") - agent.transform.position).normalized;
-        PlayerInputManager.Instance.HandleInput(new InputCommand(InputCommandType.ÆÕÍ¨¹¥»÷, attackDir), agent.GetComponent<NetMonobehavior>().NetID);
+        Vector3 attackDir = (agent.state.GetState<Vector3>("æ•Œäººä½ç½®") - agent.transform.position).normalized;
+        PlayerInputManager.Instance.HandleInput(new InputCommand(InputCommandType.æ™®é€šæ”»å‡», attackDir), agent.GetComponent<NetMonobehavior>().NetID);
         onComplete?.Invoke();
     }
     [SelectableMethod]
@@ -62,35 +62,35 @@ public class SpiderEnemy : CharacterBehaviourController
     }
     static IEnumerator RestCoro(Agent agent, Action onComplete)
     {
-        float maxRestTime = (float)agent.state.GetState<double>("ĞİÏ¢Ê±¼ä");
+        float maxRestTime = (float)agent.state.GetState<double>("ä¼‘æ¯æ—¶é—´");
         float startTime = Time.time;
 
-        // Ö±½ÓÊ¹ÓÃ maxRestTime ×÷Îª×ÜÊ±³¤£¬¶ø·Ç¶¯Ì¬¼ÆËã
+        // ç›´æ¥ä½¿ç”¨ maxRestTime ä½œä¸ºæ€»æ—¶é•¿ï¼Œè€ŒéåŠ¨æ€è®¡ç®—
         while (Time.time - startTime < maxRestTime)
         {
-            // ½öÔÚ±ØÒªÊ±¸üĞÂ×´Ì¬£¨ÀıÈçÃ¿0.5Ãë¸üĞÂÒ»´Î£©
+            // ä»…åœ¨å¿…è¦æ—¶æ›´æ–°çŠ¶æ€ï¼ˆä¾‹å¦‚æ¯0.5ç§’æ›´æ–°ä¸€æ¬¡ï¼‰
             if ((Time.time - startTime) % 0.5f < 0.1f)
             {
-                agent.state.SetState("µ±Ç°ĞİÏ¢Ê±¼ä", Time.time - startTime);
+                agent.state.SetState("å½“å‰ä¼‘æ¯æ—¶é—´", Time.time - startTime);
             }
 
-            Vector3 targetPos = agent.state.GetState<Vector3>("µĞÈËÎ»ÖÃ");
+            Vector3 targetPos = agent.state.GetState<Vector3>("æ•Œäººä½ç½®");
             Vector3 dir = (agent.transform.position - targetPos).normalized;
 
-            PlayerInputManager.Instance.HandleInput(new InputCommand(InputCommandType.´ı»ú, -dir), agent.GetComponent<NetMonobehavior>().NetID);
-            // ½öÔÚ¾àÀë±ä»¯Ê±¸üĞÂ¶¯×÷£¨±ÜÃâÖØ¸´Ìí¼ÓÏàÍ¬ÃüÁî£©
+            PlayerInputManager.Instance.HandleInput(new InputCommand(InputCommandType.å¾…æœº, -dir), agent.GetComponent<NetMonobehavior>().NetID);
+            // ä»…åœ¨è·ç¦»å˜åŒ–æ—¶æ›´æ–°åŠ¨ä½œï¼ˆé¿å…é‡å¤æ·»åŠ ç›¸åŒå‘½ä»¤ï¼‰
             if (Vector3.Distance(agent.transform.position, targetPos) <= 5f)
             {
-                PlayerInputManager.Instance.HandleInput("ºóÍË", ActionTag.Move, -dir, agent.GetComponent<NetMonobehavior>().NetID);
+                PlayerInputManager.Instance.HandleInput("åé€€", ActionTag.Move, -dir, agent.GetComponent<NetMonobehavior>().NetID);
             }
 
 
             yield return null;
         }
 
-        // ĞİÏ¢½áÊø£¬ÖØÖÃ×´Ì¬
-        agent.state.SetState("µ±Ç°ĞİÏ¢Ê±¼ä", 0.0);
-        Debug.Log("ĞİÏ¢½áÊø£¡£¡£¡");
+        // ä¼‘æ¯ç»“æŸï¼Œé‡ç½®çŠ¶æ€
+        agent.state.SetState("å½“å‰ä¼‘æ¯æ—¶é—´", 0.0);
+        Debug.Log("ä¼‘æ¯ç»“æŸï¼ï¼ï¼");
         onComplete?.Invoke();
     }
 }

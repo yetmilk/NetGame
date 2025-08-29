@@ -15,12 +15,12 @@ public class InstantiateObjBase : NetMonobehavior, IInstantiateObj
     [Header("销毁时间")]
     public float lifeTime = .5f;
 
-    protected CharacterBehaviourController ownerCBCtrl;
+    protected CharacterController ownerCBCtrl;
     protected ActionController ownerActionCtrl;
 
     public virtual void Init(object owner, float lifeTime = -1)
     {
-        ownerCBCtrl = owner as CharacterBehaviourController;
+        ownerCBCtrl = owner as CharacterController;
         this.lifeTime = lifeTime;
         ownerActionCtrl = ownerCBCtrl.selfActionCtrl;
     }
