@@ -113,7 +113,7 @@ public static class ActionLogicCollection
         CharacterController fromObj = questOwner as CharacterController;
         if (!fromObj.IsLocal) return;
 
-        var vfxObj = LoadManager.Instance.NetInstantiate(vfxParam.vfxName, fromObj.transform);
+        var vfxObj = LoadManager.Instance.NetInstantiate(vfxParam.vfxName, fromObj.transform,fromObj.NetID);
 
         if (vfxObj.GetComponent<IInstantiateObj>() != null)
             vfxObj.GetComponent<IInstantiateObj>().Init(fromObj, vfxParam.VfxLifeTime);

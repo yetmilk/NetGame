@@ -31,7 +31,7 @@ public class LogUIContriller : MonoBehaviour
         msgLogin.id = userName_login_InputField.text;
         msgLogin.pw = password_login_InputField.text;
         TipManager.Instance.ShowTip(TipType.LogTip, "µÇÂ½ÖÐ");
-        LogInManager.SendMsg(msgLogin);
+        GameNetManager.SendMsg(msgLogin);
     }
 
     public void LogOn()
@@ -40,6 +40,6 @@ public class LogUIContriller : MonoBehaviour
         msgRegister.id = userName_logon_InputField.text;
         msgRegister.pw = password_logon_InputField.text;
         TipManager.Instance.ShowTip(TipType.LogTip, "×¢²áÖÐ");
-        LogInManager.SendMsg(msgRegister);
+        GameNetManager.SendMsg(msgRegister);
     }
 }

@@ -3892,6 +3892,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1115565379}
   m_CullTransparentMesh: 1
+--- !u!1 &1119044847 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8373833435487354798, guid: dcabeb67b58731f42a604f4b2a3e766a,
+    type: 3}
+  m_PrefabInstance: {fileID: 8373833435569408775}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1119044848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1119044847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 854e404ca4b4c3044bbac424c33b31b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  logInPanel: {fileID: 845559931}
+  ConnectIp: 47.105.122.120
 --- !u!1 &1164361929
 GameObject:
   m_ObjectHideFlags: 0
@@ -6115,6 +6135,7 @@ MonoBehaviour:
   isTest: 1
   character: 0
   sceneName: 2
+  BuffName: 0
 --- !u!4 &1806856130
 Transform:
   m_ObjectHideFlags: 0
@@ -8036,7 +8057,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameNetManager
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8373833435487354797, guid: dcabeb67b58731f42a604f4b2a3e766a, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: dcabeb67b58731f42a604f4b2a3e766a, type: 3}
 --- !u!114 &9041175795820854048
 MonoBehaviour:

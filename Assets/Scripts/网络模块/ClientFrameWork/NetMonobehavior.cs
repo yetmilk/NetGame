@@ -14,7 +14,7 @@ public class NetMonobehavior : MonoBehaviour
     protected virtual void Start()
     {
         NetManager.AddMsgListener("MsgDestroyObj", OnDestroyFromServer);
-
+      
     }
 
     /// <summary>
@@ -36,6 +36,7 @@ public class NetMonobehavior : MonoBehaviour
     {
         this.netId = netId;
         this.netFlag = flag;
+        GameNetManager.Instance.SubbmitNetObject(netId, this);
     }
 
 
@@ -50,7 +51,7 @@ public class NetMonobehavior : MonoBehaviour
         msg.netId = netId;
         msg.questIp = NetManager.LocalEndPoint;
         NetManager.Send(msg);
-
+        GameNetManager.Instance.UnSubmitNetObj(NetID);
         Destroy(localObj);
     }
 
@@ -60,6 +61,7 @@ public class NetMonobehavior : MonoBehaviour
 
         if (msg.netId == netId && !IsLocal)
         {
+            GameNetManager.Instance.UnSubmitNetObj(NetID);
             Destroy(gameObject);
         }
 
@@ -69,5 +71,6 @@ public class NetMonobehavior : MonoBehaviour
     {
         NetManager.RemoveMsgListener("MsgDestroyObj", OnDestroyFromServer);
 
+        GameNetManager.Instance.UnSubmitNetObj(NetID);
     }
 }

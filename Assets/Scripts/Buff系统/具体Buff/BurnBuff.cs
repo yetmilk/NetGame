@@ -24,7 +24,15 @@ public class BurnBuff : BuffObj
 
     public override void OnTimeTick(CharacterController target, CharacterController owner)
     {
+        DamageInfo damageInfo = new DamageInfo()
+        {
+            damageValue = 5f,
+            fromerNetId = owner.NetID,
+            targetNetId = target.NetID,
 
+        };
+        MsgDamageInfo msg = new MsgDamageInfo(damageInfo);
+        NetManager.Send(msg);
     }
     #endregion
 }

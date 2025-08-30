@@ -29,13 +29,14 @@ public class BuffController
         //更新buff生命周期，有结束的移除
         for (int i = curBuffsList.Count - 1; i >= 0; i--)
         {
-            if (curBuffsList[i].curTime >= curBuffsList[i].lifeTime)
+            if (curBuffsList[i].curTime >= curBuffsList[i].lifeTime*FrameManager.LogicFrameRate)
             {
                 //当buff被移除时的事件
                 curBuffsList[i].module.onRemove?.Invoke(curBuffsList[i].target, curBuffsList[i].owner);
                 //更新buffUI
                 //buffUIView.UpdateView();
 
+                curBuffsList[i].Disable();
                 curBuffsList.RemoveAt(i);
             }
             else

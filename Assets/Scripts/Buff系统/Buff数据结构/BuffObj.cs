@@ -37,12 +37,7 @@ public class BuffObj
 
         this.owner = buffInfo.fromer;
         this.target = buffInfo.carrier;
-        module.onOccur += OnOccur;
-        module.onRemove += OnRemove;
-        module.onTimeTick += OnTimeTick;
-        module.onHurt += OnHurt;
-        module.onBeKillled += OnBeKillled;
-        module.onKill += OnKill;
+        OnEnable();
 
     }
 
@@ -76,4 +71,23 @@ public class BuffObj
 
     }
     #endregion
+
+    public void OnEnable()
+    {
+        module.onOccur += OnOccur;
+        module.onRemove += OnRemove;
+        module.onTimeTick += OnTimeTick;
+        module.onHurt += OnHurt;
+        module.onBeKillled += OnBeKillled;
+        module.onKill += OnKill;
+    }
+    public void Disable()
+    {
+        module.onOccur -= OnOccur;
+        module.onRemove -= OnRemove;
+        module.onTimeTick -= OnTimeTick;
+        module.onHurt -= OnHurt;
+        module.onBeKillled -= OnBeKillled;
+        module.onKill -= OnKill;
+    }
 }

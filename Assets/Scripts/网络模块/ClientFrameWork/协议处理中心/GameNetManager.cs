@@ -5,12 +5,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class LogInManager : MonoBehaviour
+public class GameNetManager : Singleton<GameNetManager>
 {
     private bool connectState = false;
 
     public GameObject logInPanel;
     public string ConnectIp = "127.0.0.1";
+
+
+    public Dictionary<string, NetMonobehavior> netIdToObject = new Dictionary<string, NetMonobehavior>();
     private void Start()
     {
         DontDestroyOnLoad(this);
@@ -63,6 +66,34 @@ public class LogInManager : MonoBehaviour
     #endregion
 
 
+    public NetMonobehavior GetNetObject(string netId)
+    {
+        if(netIdToObject.ContainsKey(netId))
+        {
+            return netIdToObject[netId];
+        }
+        return null;
+    }
+
+    public void SubbmitNetObject(string netId,NetMonobehavior netObj)
+    {
+        if(!netIdToObject.ContainsKey(netId))
+        {
+            netIdToObject.Add(netId, netObj);
+        }
+        else
+        {
+            netIdToObject[netId] = netObj;
+        }
+    }
+
+    public void UnSubmitNetObj(string netId)
+    {
+        if(netIdToObject.ContainsKey(netId))
+        {
+            netIdToObject.Remove(netId);
+        }
+    }
 
 
     public void OnRegister(MsgBase msgBase)

@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: BuffModules
+  m_EditorClassIdentifier: 
+  m_GroupName: BuffModules
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 98f9563400d99844daca75e85c7f2c2e
+  m_SerializeEntries:
+  - m_GUID: bbd558c8123e06e4099b112cab2fc586
+    m_Address: "\u707C\u70E7"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BuffModule
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: b498f2f0c88c8af46a2b8ee8949bf3f3, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 6bc42be7b60f6634a9a70a37683e12b3, type: 2}
+    - {fileID: 11400000, guid: 4cb2d7b7cad46e546b868ee12d04c086, type: 2}

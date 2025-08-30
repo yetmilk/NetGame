@@ -8,13 +8,15 @@ public class SyncTransform : MonoBehaviour
     NetMonobehavior target;
     private void Awake()
     {
-        target = GetComponent<NetMonobehavior>();
         NetManager.AddMsgListener("MsgPosition", SyncPosition);
         NetManager.AddMsgListener("MsgRotation", SyncRotation);
+        target = GetComponent<NetMonobehavior>();
+
 
     }
     private void Start()
     {
+       
         if (target.IsLocal)
             StartCoroutine(UpdataeTransform());
     }

@@ -18,6 +18,7 @@ public class LoadManager : Singleton<LoadManager>
         LoadResourceByLabel<CharacterDataSO>("DataSO");
         LoadResourceByLabel<ActionCollection>("ActionInfo");
         LoadResourceByLabel<ProbabilityConfig>("ProbabilityConfig");
+        LoadResourceByLabel<BuffModule>("BuffModule");
 
         NetManager.AddMsgListener("MsgInstantiateObj", InstantiateFromServer);
     }
@@ -136,6 +137,7 @@ public class LoadManager : Singleton<LoadManager>
             MsgInstantiateObj msg = new MsgInstantiateObj();
             msg.netId = netID;
             msg.questIp = NetManager.LocalEndPoint.ToString();
+            msg.parentNetId = "";
             msg.insObjName = insObj.name;
 
             NetManager.Send(msg);
@@ -146,7 +148,7 @@ public class LoadManager : Singleton<LoadManager>
         return null;
     }
 
-    public GameObject NetInstantiate(string resourceName, Transform transform, string netId = "")
+    public GameObject NetInstantiate(string resourceName, Transform transform, string parNetId, bool usePar = false, string netId = "")
     {
         var insObj = LoadManager.Instance.GetResourceByName<GameObject>(resourceName);
 
@@ -170,7 +172,9 @@ public class LoadManager : Singleton<LoadManager>
             MsgInstantiateObj msg = new MsgInstantiateObj();
             msg.netId = netID;
             msg.questIp = NetManager.LocalEndPoint.ToString();
+            msg.parentNetId = parNetId;
             msg.insObjName = insObj.name;
+            msg.useParent = usePar;
 
             NetManager.Send(msg);
 
@@ -188,8 +192,25 @@ public class LoadManager : Singleton<LoadManager>
         if (msg.questIp == NetManager.LocalEndPoint.ToString()) return;
         GameObject obj = LoadManager.Instance.GetResourceByName<GameObject>(msg.insObjName);
         obj.GetComponent<NetMonobehavior>().ClientInit(msg.netId, "Remote");
+        if (msg.useParent)
+        {
+            if(msg.parentNetId!="")
+            {
+                var parentObj = GameNetManager.Instance.GetNetObject(msg.parentNetId);
+                var go = Instantiate(obj, parentObj.transform);
+            }
+           
 
-        var go = Instantiate(obj);
+        }
+        else
+        {
+            if (msg.parentNetId != "")
+            {
+                var parentObj = GameNetManager.Instance.GetNetObject(msg.parentNetId);
+                var go = Instantiate(obj, parentObj.transform);
+                go.transform.parent = null;
+            }
+        }
     }
 
     protected override void OnDestroy()

@@ -55,7 +55,7 @@ public class HeroPlayer : CharacterController
     {
         if (IsLocal)
         {
-            skill_1_Vfx = LoadManager.Instance.NetInstantiate("侠客技能1", transform);
+            skill_1_Vfx = LoadManager.Instance.NetInstantiate("侠客技能1", transform,NetID);
 
             skill_1_Vfx.transform.position = transform.position + transform.forward * 1.5f;
         }
@@ -130,7 +130,7 @@ public class HeroPlayer : CharacterController
         {
             if (curActionObj.curLifeFrame == 40)
             {
-                skill_2_Vfx = LoadManager.Instance.NetInstantiate("VFX_侠客技能2", transform);
+                skill_2_Vfx = LoadManager.Instance.NetInstantiate("VFX_侠客技能2", transform, NetID);
                 skill_2_Vfx.transform.parent = transform;
                 skill_2_Vfx.GetComponent<IAttackDetector>().Init(this);
                 skill_2_Vfx.transform.position = transform.position;
@@ -165,7 +165,7 @@ public class HeroPlayer : CharacterController
             if (curActionObj.curLifeFrame == 40)
             {
 
-                var go = LoadManager.Instance.NetInstantiate("侠客_技能三_特效", transform);
+                var go = LoadManager.Instance.NetInstantiate("侠客_技能三_特效", transform, NetID);
 
                 go.transform.parent = transform;
 

@@ -12,6 +12,9 @@ public class TestEditor : MonoBehaviour
     [Header("要切换的场景")]
     public SceneName sceneName;
 
+    [Header("要切换的Buff")]
+    public BuffName BuffName;
+
     private void Start()
     {
         if (isTest)
@@ -56,6 +59,16 @@ public class TestEditor : MonoBehaviour
     }
     #endregion
 
+    #region ------------------切换Buff-------------
+
+    public void ChangeBuff()
+    {
+        CharacterController character = PlayerManager.Instance.curActivePlayer[PlayerManager.Instance.selfId].playerObj;
+        AddBuffInfo buffInfo = new AddBuffInfo(BuffName.ToString(), 5, false, character, character);
+        character.curCharaData.buffController.AddBuff(buffInfo);
+    }
+    #endregion
+
 
 #if UNITY_EDITOR
     [UnityEditor.CustomEditor(typeof(TestEditor))]
@@ -95,6 +108,13 @@ public class TestEditor : MonoBehaviour
             }
             GUILayout.Space(10);
 
+            UnityEditor.EditorGUILayout.LabelField("添加buff", UnityEditor.EditorStyles.boldLabel);
+            testEditor.BuffName = (BuffName)UnityEditor.EditorGUILayout.EnumPopup(testEditor.BuffName);
+            if (GUILayout.Button("添加buff"))
+            {
+                testEditor.ChangeBuff();
+            }
+            GUILayout.Space(10);
             // 应用修改
             if (GUI.changed)
             {

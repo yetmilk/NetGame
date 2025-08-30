@@ -10,7 +10,7 @@ public static class BuffFactory
         {
             case BuffName.灼烧:
                 var buffModule = LoadManager.Instance.GetResourceByName<BuffModule>(buffInfo.buffModel.buffName.ToString());
-                return new BuffObj(buffInfo);
+                return new BurnBuff(buffInfo);
 
             default:
                 return default;

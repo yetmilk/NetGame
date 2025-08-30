@@ -65,7 +65,7 @@ public class MonkPlayer : CharacterController
     {
         if (IsLocal)
         {
-            skill_1_Vfx = LoadManager.Instance.NetInstantiate("VFX_仙术师_技能1_特效", transform);
+            skill_1_Vfx = LoadManager.Instance.NetInstantiate("VFX_仙术师_技能1_特效", transform, NetID);
             skill_1_Vfx.transform.parent = null;
             //skill_1_Vfx.GetComponent<GrowFlower>().Init(this);
             skill_1_Vfx.transform.position = insVfxPos;
@@ -135,7 +135,7 @@ public class MonkPlayer : CharacterController
     {
         if (IsLocal && curActionObj.curLifeFrame == 20)
         {
-            skill_2_Vfx = LoadManager.Instance.NetInstantiate("VFX_仙术师_技能2", transform);
+            skill_2_Vfx = LoadManager.Instance.NetInstantiate("VFX_仙术师_技能2", transform, NetID);
             skill_2_Vfx.GetComponent<IAttackDetector>().Init(this);
             curActionObj.GetLogicByFuncId(FunctionId.Move).MoveFunctionParam.moveDir = Vector3.zero;
         }
@@ -186,7 +186,7 @@ public class MonkPlayer : CharacterController
             if (curActionObj.curLifeFrame == 40)
             {
 
-                var go = LoadManager.Instance.NetInstantiate("VFX_仙术师_技能3", transform);
+                var go = LoadManager.Instance.NetInstantiate("VFX_仙术师_技能3", transform, NetID);
 
 
                 //TODO:增加buff，根据buff持续时间设定特效的持续时间

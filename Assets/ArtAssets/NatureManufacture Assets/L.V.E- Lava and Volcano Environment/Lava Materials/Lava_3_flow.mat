@@ -2,14 +2,15 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!21 &2100000
 Material:
-  serializedVersion: 6
+  serializedVersion: 8
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Lava_3_flow
   m_Shader: {fileID: 4800000, guid: 951e551eb5a54334ab498637e84fe777, type: 3}
-  m_ShaderKeywords: 
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
   m_LightmapFlags: 2
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
@@ -219,7 +220,7 @@ Material:
     - _ColdLavaFlowUVRefresSpeed: 0.1
     - _ColdLavaHeightBlendStrenghtVertexColor: 10
     - _ColdLavaMetalic: 1
-    - _ColdLavaNoisePower: 1.72
+    - _ColdLavaNoisePower: 4.88
     - _ColdLavaNormalScale: 1
     - _ColdLavaSmoothness: 1
     - _ColdLavaTessScale: 0.15
@@ -261,7 +262,7 @@ Material:
     - _HotLavaHeightBlendStrenghtVertexColor: 10
     - _HotLavaHeightBlendTreshold: 3.21
     - _HotLavaMetallic: 1
-    - _HotLavaNoisePower: 0.92
+    - _HotLavaNoisePower: 5.89
     - _HotLavaNormalScale: 1
     - _HotLavaSmoothness: 1
     - _HotLavaTessScale: 0.2
@@ -273,18 +274,18 @@ Material:
     - _MaskClipValue: 0.5
     - _MediumLavaAO: 1
     - _MediumLavaAlbedoColorMultiply: 1
-    - _MediumLavaAngle: 22.2
-    - _MediumLavaAngleFalloff: 5
+    - _MediumLavaAngle: 90
+    - _MediumLavaAngleFalloff: 20.7
     - _MediumLavaEmissionMaskIntesivity: 2.15
     - _MediumLavaEmissionMaskPower: 0
     - _MediumLavaEmissionMaskTreshold: 8.5
     - _MediumLavaFlowUVRefreshSpeed: 0.1
     - _MediumLavaHeightBlend: 8.74
-    - _MediumLavaHeightBlendStrenght: 0.4
+    - _MediumLavaHeightBlendStrenght: 0
     - _MediumLavaHeightBlendStrenghtVertexColor: 10
-    - _MediumLavaHeightBlendTreshold: 0.1
+    - _MediumLavaHeightBlendTreshold: 10
     - _MediumLavaMetallic: 1
-    - _MediumLavaNoisePower: 6.69
+    - _MediumLavaNoisePower: 4.43
     - _MediumLavaNormalScale: 1
     - _MediumLavaSmoothness: 1
     - _MediumLavaTessScale: 0.2
@@ -324,10 +325,10 @@ Material:
     - _UVDirectionV1U0: 1
     - _UVVDirection1UDirection0: 1
     - _Udirection: 0
-    - _VCColdLavaHeightBlendStrenght: 0.31
+    - _VCColdLavaHeightBlendStrenght: 0.38
     - _VCFrozenLavaHeightBlendStrenght: 10
-    - _VCHotLavaHeightBlendStrenght: 10
-    - _VCMediumLavaHeightBlendStrenght: 3.63
+    - _VCHotLavaHeightBlendStrenght: 2.27
+    - _VCMediumLavaHeightBlendStrenght: 0.86
     - _Vdirection: 0
     - _WaterDeepTranslucencyPower: 0.1
     - _WaterDepth: 0.143
@@ -368,7 +369,7 @@ Material:
     - _HotLavaMixSpeed: {r: 0.05, g: 0, b: 0, a: 0}
     - _HotLavaTiling: {r: 1, g: 1, b: 0, a: 0}
     - _MediumLavaAlbedoColor: {r: 1, g: 1, b: 1, a: 0}
-    - _MediumLavaMainSpeed: {r: 0.5, g: 0.3, b: 0, a: 0}
+    - _MediumLavaMainSpeed: {r: 5, g: 5, b: 0, a: 0}
     - _MediumLavaTiling: {r: 1, g: 1, b: 0, a: 0}
     - _NoiseSpeed: {r: -0.15, g: 0.15, b: 0, a: 0}
     - _NoiseTiling: {r: 1, g: 1, b: 0, a: 0}

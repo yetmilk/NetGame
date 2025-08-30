@@ -442,6 +442,7 @@ public class CharacterController : NetMonobehavior, IDealActionCommand, ICanInte
 
         DamageInfo damageInfo = new DamageInfo(msg);
 
+        if (damageInfo.targetNetId != NetID) return;
         HandleInputCommand("", ActionTag.Hurt, -damageInfo.DamageDir);
         //TODO:数据同步
         curCharaData.CaculateDamage(damageInfo);
