@@ -49,7 +49,7 @@ public static class NetManager
     //是否启用心跳
     public static bool isUsePing = true;
     //心跳间隔时间
-    public static int pingInterval = 10;
+    public static int pingInterval = 60;
     //上一次发送Ping的时间
     static float lastPingTime = 0;
     //上一次收到Pong的时间

@@ -66,6 +66,7 @@ public class CharacterDataController : MonoBehaviour, IDataContainer
 
     public void CaculateDamage(DamageInfo damageInfo)
     {
+        if (controller.NetID != damageInfo.targetNetId) return;
         List<BuffObj> buffList = buffController.curBuffsList;
 
         foreach (var buff in buffList)
