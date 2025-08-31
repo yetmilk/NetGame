@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class MonkPlayer : CharacterController
@@ -133,25 +134,58 @@ public class MonkPlayer : CharacterController
     }
     protected override void OnSkill_2_Update(ActionObj curActionObj)
     {
-        if (IsLocal && curActionObj.curLifeFrame == 20)
+
+        if (IsLocal)
         {
-            skill_2_Vfx = LoadManager.Instance.NetInstantiate("VFX_仙术师_技能2", transform, NetID);
-            skill_2_Vfx.GetComponent<IAttackDetector>().Init(this);
-            curActionObj.GetLogicByFuncId(FunctionId.Move).MoveFunctionParam.moveDir = Vector3.zero;
-        }
-        if (IsLocal && Time.time - timer < 3f && curActionObj.curLifeFrame > 20)
-        {
-            bool checkSucc;
-            Vector3 MousePos = PlayerInputManager.Instance.GetMouseDirection(out checkSucc);
-            if (checkSucc)
+            if (curActionObj.curLifeFrame == 20)
             {
-                Vector3 dir = (MousePos - transform.position).normalized;
-                PlayerInputManager.Instance.HandleInput(new InputCommand(InputCommandType.技能2, dir), NetID);
+                skill_2_Vfx = LoadManager.Instance.NetInstantiate("VFX_仙术师_技能2", transform, NetID);
+                skill_2_Vfx.GetComponent<CollisionDetector>().Init(this.gameObject);
+                var dectectList = skill_2_Vfx.GetComponent<CollisionDetector>().PerformDetection();
+
+                Attack(dectectList, DamageFormulaType.通用, ActionTag.Skill2);
+                curActionObj.GetLogicByFuncId(FunctionId.Move).MoveFunctionParam.moveDir = Vector3.zero;
+            }
+            if (Time.time - timer < 3f && curActionObj.curLifeFrame > 20)
+            {
+                bool checkSucc;
+                Vector3 MousePos = PlayerInputManager.Instance.GetMouseDirection(out checkSucc);
+                if (checkSucc)
+                {
+                    Vector3 dir = (MousePos - transform.position).normalized;
+                    PlayerInputManager.Instance.HandleInput(new InputCommand(InputCommandType.技能2, dir), NetID);
+                }
+
+                Vector3 inputDir = PlayerInputManager.Instance.GetInputDiraction();
+
+                curActionObj.GetLogicByFuncId(FunctionId.Move).MoveFunctionParam.moveDir = inputDir;
             }
 
-            Vector3 inputDir = PlayerInputManager.Instance.GetInputDiraction();
+            //获取碰撞检测的物体
+            if (skill_2_Vfx != null)
+            {
+                List<CollisionDetector.DetectionInfo> detectList = skill_2_Vfx.GetComponent<CollisionDetector>().CurrentDetections;
+                foreach (var item in detectList)
+                {
+                    if (item.target.GetComponent<IDataContainer>() != null
+                        && !item.target.GetComponent<CampFlag>().CheckIsFriendly(campFlag.CampType))
+                    {
+                        DamageInfo damageInfo = new DamageInfo()
+                        {
+                            damageValue = DamageCaculateCollection.CaculateDamage(DamageFormulaType.通用, curCharaData.GetDataObj()
+                            , item.target.GetComponent<CharacterDataController>().GetDataObj()),
+                            fromerNetId = NetID,
+                            targetNetId = item.target.GetComponent<CharacterController>().NetID,
+                            DamageDir = (item.target.transform.position - transform.position).normalized,
+                            attackTag = ActionTag.Skill2,
+                        };
 
-            curActionObj.GetLogicByFuncId(FunctionId.Move).MoveFunctionParam.moveDir = inputDir;
+                        MsgDamageInfo msg = new MsgDamageInfo(damageInfo);
+
+                        NetManager.Send(msg);
+                    }
+                }
+            }
         }
         if (Time.time - timer > 3f)
         {

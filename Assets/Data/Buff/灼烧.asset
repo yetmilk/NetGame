@@ -21,3 +21,5 @@ MonoBehaviour:
     isPercent: 1
     value: 0.4
   stateModList: []
+  isForever: 0
+  lifeTime: 3

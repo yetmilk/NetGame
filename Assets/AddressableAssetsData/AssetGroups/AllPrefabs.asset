@@ -157,6 +157,21 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Prefab
+  - m_GUID: d515be4724bcfbb46adb18fd9e12aeb0
+    m_Address: "\u6C34\u6CE2\u7EB9"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Prefab
+  - m_GUID: 88f3e58cd8f00ff4da1af8834376602e
+    m_Address: "\u706B\u7130\u9635"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Prefab
+  - m_GUID: c47df5b768de81c4b98118c2e5e8d9e6
+    m_Address: "\u706B\u7403"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Prefab
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: b498f2f0c88c8af46a2b8ee8949bf3f3, type: 2}
   m_SchemaSet:

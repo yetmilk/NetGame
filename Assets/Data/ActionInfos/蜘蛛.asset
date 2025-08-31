@@ -252,8 +252,8 @@ MonoBehaviour:
         useLocalSpace: 0
         useActionDir: 1
         moveDir: {x: 0, y: 0, z: 0}
-        useDataSpeed: 0
-        dataName: 0
+        useDataSpeed: 1
+        dataName: 1
         speed: 5
         layerMask:
           serializedVersion: 2
@@ -360,10 +360,10 @@ MonoBehaviour:
       MoveFunctionParam:
         useRig: 1
         useLocalSpace: 1
-        useActionDir: 0
+        useActionDir: 1
         moveDir: {x: 0, y: 0, z: -1}
-        useDataSpeed: 0
-        dataName: 0
+        useDataSpeed: 1
+        dataName: 1
         speed: 5
         layerMask:
           serializedVersion: 2

@@ -34,7 +34,7 @@ public class CharacterDataController : MonoBehaviour, IDataContainer
         if (dataSO != default)
         {
             dataModule = new CharacterDataObj(dataSO);
-            buffController = new BuffController(this);
+            buffController = new BuffController(controller);
             dataObj = new CharacterDataObj(dataModule);
 
             NetManager.AddMsgListener("MsgUpdateDataObj", UpdateDataFromServer);
@@ -78,6 +78,10 @@ public class CharacterDataController : MonoBehaviour, IDataContainer
 
     }
 
+    private void OnDestroy()
+    {
+        buffController.OnDisable();
+    }
 }
 
 public interface IDataContainer

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Utility;
 
 [System.Serializable]
 public struct PropMod
@@ -25,6 +26,7 @@ public delegate void OnHurt(CharacterController target, CharacterController owne
 public delegate void OnBeKillled(CharacterController target, CharacterController owner);
 public delegate void OnKill(CharacterController target, CharacterController owner);
 public delegate void OnRemove(CharacterController target, CharacterController owner);
+public delegate void OnAttack(CharacterController target, CharacterController owner, ref DamageInfo damageInfo);
 
 
 public enum BuffTag
@@ -38,18 +40,21 @@ public enum BuffTag
 public struct AddBuffInfo
 {
     public BuffModule buffModel;
-    public int buffLifeTime;
-    public bool isForever;
 
-    public CharacterController fromer;
-    public CharacterController carrier;
+    public CharacterController target;
+    public CharacterController owner;
 
-    public AddBuffInfo(string buffModelName, int buffLifeTime, bool isForever, CharacterController fromer, CharacterController carrier)
+    public AddBuffInfo(string buffModelName, CharacterController target, CharacterController owner)
     {
-        buffModel = LoadManager.Instance.GetResourceByName<BuffModule>(buffModelName);
-        this.buffLifeTime = buffLifeTime;
-        this.isForever = isForever;
-        this.fromer = fromer;
-        this.carrier = carrier;
+        buffModel = ObjectCloner.Clone(LoadManager.Instance.GetResourceByName<BuffModule>(buffModelName));
+        this.target = target;
+        this.owner = owner;
+    }
+
+    public AddBuffInfo(MsgAddBuffObj msg)
+    {
+        buffModel = LoadManager.Instance.GetResourceByName<BuffModule>(msg.buffModelName);
+        this.target = (CharacterController)GameNetManager.Instance.GetNetObject(msg.fromerNetId);
+        this.owner = (CharacterController)GameNetManager.Instance.GetNetObject(msg.carrierNetId);
     }
 }

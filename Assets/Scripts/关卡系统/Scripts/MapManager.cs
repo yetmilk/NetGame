@@ -91,7 +91,7 @@ namespace Map
 
         public void GoToNextLevel()
         {
-           
+
             curProgress.level++;
             if (curProgress.level >= progress.level)
             {

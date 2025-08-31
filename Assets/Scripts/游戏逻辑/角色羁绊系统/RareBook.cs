@@ -2,17 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RareBook : MonoBehaviour
+public class RareBook
 {
-    // Start is called before the first frame update
-    void Start()
+    public RareBookName bookName;
+
+    public virtual void Enable()
     {
-        
+
+    }
+    public virtual void Excute()
+    {
+
     }
 
-    // Update is called once per frame
-    void Update()
+    public virtual void Diable()
     {
-        
+
     }
 }

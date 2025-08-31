@@ -64,7 +64,7 @@ public class TestEditor : MonoBehaviour
     public void ChangeBuff()
     {
         CharacterController character = PlayerManager.Instance.curActivePlayer[PlayerManager.Instance.selfId].playerObj;
-        AddBuffInfo buffInfo = new AddBuffInfo(BuffName.ToString(), 5, false, character, character);
+        AddBuffInfo buffInfo = new AddBuffInfo(BuffName.ToString(), character, character);
         character.curCharaData.buffController.AddBuff(buffInfo);
     }
     #endregion

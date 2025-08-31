@@ -23,20 +23,36 @@ public class BuffObj
 
     public Dictionary<string, object> paramDic;
 
+    public OnOccur onOccur = null;
+
+    public OnRemove onRemove = null;
+
+    public OnTimeTick onTimeTick = null;
+
+    public OnBeHurt onBeHurt = null;
+
+    public OnHurt onHurt = null;
+
+    public OnBeKillled onBeKillled = null;
+
+    public OnKill onKill = null;
+
+    public OnAttack onAttack = null;
+
     public BuffObj(AddBuffInfo buffInfo)
     {
         this.module = buffInfo.buffModel;
         this.curTime = 0;
-        this.isForever = buffInfo.isForever;
-        this.lifeTime = buffInfo.buffLifeTime;
+        this.isForever = module.isForever;
+        this.lifeTime = module.lifeTime;
         if (module.tickTime > 0)
             this.tickTimer = 0;
         else this.tickTimer = -1;
 
         this.paramDic = new Dictionary<string, object>();
 
-        this.owner = buffInfo.fromer;
-        this.target = buffInfo.carrier;
+        this.owner = buffInfo.target;
+        this.target = buffInfo.owner;
         OnEnable();
 
     }
@@ -70,24 +86,32 @@ public class BuffObj
     {
 
     }
+    public virtual void OnAttack(CharacterController target, CharacterController owner, ref DamageInfo damageInfo)
+    {
+
+    }
+
     #endregion
 
-    public void OnEnable()
+    public virtual void OnEnable()
     {
-        module.onOccur += OnOccur;
-        module.onRemove += OnRemove;
-        module.onTimeTick += OnTimeTick;
-        module.onHurt += OnHurt;
-        module.onBeKillled += OnBeKillled;
-        module.onKill += OnKill;
+        onOccur += OnOccur;
+        onRemove += OnRemove;
+        onTimeTick += OnTimeTick;
+        onHurt += OnHurt;
+        onBeKillled += OnBeKillled;
+        onKill += OnKill;
+        onAttack += OnAttack;
     }
-    public void Disable()
+    public virtual void Disable()
     {
-        module.onOccur -= OnOccur;
-        module.onRemove -= OnRemove;
-        module.onTimeTick -= OnTimeTick;
-        module.onHurt -= OnHurt;
-        module.onBeKillled -= OnBeKillled;
-        module.onKill -= OnKill;
+        onOccur -= OnOccur;
+        onRemove -= OnRemove;
+        onTimeTick -= OnTimeTick;
+            onHurt -= OnHurt;
+        onBeKillled -= OnBeKillled;
+        onKill -= OnKill;
+        onAttack -= OnAttack;
     }
+
 }
