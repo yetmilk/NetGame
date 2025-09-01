@@ -32,8 +32,8 @@ public static class ActionLogicCollection
     public static void Move(object questOwner, MoveFunctionParam param)
     {
         CharacterController fromCBCtrl = questOwner as CharacterController;
-        param.moveRig = fromCBCtrl.GetComponent<Rigidbody>();
-        param.moveTransform = fromCBCtrl.transform;
+        var rig = fromCBCtrl.GetComponent<Rigidbody>();
+       var transform = fromCBCtrl.transform;
 
         Vector3 dir = Vector3.zero;
 
@@ -52,7 +52,7 @@ public static class ActionLogicCollection
         Ray ray = new Ray(fromCBCtrl.transform.position + fromCBCtrl.transform.up * 1f + fromCBCtrl.transform.forward * .3f, fromCBCtrl.transform.forward);
         Debug.DrawRay(fromCBCtrl.transform.position + fromCBCtrl.transform.up * 1f + fromCBCtrl.transform.forward * 1f, fromCBCtrl.transform.forward, Color.red);
         RaycastHit hit;
-        bool isCol = Physics.Raycast(ray, out hit, .5f, param.layerMask);
+        bool isCol = Physics.Raycast(ray, out hit, .5f);
         Vector3 raydir = Vector3.zero;
         //Debug.Log(isCol);
         if (isCol)
@@ -67,14 +67,14 @@ public static class ActionLogicCollection
         {
             case true:
                 // 
-                float verticalVelocity = param.moveRig.velocity.y;
+                float verticalVelocity = rig.velocity.y;
 
 
                 Vector3 horizontalMovement;
                 if (param.useLocalSpace)
                 {
 
-                    horizontalMovement = ((param.moveRig.transform.right * dir.x) + param.moveRig.transform.forward * dir.z) + raydir;
+                    horizontalMovement = ((rig.transform.right * dir.x) + rig.transform.forward * dir.z) + raydir;
                     horizontalMovement *= speed;
 
                 }
@@ -85,14 +85,14 @@ public static class ActionLogicCollection
                     horizontalMovement *= speed;
                 }
 
-                param.moveRig.velocity = new Vector3(horizontalMovement.x, horizontalMovement.y + verticalVelocity, horizontalMovement.z);
+                rig.velocity = new Vector3(horizontalMovement.x, verticalVelocity, horizontalMovement.z);
                 break;
             case false:
 
                 if (param.useLocalSpace)
                 {
 
-                    horizontalMovement = ((param.moveRig.transform.right * dir.x) + param.moveRig.transform.forward * dir.z) + raydir;
+                    horizontalMovement = ((rig.transform.right * dir.x) + rig.transform.forward * dir.z) + raydir;
 
 
                 }
@@ -102,7 +102,7 @@ public static class ActionLogicCollection
                     horizontalMovement = ((Vector3.right * dir.x) + Vector3.forward * dir.z) + raydir;
 
                 }
-                param.moveTransform.position += (FrameManager.LogicFrameInterval * speed) * horizontalMovement;
+                transform.position += (FrameManager.LogicFrameInterval * speed) * horizontalMovement;
                 break;
         }
     }

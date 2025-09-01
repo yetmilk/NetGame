@@ -53431,9 +53431,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3426093435773878035}
-  - component: {fileID: 8544233814526643857}
   - component: {fileID: 5529636574475257815}
   - component: {fileID: 6822364776352380026}
+  - component: {fileID: 3386931651318893253}
   m_Layer: 0
   m_Name: "VFX_\u4ED9\u672F\u5E08_\u6280\u80FD1_\u7279\u6548"
   m_TagString: Untagged
@@ -53457,21 +53457,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8544233814526643857
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8466749634311277789}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac506d6f8123caa489f9e0aa9e8b090f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  growTime: 5
-  curLifeTimer: 0
-  damageFormula: 0
 --- !u!135 &5529636574475257815
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -53497,3 +53482,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fe0b70c3ffe0074e92c9ff9c3e31918, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3386931651318893253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8466749634311277789}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02a3cd4c2493c53408a8a696f7e89ee5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  netId: 
+  netFlag: 
+  lifeTime: 5

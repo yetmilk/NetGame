@@ -22,19 +22,13 @@ public class BuffModule : ScriptableObject
     [Header("buff修改状态纪录列表")]
     public List<StateMod> stateModList;
 
+    [Header("是否是永久存在的buff")]
+    public bool isForever;
 
-    public OnOccur onOccur;
+    [Header("buff持续时间（秒）")]
+    public int lifeTime;
 
-    public OnRemove onRemove;
 
-    public OnTimeTick onTimeTick;
-
-    public OnBeHurt onBeHurt;
-
-    public OnHurt onHurt;
-
-    public OnBeKillled onBeKillled;
-
-    public OnKill onKill;
+  
 
 }

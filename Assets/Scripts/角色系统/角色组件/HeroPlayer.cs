@@ -1,10 +1,55 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class HeroPlayer : CharacterController
 {
 
+
+
+    protected override void OnAttackEnter(ActionObj curActionObj)
+    {
+
+    }
+
+    protected override void OnAttackUpdate(ActionObj curActionObj)
+    {
+        if (IsLocal)
+        {
+            GameObject go = null;
+            if (curActionObj.curActionInfo.id == "攻击" && curActionObj.curLifeFrame == 25)
+            {
+
+                go = LoadManager.Instance.NetInstantiate("VFX_剑_攻击_连招1", transform, NetID);
+                go.GetComponent<CollisionDetector>().Init(this.gameObject);
+
+                go.transform.position =new Vector3((transform.position+transform.forward*1f).x,go.transform.position.y, (transform.position + transform.forward * 1f).z);
+                var dectectList = go.GetComponent<CollisionDetector>().PerformDetection();
+
+                Attack(dectectList, DamageFormulaType.通用, ActionTag.NormalAttack);
+
+            }
+            else if (curActionObj.curActionInfo.id == "攻击_横劈" && curActionObj.curLifeFrame == 20)
+            {
+                go = LoadManager.Instance.NetInstantiate("VFX_剑_攻击_连招2", transform, NetID);
+                go.GetComponent<CollisionDetector>().Init(this.gameObject);
+                go.transform.position = new Vector3((transform.position + transform.forward * 1f).x, go.transform.position.y, (transform.position + transform.forward * 1f).z);
+                var dectectList = go.GetComponent<CollisionDetector>().PerformDetection();
+
+                Attack(dectectList, DamageFormulaType.通用, ActionTag.NormalAttack);
+            }
+            else if (curActionObj.curActionInfo.id == "攻击_连招3" && curActionObj.curLifeFrame == 20)
+            {
+                go = LoadManager.Instance.NetInstantiate("VFX_剑_攻击_连招3", transform, NetID);
+                go.GetComponent<CollisionDetector>().Init(this.gameObject);
+                go.transform.position = new Vector3((transform.position + transform.forward * 1f).x, go.transform.position.y, (transform.position + transform.forward * 1f).z);
+                var dectectList = go.GetComponent<CollisionDetector>().PerformDetection();
+
+                Attack(dectectList, DamageFormulaType.通用, ActionTag.NormalAttack);
+            }
+        }
+    }
 
     #region---------------重写技能一起势------------------
     private GameObject skill_1_IndectorObj;
@@ -55,7 +100,7 @@ public class HeroPlayer : CharacterController
     {
         if (IsLocal)
         {
-            skill_1_Vfx = LoadManager.Instance.NetInstantiate("侠客技能1", transform,NetID);
+            skill_1_Vfx = LoadManager.Instance.NetInstantiate("侠客技能1", transform, NetID);
 
             skill_1_Vfx.transform.position = transform.position + transform.forward * 1.5f;
         }
@@ -132,9 +177,14 @@ public class HeroPlayer : CharacterController
             {
                 skill_2_Vfx = LoadManager.Instance.NetInstantiate("VFX_侠客技能2", transform, NetID);
                 skill_2_Vfx.transform.parent = transform;
-                skill_2_Vfx.GetComponent<IAttackDetector>().Init(this);
+                skill_2_Vfx.GetComponent<CollisionDetector>().Init(this.gameObject);
+                var dectectList = skill_2_Vfx.GetComponent<CollisionDetector>().PerformDetection();
+
+                Attack(dectectList, DamageFormulaType.通用, ActionTag.Skill2);
                 skill_2_Vfx.transform.position = transform.position;
             }
+
+
         }
 
     }

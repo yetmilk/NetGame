@@ -18,7 +18,7 @@ public class CharacterInput : MonoBehaviour
     private void Start()
     {
         commandCtrl = GetComponent<IDealActionCommand>();
-        action = new PlayerInputAction();
+        action = PlayerInputManager.Instance.action;
         character = GetComponent<NetMonobehavior>();
         Enable();
         action.GamePlay.Move.started += Move_started;
@@ -134,7 +134,7 @@ public class CharacterInput : MonoBehaviour
     private void HandleInput(InputCommand command)
     {
         if (GetComponent<NetMonobehavior>().IsLocal)
-            PlayerInputManager.Instance.HandleInput(command,character.NetID);
+            PlayerInputManager.Instance.HandleInput(command, character.NetID);
     }
 
     public void ExcuteCommand(MsgBase msgBase)
@@ -143,7 +143,7 @@ public class CharacterInput : MonoBehaviour
 
         if (msg.NetId == character.NetID)
         {
-            if(msg.type !=-1)
+            if (msg.type != -1)
             {
                 Vector3 dir = new Vector3(msg.directionX, msg.directionY, msg.directionZ);
                 InputCommand command = new InputCommand((InputCommandType)msg.type, dir);
@@ -151,10 +151,10 @@ public class CharacterInput : MonoBehaviour
             }
             else
             {
-                Vector3 dir =new Vector3(msg.directionX, msg.directionY, msg.directionZ);
+                Vector3 dir = new Vector3(msg.directionX, msg.directionY, msg.directionZ);
                 commandCtrl.HandleInputCommand(msg.actionName, (ActionTag)msg.actionTag, dir);
             }
-            
+
         }
 
     }

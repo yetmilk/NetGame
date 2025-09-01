@@ -19560,6 +19560,7 @@ GameObject:
   - component: {fileID: 7654994766202535018}
   - component: {fileID: 5415375027070073601}
   - component: {fileID: 7408923485480963583}
+  - component: {fileID: 6060541886400403331}
   m_Layer: 0
   m_Name: "VFX_\u4FA0\u5BA2\u6280\u80FD2"
   m_TagString: Untagged
@@ -24455,14 +24456,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f01c76ef3108ae0439856ee721d2db1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  netId: 
-  netFlag: 
   targetLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  checkTime: 0.5
-  vfxName: 
-  damageFormulaType: 0
+  checkInterval: 0
 --- !u!135 &5415375027070073601
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -24488,6 +24485,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fe0b70c3ffe0074e92c9ff9c3e31918, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6060541886400403331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1210069404974878}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02a3cd4c2493c53408a8a696f7e89ee5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  netId: 
+  netFlag: 
+  lifeTime: -1
 --- !u!1 &1224352617635550
 GameObject:
   m_ObjectHideFlags: 0

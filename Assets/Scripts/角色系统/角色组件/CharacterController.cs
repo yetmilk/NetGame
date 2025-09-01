@@ -1,4 +1,5 @@
 
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,6 +21,9 @@ public class CharacterController : NetMonobehavior, IDealActionCommand, ICanInte
 
     public Rigidbody rb;
 
+    public CampFlag campFlag;
+
+
 
     public CharacterClacify Type => charaTag;
 
@@ -34,6 +38,7 @@ public class CharacterController : NetMonobehavior, IDealActionCommand, ICanInte
 
         audioSource = GetComponent<AudioSource>();
 
+        campFlag = GetComponent<CampFlag>();
     }
 
     protected override void Start()
@@ -97,7 +102,7 @@ public class CharacterController : NetMonobehavior, IDealActionCommand, ICanInte
             case ActionTag.Move:
                 OnMoveEnter(curActionObj);
                 break;
-            case ActionTag.Attack:
+            case ActionTag.NormalAttack:
                 OnAttackEnter(curActionObj);
                 break;
             case ActionTag.Parry:
@@ -144,7 +149,7 @@ public class CharacterController : NetMonobehavior, IDealActionCommand, ICanInte
             case ActionTag.Move:
                 OnMoveUpdate(curActionObj);
                 break;
-            case ActionTag.Attack:
+            case ActionTag.NormalAttack:
                 OnAttackUpdate(curActionObj);
                 break;
             case ActionTag.Parry:
@@ -191,7 +196,7 @@ public class CharacterController : NetMonobehavior, IDealActionCommand, ICanInte
             case ActionTag.Move:
                 OnMoveExit(curActionObj, nextActionObj);
                 break;
-            case ActionTag.Attack:
+            case ActionTag.NormalAttack:
                 OnAttackExit(curActionObj, nextActionObj);
                 break;
             case ActionTag.Parry:
@@ -342,9 +347,9 @@ public class CharacterController : NetMonobehavior, IDealActionCommand, ICanInte
             case ActionTag.Move:
                 selfActionCtrl.AddCommand("", ActionTag.Move, command.direction);
                 return;
-            case ActionTag.Attack:
+            case ActionTag.NormalAttack:
                 Vector3 attackDir = (command.direction - transform.position).normalized;
-                selfActionCtrl.AddCommand("", ActionTag.Attack, attackDir);
+                selfActionCtrl.AddCommand("", ActionTag.NormalAttack, attackDir);
                 return;
             case ActionTag.Parry:
                 Vector3 dir = command.direction == Vector3.zero ? selfActionCtrl.curActionObj.direction : command.direction;
@@ -397,7 +402,7 @@ public class CharacterController : NetMonobehavior, IDealActionCommand, ICanInte
             case InputCommandType.普通攻击:
 
                 Vector3 attackDir = (command.direction - transform.position).normalized;
-                selfActionCtrl.AddCommand("", ActionTag.Attack, attackDir);
+                selfActionCtrl.AddCommand("", ActionTag.NormalAttack, attackDir);
                 break;
 
             case InputCommandType.交互:
@@ -436,6 +441,33 @@ public class CharacterController : NetMonobehavior, IDealActionCommand, ICanInte
     #endregion
 
     #region--------------------------特殊状态处理--------------------------------------
+
+    public void Attack(List<CollisionDetector.DetectionInfo> detectList, DamageFormulaType formulaType, ActionTag actionTag)
+    {
+
+        foreach (var item in detectList)
+        {
+            if (item.target.GetComponent<IDataContainer>() != null
+                && !item.target.GetComponent<CampFlag>().CheckIsFriendly(campFlag.CampType))
+            {
+                DamageInfo damageInfo = new DamageInfo()
+                {
+                    damageValue = DamageCaculateCollection.CaculateDamage(formulaType, curCharaData.GetDataObj()
+                    , item.target.GetComponent<CharacterDataController>().GetDataObj()),
+                    fromerNetId = NetID,
+                    targetNetId = item.target.GetComponent<CharacterController>().NetID,
+                    DamageDir = (item.target.transform.position - transform.position).normalized,
+                    attackTag = actionTag,
+                };
+
+                curCharaData.buffController.UpdateBuffsOnAttack(item.target.GetComponent<CharacterController>(), this, ref damageInfo);
+
+                MsgDamageInfo msg = new MsgDamageInfo(damageInfo);
+
+                NetManager.Send(msg);
+            }
+        }
+    }
     public virtual void GetDamage(MsgBase msgBase)
     {
         MsgDamageInfo msg = msgBase as MsgDamageInfo;

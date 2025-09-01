@@ -45,7 +45,7 @@ namespace Map
     public class NodeBlueprint : ScriptableObject
     {
         [Header("该节点传送的场景")]
-        public SceneName scene;
+        public string scene;
 
         public NodeType nodeType;
     }

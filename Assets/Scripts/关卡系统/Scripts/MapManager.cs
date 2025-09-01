@@ -91,7 +91,7 @@ namespace Map
 
         public void GoToNextLevel()
         {
-           
+
             curProgress.level++;
             if (curProgress.level >= progress.level)
             {
@@ -128,6 +128,11 @@ namespace Map
         public void ChapterEnd()
         {
             Debug.Log("全部结束");
+
+            GameSceneManager.Instance.LoadSceneToServer(SceneName.玩家房间);
+
+            chapterToMap.Clear();
+            Init();
         }
         public BlueprintObj[] InitRoom(Node[] nodes)
         {

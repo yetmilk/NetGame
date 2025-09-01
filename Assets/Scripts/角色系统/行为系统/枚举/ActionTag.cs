@@ -1,4 +1,4 @@
-using System.Collections;
+Ôªøusing System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,7 +7,7 @@ public enum ActionTag
     None = 5,
     Idle = 0,
     Move = 1,
-    Attack = 2,
+    NormalAttack = 2,
     Parry = 3,
     Block = 4,
     Hurt = 6,
@@ -22,22 +22,22 @@ public enum ActionTag
 
 public enum Diraction
 {
-    [InspectorName("…œ")]
+    [InspectorName("‰∏ä")]
     Up,
-    [InspectorName("œ¬")]
+    [InspectorName("‰∏ã")]
     Down,
-    [InspectorName("◊Û")]
+    [InspectorName("Â∑¶")]
     Left,
-    [InspectorName("”“")]
+    [InspectorName("Âè≥")]
     Right,
-    [InspectorName("◊Û…œ")]
+    [InspectorName("Â∑¶‰∏ä")]
     LeftUp,
-    [InspectorName("”“…œ")]
+    [InspectorName("Âè≥‰∏ä")]
     RightUp,
-    [InspectorName("◊Ûœ¬")]
+    [InspectorName("Â∑¶‰∏ã")]
     LeftDown,
-    [InspectorName("”“œ¬")]
+    [InspectorName("Âè≥‰∏ã")]
     RightDown,
-    [InspectorName("Œﬁ")]
+    [InspectorName("Êó†")]
     None,
 }

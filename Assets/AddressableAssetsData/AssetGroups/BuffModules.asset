@@ -22,6 +22,56 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - BuffModule
+  - m_GUID: 6bce83137ed6faf40988239ad6aa039f
+    m_Address: "\u711A\u9633\u5251\u8BC0"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BuffModule
+  - m_GUID: 26ea0cb89577736478bb9d5112f69406
+    m_Address: "\u70C8\u7130\u8EAB\u6CD5"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BuffModule
+  - m_GUID: d84ec700df8f97347a80cec759aee727
+    m_Address: "\u6C34\u6CE2\u7EB9"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BuffModule
+  - m_GUID: 61dddd7c0725cc1469b6d4b1c2be8381
+    m_Address: "\u51DD\u6C34\u8EAB\u6CD5"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BuffModule
+  - m_GUID: 11eaba5eaf9f4d242b17dfd0782caeab
+    m_Address: "\u51CF\u901F"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BuffModule
+  - m_GUID: 726ceaebaeb334e4aaaca27f178602a7
+    m_Address: "\u7384\u51B0\u5251\u8BC0"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BuffModule
+  - m_GUID: 7f80ad3e6f6471a4193c368f3b7f5498
+    m_Address: "\u51C0\u6C34\u8BC0"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BuffModule
+  - m_GUID: 058f42a1e29c9864593d03e2b1aa01c4
+    m_Address: "\u711A\u5929\u8EAB\u6CD5"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BuffModule
+  - m_GUID: 14d120c528d4f4a48a8d225dc9f886fc
+    m_Address: "\u8E0F\u7130\u8BC0"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BuffModule
+  - m_GUID: d70211ba5ea47274782bafab54b7d21d
+    m_Address: "\u6E05\u6CE2\u529F"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BuffModule
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: b498f2f0c88c8af46a2b8ee8949bf3f3, type: 2}
   m_SchemaSet:

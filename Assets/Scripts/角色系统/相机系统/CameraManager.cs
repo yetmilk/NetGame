@@ -1,40 +1,49 @@
-using System;
+ï»¿using System;
 using System.Collections;
 using UnityEngine;
 
 /// <summary>
-/// Ïà»ú¹ÜÀíÏµÍ³ - ´¦ÀíÏà»úµÄ¸÷ÖÖ¹¦ÄÜ¿ØÖÆ
+/// ç›¸æœºç®¡ç†ç³»ç»Ÿ - å¤„ç†ç›¸æœºçš„å„ç§åŠŸèƒ½æ§åˆ¶
 /// </summary>
 public class CameraManager : Singleton<CameraManager>
 {
 
-    // Ïà»úÒıÓÃ
+    // ç›¸æœºå¼•ç”¨
     public Camera mainCamera;
     private Transform cameraTransform;
 
-    // ¾µÍ·Ëõ·Å²ÎÊı
-    [Header("¾µÍ·Ëõ·ÅÉèÖÃ")]
+    // é•œå¤´ç¼©æ”¾å‚æ•°
+    [Header("é•œå¤´ç¼©æ”¾è®¾ç½®")]
     public float minZoomDistance = 2.0f;
     public float maxZoomDistance = 10.0f;
     public float currentZoomDistance;
     public float zoomSpeed = 5.0f;
-    public Vector3 targetOffset; // Ä¿±êÆ«ÒÆÁ¿
+    public Vector3 targetOffset; // ç›®æ ‡åç§»é‡
 
-    // Ïà»úÕğ¶¯²ÎÊı
-    [Header("Ïà»úÕğ¶¯ÉèÖÃ")]
-    public float shakeMagnitude = 0.5f; // Õğ¶¯·ù¶È
-    public float shakeDamping = 1.0f;   // Õğ¶¯Ë¥¼õ
+    // æ–°å¢ï¼šæ—‹è½¬å¤„ç†é®æŒ¡å‚æ•°
+    [Header("é®æŒ¡æ—‹è½¬è®¾ç½®")]
+    public float minXRotation = 10f; // æœ€å°Xè½´æ—‹è½¬è§’åº¦ï¼ˆå‘ä¸Šé™åˆ¶ï¼‰
+    public float maxXRotation = 60f; // æœ€å¤§Xè½´æ—‹è½¬è§’åº¦ï¼ˆå‘ä¸‹é™åˆ¶ï¼‰
+    public float defaultXRotation = 30f; // é»˜è®¤Xè½´æ—‹è½¬è§’åº¦
+    public float currentXRotation; // å½“å‰Xè½´æ—‹è½¬è§’åº¦
+    public float rotationSpeed = 5f; // æ—‹è½¬æ’å€¼é€Ÿåº¦
+    public LayerMask occluderLayers; // é®æŒ¡ç‰©å±‚çº§
+
+    // ç›¸æœºéœ‡åŠ¨å‚æ•°
+    [Header("ç›¸æœºéœ‡åŠ¨è®¾ç½®")]
+    public float shakeMagnitude = 0.5f; // éœ‡åŠ¨å¹…åº¦
+    public float shakeDamping = 1.0f;   // éœ‡åŠ¨è¡°å‡
     private Vector3 originalPosition;
     private bool isShaking = false;
 
-    // Æ½»¬ÒÆ¶¯²ÎÊı
-    [Header("Æ½»¬ÒÆ¶¯ÉèÖÃ")]
+    // å¹³æ»‘ç§»åŠ¨å‚æ•°
+    [Header("å¹³æ»‘ç§»åŠ¨è®¾ç½®")]
     public float smoothSpeed = 0.125f;
     private Vector3 velocity = Vector3.zero;
 
     private PlayerInputAction input;
 
-    // ¸úËæÄ¿±ê
+    // è·Ÿéšç›®æ ‡
     public Transform followTarget;
     public bool isFollowing = false;
 
@@ -51,10 +60,10 @@ public class CameraManager : Singleton<CameraManager>
         }
         cameraTransform = mainCamera.transform;
         originalPosition = cameraTransform.position;
-        currentZoomDistance = maxZoomDistance; // ³õÊ¼»¯Îª×î´ó¾àÀë
+        currentZoomDistance = maxZoomDistance; // åˆå§‹åŒ–ä¸ºæœ€å¤§è·ç¦»
+        currentXRotation = defaultXRotation; // åˆå§‹åŒ–æ—‹è½¬è§’åº¦
 
         input = new PlayerInputAction();
-
         input.Enable();
     }
 
@@ -65,19 +74,24 @@ public class CameraManager : Singleton<CameraManager>
 
     void Update()
     {
-        // ´¦Àí¾µÍ·Ëõ·Å
+        // å¤„ç†é•œå¤´ç¼©æ”¾
         HandleZoomInput();
 
-        // Æ½»¬¸úËæÄ¿±ê
+        // å¹³æ»‘è·Ÿéšç›®æ ‡å¹¶å¤„ç†é®æŒ¡
         if (isFollowing && followTarget != null)
         {
+            HandleOcclusion(); // å¤„ç†é®æŒ¡
             FollowTarget();
         }
     }
+
     private void FollowTarget()
     {
         if (followTarget != null)
         {
+            // åº”ç”¨å½“å‰Xè½´æ—‹è½¬è§’åº¦ï¼ˆYè½´ä¿æŒä¸å˜ï¼‰
+            cameraTransform.rotation = Quaternion.Euler(currentXRotation, cameraTransform.eulerAngles.y, 0);
+
             Vector3 targetPosition = followTarget.position + targetOffset;
             targetPosition -= cameraTransform.forward * currentZoomDistance;
             cameraTransform.position = Vector3.SmoothDamp(
@@ -89,33 +103,130 @@ public class CameraManager : Singleton<CameraManager>
         }
     }
 
-    #region ¾µÍ·¿ØÖÆ¹¦ÄÜ
+    #region é®æŒ¡å¤„ç†é€»è¾‘
+    /// <summary>
+    /// å¤„ç†é®æŒ¡ç‰©ï¼šé€šè¿‡è°ƒæ•´Xè½´æ—‹è½¬é¿å…é®æŒ¡
+    /// </summary>
+    private void HandleOcclusion()
+    {
+        if (followTarget == null) return;
+
+        Vector3 targetPoint = followTarget.position + targetOffset;
+        Vector3 currentCameraPos = cameraTransform.position;
+
+        // å…ˆæ£€æŸ¥å½“å‰è·¯å¾„æ˜¯å¦æœ‰é®æŒ¡
+        bool isBlocked = IsPathBlockedByRay(targetPoint, currentCameraPos);
+
+        // å¦‚æœå½“å‰æœ‰é®æŒ¡ï¼Œå°è¯•æ‰¾åˆ°æœ€ä½³è§’åº¦
+        if (isBlocked)
+        {
+            float bestRotation = FindBestRotationAngle(targetPoint);
+            currentXRotation = Mathf.Lerp(currentXRotation, bestRotation, Time.deltaTime * rotationSpeed);
+            currentXRotation = Mathf.Clamp(currentXRotation, minXRotation, maxXRotation);
+        }
+        else
+        {
+            // æ— é®æŒ¡æ—¶ï¼Œå…ˆæ£€æŸ¥é»˜è®¤è§’åº¦æ˜¯å¦å¯ç”¨
+            Vector3 defaultAnglePos = CalculateCameraPosition(targetPoint, defaultXRotation);
+            bool isDefaultAngleBlocked = IsPathBlockedByRay(targetPoint, defaultAnglePos);
+
+            // åªæœ‰é»˜è®¤è§’åº¦æ— é®æŒ¡æ—¶æ‰æ¢å¤ï¼Œå¦åˆ™ä¿æŒå½“å‰æœ‰æ•ˆè§’åº¦
+            if (!isDefaultAngleBlocked)
+            {
+                currentXRotation = Mathf.Lerp(currentXRotation, defaultXRotation, Time.deltaTime * rotationSpeed);
+                currentXRotation = Mathf.Clamp(currentXRotation, minXRotation, maxXRotation);
+            }
+        }
+    }
 
     /// <summary>
-    /// ´¦Àí¾µÍ·Ëõ·ÅÊäÈë
+    /// å¯»æ‰¾æœ€ä½³æ—‹è½¬è§’åº¦ï¼ˆæ— é®æŒ¡ï¼‰
+    /// </summary>
+    private float FindBestRotationAngle(Vector3 targetPoint)
+    {
+        // å…ˆå°è¯•å‘ä¸Šæ—‹è½¬ï¼ˆå‡å°Xè½´è§’åº¦ï¼‰- æ›´è‡ªç„¶çš„é®æŒ¡è§„é¿æ–¹å‘
+        for (float angle = currentXRotation; angle >= minXRotation; angle -= 0.5f)
+        {
+            Vector3 testPos = CalculateCameraPosition(targetPoint, angle);
+            if (!IsPathBlockedByRay(targetPoint, testPos))
+            {
+                return angle;
+            }
+        }
+
+        // å†å°è¯•å‘ä¸‹æ—‹è½¬ï¼ˆå¢å¤§Xè½´è§’åº¦ï¼‰
+        for (float angle = currentXRotation; angle <= maxXRotation; angle += 0.5f)
+        {
+            Vector3 testPos = CalculateCameraPosition(targetPoint, angle);
+            if (!IsPathBlockedByRay(targetPoint, testPos))
+            {
+                return angle;
+            }
+        }
+
+        // å¦‚æœæ‰€æœ‰è§’åº¦éƒ½æœ‰é®æŒ¡ï¼Œä¿æŒå½“å‰è§’åº¦
+        return currentXRotation;
+    }
+
+    /// <summary>
+    /// è®¡ç®—åŸºäºæŒ‡å®šæ—‹è½¬è§’åº¦çš„ç›¸æœºä½ç½®
+    /// </summary>
+    private Vector3 CalculateCameraPosition(Vector3 targetPoint, float xRotation)
+    {
+        Quaternion tempRotation = Quaternion.Euler(xRotation, cameraTransform.eulerAngles.y, 0);
+        return targetPoint - tempRotation * Vector3.forward * currentZoomDistance;
+    }
+
+    /// <summary>
+    /// å°„çº¿æ£€æµ‹ä¸¤ç‚¹ä¹‹é—´æ˜¯å¦æœ‰é®æŒ¡
+    /// </summary>
+    private bool IsPathBlockedByRay(Vector3 start, Vector3 end)
+    {
+        Vector3 direction = end - start;
+        float distance = direction.magnitude;
+
+        // å°„çº¿æ£€æµ‹ï¼ˆå¿½ç•¥ç›®æ ‡å’Œç›¸æœºè‡ªèº«ï¼‰
+        if (Physics.Raycast(start, direction.normalized, out RaycastHit hit, distance, occluderLayers))
+        {
+            // å¿½ç•¥è·Ÿéšç›®æ ‡å’Œç›¸æœºè‡ªèº«çš„ç¢°æ’ä½“
+            if (hit.collider.transform == followTarget || hit.collider.transform == cameraTransform)
+                return false;
+
+            return true;
+        }
+        return false;
+    }
+    #endregion
+
+    #region é•œå¤´æ§åˆ¶åŠŸèƒ½
+
+    /// <summary>
+    /// å¤„ç†é•œå¤´ç¼©æ”¾è¾“å…¥
     /// </summary>
     private void HandleZoomInput()
     {
-        // Êó±ê¹öÂÖËõ·Å
+        // é¼ æ ‡æ»šè½®ç¼©æ”¾
         float scroll = input.GamePlay.MouseRoll.ReadValue<float>();
         if (scroll != 0)
         {
             currentZoomDistance -= scroll * zoomSpeed;
             currentZoomDistance = Mathf.Clamp(currentZoomDistance, minZoomDistance, maxZoomDistance);
 
-            // Ëõ·ÅÊ±µÄÏà»úÎ»ÖÃµ÷Õû
+            // ç¼©æ”¾æ—¶çš„ç›¸æœºä½ç½®è°ƒæ•´
             AdjustCameraPosition();
         }
     }
 
     /// <summary>
-    /// µ÷ÕûÏà»úÎ»ÖÃ£¨»ùÓÚËõ·Å¾àÀë£©
+    /// è°ƒæ•´ç›¸æœºä½ç½®ï¼ˆåŸºäºç¼©æ”¾è·ç¦»å’Œæ—‹è½¬è§’åº¦ï¼‰
     /// </summary>
     public void AdjustCameraPosition()
     {
         if (followTarget != null)
         {
-            // Èç¹ûÓĞ¸úËæÄ¿±ê£¬¸ù¾İÄ¿±êÎ»ÖÃºÍËõ·Å¾àÀëµ÷ÕûÏà»ú
+            // åº”ç”¨å½“å‰æ—‹è½¬è§’åº¦
+            cameraTransform.rotation = Quaternion.Euler(currentXRotation, cameraTransform.eulerAngles.y, 0);
+
             Vector3 targetPosition = followTarget.position + targetOffset;
             targetPosition -= cameraTransform.forward * currentZoomDistance;
             cameraTransform.position = Vector3.SmoothDamp(
@@ -128,7 +239,7 @@ public class CameraManager : Singleton<CameraManager>
     }
 
     /// <summary>
-    /// ÉèÖÃÏà»ú¸úËæÄ¿±ê
+    /// è®¾ç½®ç›¸æœºè·Ÿéšç›®æ ‡
     /// </summary>
     public void SetFollowTarget(Transform target, Vector3 offset = default, bool startFollowing = true)
     {
@@ -143,7 +254,7 @@ public class CameraManager : Singleton<CameraManager>
     }
 
     /// <summary>
-    /// Í£Ö¹¸úËæÄ¿±ê
+    /// åœæ­¢è·Ÿéšç›®æ ‡
     /// </summary>
     public void StopFollowingTarget()
     {
@@ -153,13 +264,13 @@ public class CameraManager : Singleton<CameraManager>
 
     #endregion
 
-    #region Ïà»úÕğ¶¯¹¦ÄÜ
+    #region ç›¸æœºéœ‡åŠ¨åŠŸèƒ½
 
     /// <summary>
-    /// ´¥·¢Ïà»úÕğ¶¯
+    /// è§¦å‘ç›¸æœºéœ‡åŠ¨
     /// </summary>
-    /// <param name="intensity">Õğ¶¯Ç¿¶È</param>
-    /// <param name="duration">Õğ¶¯³ÖĞøÊ±¼ä</param>
+    /// <param name="intensity">éœ‡åŠ¨å¼ºåº¦</param>
+    /// <param name="duration">éœ‡åŠ¨æŒç»­æ—¶é—´</param>
     public void ShakeCamera(float intensity = .2f, float duration = 0.1f)
     {
         if (isShaking)
@@ -172,7 +283,7 @@ public class CameraManager : Singleton<CameraManager>
     }
 
     /// <summary>
-    /// Ïà»úÕğ¶¯Ğ­³Ì
+    /// ç›¸æœºéœ‡åŠ¨åç¨‹
     /// </summary>
     private IEnumerator CameraShakeCoroutine(float duration)
     {
@@ -199,10 +310,10 @@ public class CameraManager : Singleton<CameraManager>
 
     #endregion
 
-    #region ¹«¹²½Ó¿Ú
+    #region å…¬å…±æ¥å£
 
     /// <summary>
-    /// Á¢¼´ÉèÖÃÏà»úÎ»ÖÃ
+    /// ç«‹å³è®¾ç½®ç›¸æœºä½ç½®
     /// </summary>
     public void SetCameraPosition(Vector3 position, bool smooth = true)
     {
@@ -217,7 +328,7 @@ public class CameraManager : Singleton<CameraManager>
     }
 
     /// <summary>
-    /// Æ½»¬ÒÆ¶¯µ½Ö¸¶¨Î»ÖÃ
+    /// å¹³æ»‘ç§»åŠ¨åˆ°æŒ‡å®šä½ç½®
     /// </summary>
     private IEnumerator SmoothMoveToPosition(Vector3 targetPosition)
     {
@@ -235,7 +346,7 @@ public class CameraManager : Singleton<CameraManager>
     }
 
     /// <summary>
-    /// ÉèÖÃÏà»úĞı×ª
+    /// è®¾ç½®ç›¸æœºæ—‹è½¬
     /// </summary>
     public void SetCameraRotation(Quaternion rotation, bool smooth = true)
     {
@@ -246,25 +357,31 @@ public class CameraManager : Singleton<CameraManager>
         else
         {
             cameraTransform.rotation = rotation;
+            currentXRotation = rotation.eulerAngles.x; // åŒæ­¥å½“å‰æ—‹è½¬è§’åº¦
         }
     }
 
     /// <summary>
-    /// Æ½»¬Ğı×ªµ½Ö¸¶¨½Ç¶È
+    /// å¹³æ»‘æ—‹è½¬åˆ°æŒ‡å®šè§’åº¦
     /// </summary>
     private IEnumerator SmoothRotateToRotation(Quaternion targetRotation)
     {
         Quaternion startRotation = cameraTransform.rotation;
+        float targetX = targetRotation.eulerAngles.x;
+        float startX = currentXRotation;
         float t = 0f;
 
         while (t < 1f)
         {
             t += Time.deltaTime * smoothSpeed;
-            cameraTransform.rotation = Quaternion.Lerp(startRotation, targetRotation, t);
+            currentXRotation = Mathf.Lerp(startX, targetX, t);
+            currentXRotation = Mathf.Clamp(currentXRotation, minXRotation, maxXRotation);
+            cameraTransform.rotation = Quaternion.Euler(currentXRotation, cameraTransform.eulerAngles.y, 0);
             yield return null;
         }
 
         cameraTransform.rotation = targetRotation;
+        currentXRotation = targetX;
     }
 
 

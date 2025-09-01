@@ -157,6 +157,9 @@ public class LoadManager : Singleton<LoadManager>
 
             var go = Instantiate(insObj, transform);
 
+            if (!usePar)
+                go.transform.SetParent(null);
+
             string netID;
             if (string.IsNullOrEmpty(netId))
             {
@@ -194,12 +197,12 @@ public class LoadManager : Singleton<LoadManager>
         obj.GetComponent<NetMonobehavior>().ClientInit(msg.netId, "Remote");
         if (msg.useParent)
         {
-            if(msg.parentNetId!="")
+            if (msg.parentNetId != "")
             {
                 var parentObj = GameNetManager.Instance.GetNetObject(msg.parentNetId);
                 var go = Instantiate(obj, parentObj.transform);
             }
-           
+
 
         }
         else
@@ -208,7 +211,11 @@ public class LoadManager : Singleton<LoadManager>
             {
                 var parentObj = GameNetManager.Instance.GetNetObject(msg.parentNetId);
                 var go = Instantiate(obj, parentObj.transform);
-                go.transform.parent = null;
+                go.transform.SetParent(null);
+            }
+            else
+            {
+                var go = Instantiate(obj);
             }
         }
     }
