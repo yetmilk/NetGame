@@ -16,7 +16,6 @@ public class EnemyLevelObj : BlueprintObj
 
     public EnemyLevelObj(EnemyBlueprint enemyBlueprint, RewardType rewardType, ElementType elementType = ElementType.нч) : base(enemyBlueprint)
     {
-        this.info = enemyBlueprint;
         this.rewardType = rewardType;
         if (elementType != ElementType.нч)
         {
@@ -29,5 +28,6 @@ public class EnemyLevelObj : BlueprintObj
             this.elementType = types.Random();
         }
 
+        info.scene += "_" + this.elementType.ToString();
     }
 }

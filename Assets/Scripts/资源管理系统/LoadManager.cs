@@ -213,6 +213,10 @@ public class LoadManager : Singleton<LoadManager>
                 var go = Instantiate(obj, parentObj.transform);
                 go.transform.SetParent(null);
             }
+            else
+            {
+                var go = Instantiate(obj);
+            }
         }
     }
 

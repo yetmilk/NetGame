@@ -105,13 +105,7 @@ public class MoveFunctionParam : FunctionParam
     public CharaDataEnum dataName;
     [Tooltip("移动速度")]
     public float speed;
-    [Header("地面层")]
-    public LayerMask layerMask;
 
-    [Header("未勾选useRig时，为其赋值")]
-    [HideInInspector] public Transform moveTransform;
-    [Header("勾选useRig时，为其赋值")]
-    [HideInInspector] public Rigidbody moveRig;
 
     /// <summary>
     /// 
@@ -128,8 +122,6 @@ public class MoveFunctionParam : FunctionParam
         this.useLocalSpace = usefaceDir;
         this.useActionDir = useActionDir;
         this.speed = speed;
-        this.moveTransform = moveTransform;
-        this.moveRig = moveRig;
     }
 }
 

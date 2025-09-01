@@ -522,12 +522,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4de81e4006bb154aabdda97b48a0b2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data:
-    charaData: {fileID: 0}
+  dataObj:
+    maxhealth: 0
     curHealth: 0
-    faceDiraction: {x: 0, y: 0, z: 0}
-    moveDir: {x: 0, y: 0, z: 0}
-    rotationSpeed: 0
+    attackValue: 0
+    skillValue: 0
+    moveSpeed: 0
+    parrySpeed: 0
+    normalDefense: 0
+    skillDefense: 0
+  controller: {fileID: 0}
 --- !u!114 &4676048163948710060
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -565,8 +569,8 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2572701034361824814}
   serializedVersion: 2
-  m_Mass: 5
-  m_Drag: 5
+  m_Mass: 1
+  m_Drag: 0.05
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
@@ -580,7 +584,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2572701034361824814}
-  m_Material: {fileID: 13400000, guid: 2ec464993fd0bbc428272bfd50a93ade, type: 2}
+  m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5
@@ -716,6 +720,7 @@ MonoBehaviour:
   charaTag: 0
   audioSource: {fileID: 0}
   rb: {fileID: 0}
+  campFlag: {fileID: 0}
 --- !u!114 &2118983555201702200
 MonoBehaviour:
   m_ObjectHideFlags: 0

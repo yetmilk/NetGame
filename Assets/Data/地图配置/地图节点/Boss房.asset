@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88d3a4e630a2b5341ac05b6695eb3d46, type: 3}
   m_Name: "Boss\u623F"
   m_EditorClassIdentifier: 
-  scene: 2
+  scene: "Scene_\u5730\u7262"
   nodeType: 4
   rewardType: 0
   elementType: 0

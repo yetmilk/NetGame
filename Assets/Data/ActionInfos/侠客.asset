@@ -31,11 +31,6 @@ MonoBehaviour:
         useDataSpeed: 0
         dataName: 0
         speed: 0
-        layerMask:
-          serializedVersion: 2
-          m_Bits: 0
-        moveTransform: {fileID: 0}
-        moveRig: {fileID: 0}
       SubmitFuncParam:
         submitTag: 0
         actionId: 
@@ -78,11 +73,6 @@ MonoBehaviour:
         useDataSpeed: 0
         dataName: 0
         speed: 5
-        layerMask:
-          serializedVersion: 2
-          m_Bits: 0
-        moveTransform: {fileID: 0}
-        moveRig: {fileID: 0}
       SubmitFuncParam:
         submitTag: 0
         actionId: 
@@ -111,16 +101,11 @@ MonoBehaviour:
       MoveFunctionParam:
         useRig: 1
         useLocalSpace: 1
-        useActionDir: 0
+        useActionDir: 1
         moveDir: {x: 0, y: 0, z: 0}
         useDataSpeed: 0
         dataName: 0
         speed: 0
-        layerMask:
-          serializedVersion: 2
-          m_Bits: 8
-        moveTransform: {fileID: 0}
-        moveRig: {fileID: 0}
       SubmitFuncParam:
         submitTag: 0
         actionId: 
@@ -203,11 +188,6 @@ MonoBehaviour:
         useDataSpeed: 0
         dataName: 0
         speed: 0
-        layerMask:
-          serializedVersion: 2
-          m_Bits: 0
-        moveTransform: {fileID: 0}
-        moveRig: {fileID: 0}
       SubmitFuncParam:
         submitTag: 0
         actionId: 
@@ -231,7 +211,7 @@ MonoBehaviour:
       RigidbodyParam:
         isKenamicActive: 0
         colliderActive: 0
-    - eventLifeRange: {x: 0, y: 40}
+    - eventLifeRange: {x: 1, y: 2}
       actionName: Move
       MoveFunctionParam:
         useRig: 1
@@ -241,11 +221,6 @@ MonoBehaviour:
         useDataSpeed: 1
         dataName: 1
         speed: 0
-        layerMask:
-          serializedVersion: 2
-          m_Bits: 0
-        moveTransform: {fileID: 0}
-        moveRig: {fileID: 0}
       SubmitFuncParam:
         submitTag: 0
         actionId: 
@@ -333,11 +308,6 @@ MonoBehaviour:
         useDataSpeed: 0
         dataName: 0
         speed: 0
-        layerMask:
-          serializedVersion: 2
-          m_Bits: 0
-        moveTransform: {fileID: 0}
-        moveRig: {fileID: 0}
       SubmitFuncParam:
         submitTag: 0
         actionId: 
@@ -371,11 +341,6 @@ MonoBehaviour:
         useDataSpeed: 0
         dataName: 0
         speed: 3
-        layerMask:
-          serializedVersion: 2
-          m_Bits: 8
-        moveTransform: {fileID: 0}
-        moveRig: {fileID: 0}
       SubmitFuncParam:
         submitTag: 0
         actionId: 
@@ -409,11 +374,6 @@ MonoBehaviour:
         useDataSpeed: 0
         dataName: 0
         speed: 5
-        layerMask:
-          serializedVersion: 2
-          m_Bits: 0
-        moveTransform: {fileID: 0}
-        moveRig: {fileID: 0}
       SubmitFuncParam:
         submitTag: 2
         actionId: "\u653B\u51FB_\u6A2A\u5288"
@@ -478,11 +438,6 @@ MonoBehaviour:
         useDataSpeed: 0
         dataName: 0
         speed: 0
-        layerMask:
-          serializedVersion: 2
-          m_Bits: 0
-        moveTransform: {fileID: 0}
-        moveRig: {fileID: 0}
       SubmitFuncParam:
         submitTag: 0
         actionId: 
@@ -516,11 +471,6 @@ MonoBehaviour:
         useDataSpeed: 0
         dataName: 0
         speed: 0
-        layerMask:
-          serializedVersion: 2
-          m_Bits: 0
-        moveTransform: {fileID: 0}
-        moveRig: {fileID: 0}
       SubmitFuncParam:
         submitTag: 2
         actionId: "\u653B\u51FB_\u8FDE\u62DB3"
@@ -554,11 +504,6 @@ MonoBehaviour:
         useDataSpeed: 0
         dataName: 0
         speed: 5
-        layerMask:
-          serializedVersion: 2
-          m_Bits: 8
-        moveTransform: {fileID: 0}
-        moveRig: {fileID: 0}
       SubmitFuncParam:
         submitTag: 2
         actionId: "\u653B\u51FB_\u8FDE\u62DB3"
@@ -621,11 +566,6 @@ MonoBehaviour:
         useDataSpeed: 0
         dataName: 0
         speed: 5
-        layerMask:
-          serializedVersion: 2
-          m_Bits: 0
-        moveTransform: {fileID: 0}
-        moveRig: {fileID: 0}
       SubmitFuncParam:
         submitTag: 0
         actionId: 
@@ -659,11 +599,6 @@ MonoBehaviour:
         useDataSpeed: 0
         dataName: 0
         speed: 5
-        layerMask:
-          serializedVersion: 2
-          m_Bits: 8
-        moveTransform: {fileID: 0}
-        moveRig: {fileID: 0}
       SubmitFuncParam:
         submitTag: 0
         actionId: 
@@ -756,11 +691,6 @@ MonoBehaviour:
         useDataSpeed: 1
         dataName: 2
         speed: 20
-        layerMask:
-          serializedVersion: 2
-          m_Bits: 0
-        moveTransform: {fileID: 0}
-        moveRig: {fileID: 0}
       SubmitFuncParam:
         submitTag: 0
         actionId: 
@@ -794,11 +724,6 @@ MonoBehaviour:
         useDataSpeed: 0
         dataName: 0
         speed: 0
-        layerMask:
-          serializedVersion: 2
-          m_Bits: 0
-        moveTransform: {fileID: 0}
-        moveRig: {fileID: 0}
       SubmitFuncParam:
         submitTag: 0
         actionId: 
@@ -832,11 +757,6 @@ MonoBehaviour:
         useDataSpeed: 0
         dataName: 0
         speed: 0
-        layerMask:
-          serializedVersion: 2
-          m_Bits: 0
-        moveTransform: {fileID: 0}
-        moveRig: {fileID: 0}
       SubmitFuncParam:
         submitTag: 3
         actionId: 
@@ -870,11 +790,6 @@ MonoBehaviour:
         useDataSpeed: 0
         dataName: 0
         speed: 0
-        layerMask:
-          serializedVersion: 2
-          m_Bits: 0
-        moveTransform: {fileID: 0}
-        moveRig: {fileID: 0}
       SubmitFuncParam:
         submitTag: 3
         actionId: 
@@ -908,11 +823,6 @@ MonoBehaviour:
         useDataSpeed: 0
         dataName: 0
         speed: 0
-        layerMask:
-          serializedVersion: 2
-          m_Bits: 0
-        moveTransform: {fileID: 0}
-        moveRig: {fileID: 0}
       SubmitFuncParam:
         submitTag: 3
         actionId: 
@@ -965,11 +875,6 @@ MonoBehaviour:
         useDataSpeed: 0
         dataName: 0
         speed: 0
-        layerMask:
-          serializedVersion: 2
-          m_Bits: 0
-        moveTransform: {fileID: 0}
-        moveRig: {fileID: 0}
       SubmitFuncParam:
         submitTag: 0
         actionId: 
@@ -1032,11 +937,6 @@ MonoBehaviour:
         useDataSpeed: 0
         dataName: 0
         speed: 15
-        layerMask:
-          serializedVersion: 2
-          m_Bits: 0
-        moveTransform: {fileID: 0}
-        moveRig: {fileID: 0}
       SubmitFuncParam:
         submitTag: 0
         actionId: 
@@ -1094,11 +994,6 @@ MonoBehaviour:
         useDataSpeed: 0
         dataName: 0
         speed: 0
-        layerMask:
-          serializedVersion: 2
-          m_Bits: 0
-        moveTransform: {fileID: 0}
-        moveRig: {fileID: 0}
       SubmitFuncParam:
         submitTag: 0
         actionId: 
@@ -1161,11 +1056,6 @@ MonoBehaviour:
         useDataSpeed: 0
         dataName: 0
         speed: 0
-        layerMask:
-          serializedVersion: 2
-          m_Bits: 0
-        moveTransform: {fileID: 0}
-        moveRig: {fileID: 0}
       SubmitFuncParam:
         submitTag: 0
         actionId: 
@@ -1223,11 +1113,6 @@ MonoBehaviour:
         useDataSpeed: 0
         dataName: 0
         speed: 0
-        layerMask:
-          serializedVersion: 2
-          m_Bits: 0
-        moveTransform: {fileID: 0}
-        moveRig: {fileID: 0}
       SubmitFuncParam:
         submitTag: 0
         actionId: 

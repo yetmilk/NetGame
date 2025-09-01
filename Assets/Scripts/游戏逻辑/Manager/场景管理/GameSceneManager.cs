@@ -7,7 +7,7 @@ using UnityEngine.AddressableAssets;
 
 public enum SceneName
 {
-    主菜单, 玩家房间, 地牢
+    主菜单, 玩家房间, 地牢, 怪物房_火
 }
 public class GameSceneManager : Singleton<GameSceneManager>
 {
@@ -29,6 +29,18 @@ public class GameSceneManager : Singleton<GameSceneManager>
         MsgTransScene msg = new MsgTransScene();
 
         msg.sceneName = "Scene_" + sceneName.ToString();
+
+        NetManager.Send(msg);
+
+        this.onComplete += onComplete;
+    }
+
+    public void LoadSceneToServer(string sceneName, Action onComplete = null)
+    {
+        FadeIn();
+        MsgTransScene msg = new MsgTransScene();
+
+        msg.sceneName = sceneName.ToString();
 
         NetManager.Send(msg);
 
