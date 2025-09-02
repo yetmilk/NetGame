@@ -922,7 +922,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 211729835}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 7.63, y: 0, z: -13.33}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -941,6 +941,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e4024fd495fd734f85e1b8566b15036, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  monsterPrefabs: 
+  spawnRange:
+    shape: 1
+    center: {x: 0, y: 0, z: 0}
+    size: {x: 7.78, y: 0, z: 7.04}
+    rotationAngle: 8.92
+    useLocalPosition: 1
+  maxMonsters: 10
+  drawGizmos: 1
+  gizmosColor: {r: 0, g: 1, b: 0, a: 1}
 --- !u!1001 &218095759
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4141,6 +4151,60 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 580854561}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &615080517
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 615080519}
+  - component: {fileID: 615080518}
+  m_Layer: 0
+  m_Name: EnemyIntantiate (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &615080518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 615080517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e4024fd495fd734f85e1b8566b15036, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  monsterPrefabs: 
+  spawnRange:
+    shape: 1
+    center: {x: 0, y: 0, z: 0}
+    size: {x: 6.26, y: 0, z: 9.29}
+    rotationAngle: 36.24
+    useLocalPosition: 1
+  maxMonsters: 10
+  drawGizmos: 1
+  gizmosColor: {r: 0, g: 1, b: 0, a: 1}
+--- !u!4 &615080519
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 615080517}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 11.61, y: 0, z: -5.56}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2136954260}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &641019405
 GameObject:
   m_ObjectHideFlags: 0
@@ -4166,7 +4230,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 641019405}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.33, y: 0, z: -3.17}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4185,6 +4249,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e4024fd495fd734f85e1b8566b15036, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  monsterPrefabs: 0200000004000000
+  spawnRange:
+    shape: 1
+    center: {x: 0, y: 0, z: 0}
+    size: {x: 10.31, y: 0, z: 16.48}
+    rotationAngle: 36.57
+    useLocalPosition: 1
+  maxMonsters: 10
+  drawGizmos: 1
+  gizmosColor: {r: 0, g: 1, b: 0.060632944, a: 1}
 --- !u!1001 &659257225
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13268,6 +13342,7 @@ Transform:
   m_Children:
   - {fileID: 641019406}
   - {fileID: 211729836}
+  - {fileID: 615080519}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -13285,6 +13360,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelInfo:
     info: {fileID: 0}
-  enemyNum: 10
   enemyIntantiates:
-  - {fileID: 0}
+  - {fileID: 641019407}
+  - {fileID: 211729837}
+  - {fileID: 615080518}
+  enemyNum: 10

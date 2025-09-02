@@ -1,89 +1,83 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using System;
 using System.Collections.Generic;
 
-// Éú³É·¶Î§ĞÎ×´ÀàĞÍ
+// ç”ŸæˆèŒƒå›´å½¢çŠ¶
 public enum SpawnShape
 {
-    Circle,    // Ô²ĞÎ£¨2D£©
-    Rectangle, // ¾ØĞÎ£¨2D£©
-    Sphere     // ÇòĞÎ£¨3D£©
+    Circle,    // åœ†å½¢(2D)
+    Rectangle, // çŸ©å½¢(2D)
+    Sphere     // çƒå½¢(3D)
 }
 
 [Serializable]
 public class SpawnRangeSettings
 {
-    public SpawnShape shape;              // ·¶Î§ĞÎ×´
-    public Vector3 center;                // ·¶Î§ÖĞĞÄµã
-    public Vector3 size;                  // ·¶Î§´óĞ¡£¨¸ù¾İĞÎ×´ÓĞ²»Í¬º¬Òå£©
-    public bool useLocalPosition = true;  // ÊÇ·ñÊ¹ÓÃ±¾µØ×ø±ê
+    public SpawnShape shape;              // èŒƒå›´å½¢çŠ¶
+    public Vector3 center;                // èŒƒå›´ä¸­å¿ƒç‚¹
+    public Vector3 size;                  // èŒƒå›´å¤§å°(ä¸åŒå½¢çŠ¶å«ä¹‰ä¸åŒ)
+    public float rotationAngle;           // èŒƒå›´æ—‹è½¬è§’åº¦(åº¦)ï¼Œä¸»è¦ç”¨äº2Då½¢çŠ¶
+    public bool useLocalPosition = true;  // æ˜¯å¦ä½¿ç”¨æœ¬åœ°ä½ç½®
 }
 
-public class MonsterSpawner : NetMonobehavior
+public class MonsterSpawner : MonoBehaviour
 {
-    [Header("Éú³ÉÉèÖÃ")]
-    public List<CharacterClacify> monsterPrefabs;  // ¹ÖÎïÔ¤ÖÆÌåÁĞ±í
-    public SpawnRangeSettings spawnRange;    // Éú³É·¶Î§ÉèÖÃ
-    public int maxMonsters = 10;             // ×î´ó¹ÖÎïÊıÁ¿ÏŞÖÆ
+    [Header("ç”Ÿæˆè®¾ç½®")]
+    public List<CharacterClacify> monsterPrefabs;  // æ€ªç‰©é¢„åˆ¶ä½“åˆ—è¡¨
+    public SpawnRangeSettings spawnRange;    // ç”ŸæˆèŒƒå›´è®¾ç½®
+    public int maxMonsters = 10;             // æœ€å¤§æ€ªç‰©æ•°é‡
 
-    [Header("µ÷ÊÔ")]
-    public bool drawGizmos = true;           // ÊÇ·ñ»æÖÆ·¶Î§ gizmos
-    public Color gizmosColor = Color.green;  // Gizmos ÑÕÉ«
+    [Header("è°ƒè¯•")]
+    public bool drawGizmos = true;           // æ˜¯å¦æ˜¾ç¤ºèŒƒå›´gizmos
+    public Color gizmosColor = Color.green;  // Gizmosé¢œè‰²
 
-    private List<GameObject> spawnedMonsters = new List<GameObject>();  // ÒÑÉú³ÉµÄ¹ÖÎï
+
 
     /// <summary>
-    /// ÔÚÖ¸¶¨·¶Î§ÄÚÉú³ÉÖ¸¶¨ÊıÁ¿µÄ¹ÖÎï
+    /// åœ¨æŒ‡å®šèŒƒå›´å†…ç”ŸæˆæŒ‡å®šæ•°é‡çš„æ€ªç‰©
     /// </summary>
-    /// <param name="count">ÒªÉú³ÉµÄ¹ÖÎïÊıÁ¿</param>
-    public void SpawnMonsters(int count)
+    public List<GameObject> SpawnMonsters(int count)
     {
-        // ¼ì²é²ÎÊıºÏ·¨ĞÔ
         if (count <= 0)
         {
-            Debug.LogWarning("Éú³ÉÊıÁ¿±ØĞë´óÓÚ0");
-            return;
+            Debug.LogWarning("ç”Ÿæˆæ•°é‡ä¸èƒ½å°äºç­‰äº0");
+            return null;
         }
 
         if (monsterPrefabs == null || monsterPrefabs.Count == 0)
         {
-            Debug.LogWarning("Ã»ÓĞÉèÖÃ¹ÖÎïÔ¤ÖÆÌå");
-            return;
+            Debug.LogWarning("æ²¡æœ‰è®¾ç½®æ€ªç‰©é¢„åˆ¶ä½“");
+            return null;
         }
 
-        // ¼ÆËãÊµ¼ÊÄÜÉú³ÉµÄÊıÁ¿£¨²»³¬¹ı×î´óÏŞÖÆ£©
-        int actualCount = Mathf.Min(count, maxMonsters - spawnedMonsters.Count);
+        int actualCount = count;
         if (actualCount <= 0)
         {
-            Debug.LogWarning("ÒÑ´ïµ½×î´ó¹ÖÎïÊıÁ¿ÏŞÖÆ");
-            return;
+            Debug.LogWarning("å·²è¾¾åˆ°æœ€å¤§æ€ªç‰©æ•°é‡");
+            return null;
         }
 
-        // »ñÈ¡ÊÀ½ç¿Õ¼äÖĞµÄ·¶Î§ÖĞĞÄµã
         Vector3 worldCenter = spawnRange.useLocalPosition
             ? transform.TransformPoint(spawnRange.center)
             : spawnRange.center;
+        List<GameObject> spawnedMonsters = new List<GameObject>();
 
-        // Éú³É¹ÖÎï
         for (int i = 0; i < actualCount; i++)
         {
-            // »ñÈ¡Ëæ»úÉú³ÉÎ»ÖÃ
             Vector3 spawnPosition = GetRandomPositionInRange(worldCenter);
-
-            // Ëæ»úÑ¡ÔñÒ»¸ö¹ÖÎïÔ¤ÖÆÌå
             string selectedName = monsterPrefabs[UnityEngine.Random.Range(0, monsterPrefabs.Count)].ToString();
-
-            // Éú³É¹ÖÎï
-            GameObject monster = LoadManager.Instance.NetInstantiate(selectedName, transform,);
+            GameObject monster = LoadManager.Instance.NetInstantiate(selectedName);
+            monster.transform.position = spawnPosition;
+            monster.transform.rotation = Quaternion.identity;
             spawnedMonsters.Add(monster);
         }
+
+        return spawnedMonsters;
     }
 
     /// <summary>
-    /// ÔÚÅäÖÃµÄ·¶Î§ÄÚ»ñÈ¡Ëæ»úÎ»ÖÃ
+    /// åœ¨æŒ‡å®šèŒƒå›´å†…è·å–éšæœºä½ç½®
     /// </summary>
-    /// <param name="worldCenter">ÊÀ½ç¿Õ¼äÖĞµÄ·¶Î§ÖĞĞÄµã</param>
-    /// <returns>Ëæ»úÎ»ÖÃ</returns>
     private Vector3 GetRandomPositionInRange(Vector3 worldCenter)
     {
         switch (spawnRange.shape)
@@ -100,91 +94,85 @@ public class MonsterSpawner : NetMonobehavior
     }
 
     /// <summary>
-    /// ÔÚÔ²ĞÎ·¶Î§ÄÚ»ñÈ¡Ëæ»úµã£¨2D£©
+    /// åœ¨åœ†å½¢èŒƒå›´å†…è·å–éšæœºç‚¹(2D)
     /// </summary>
     private Vector3 GetRandomPointInCircle(Vector3 center)
     {
-        // size.x ×÷Îª°ë¾¶
         float radius = spawnRange.size.x;
-        // ÔÚµ¥Î»Ô²ÄÚÉú³ÉËæ»úµã
         Vector2 randomPoint = UnityEngine.Random.insideUnitCircle * radius;
-        // ·µ»Ø3DÎ»ÖÃ£¨YÖá±£³Ö²»±ä£©
+
+        // å¦‚æœæœ‰æ—‹è½¬è§’åº¦ï¼Œåº”ç”¨æ—‹è½¬
+        if (spawnRange.rotationAngle != 0)
+        {
+            float rad = spawnRange.rotationAngle * Mathf.Deg2Rad;
+            float rotatedX = randomPoint.x * Mathf.Cos(rad) - randomPoint.y * Mathf.Sin(rad);
+            float rotatedY = randomPoint.x * Mathf.Sin(rad) + randomPoint.y * Mathf.Cos(rad);
+            randomPoint = new Vector2(rotatedX, rotatedY);
+        }
+
         return new Vector3(center.x + randomPoint.x, center.y, center.z + randomPoint.y);
     }
 
     /// <summary>
-    /// ÔÚ¾ØĞÎ·¶Î§ÄÚ»ñÈ¡Ëæ»úµã£¨2D£©
+    /// åœ¨çŸ©å½¢èŒƒå›´å†…è·å–éšæœºç‚¹(2D)
     /// </summary>
     private Vector3 GetRandomPointInRectangle(Vector3 center)
     {
-        // ¼ÆËã°ë³ß´ç
         float halfWidth = spawnRange.size.x / 2;
         float halfDepth = spawnRange.size.z / 2;
 
-        // ÔÚ¾ØĞÎÄÚÉú³ÉËæ»úµã
         float randomX = UnityEngine.Random.Range(-halfWidth, halfWidth);
         float randomZ = UnityEngine.Random.Range(-halfDepth, halfDepth);
+
+        // å¦‚æœæœ‰æ—‹è½¬è§’åº¦ï¼Œåº”ç”¨æ—‹è½¬
+        if (spawnRange.rotationAngle != 0)
+        {
+            float rad = spawnRange.rotationAngle * Mathf.Deg2Rad;
+            float rotatedX = randomX * Mathf.Cos(rad) - randomZ * Mathf.Sin(rad);
+            float rotatedZ = randomX * Mathf.Sin(rad) + randomZ * Mathf.Cos(rad);
+            randomX = rotatedX;
+            randomZ = rotatedZ;
+        }
 
         return new Vector3(center.x + randomX, center.y, center.z + randomZ);
     }
 
     /// <summary>
-    /// ÔÚÇòĞÎ·¶Î§ÄÚ»ñÈ¡Ëæ»úµã£¨3D£©
+    /// åœ¨çƒå½¢èŒƒå›´å†…è·å–éšæœºç‚¹(3D)
     /// </summary>
     private Vector3 GetRandomPointInSphere(Vector3 center)
     {
-        // size.x ×÷Îª°ë¾¶
         float radius = spawnRange.size.x;
-        // ÔÚµ¥Î»ÇòÄÚÉú³ÉËæ»úµã
         Vector3 randomPoint = UnityEngine.Random.insideUnitSphere * radius;
         return center + randomPoint;
     }
 
-    /// <summary>
-    /// Çå³ıËùÓĞÒÑÉú³ÉµÄ¹ÖÎï
-    /// </summary>
-    public void ClearAllMonsters()
-    {
-        foreach (var monster in spawnedMonsters)
-        {
-            if (monster != null)
-            {
-                Destroy(monster);
-            }
-        }
-        spawnedMonsters.Clear();
-    }
 
-    /// <summary>
-    /// ÒÆ³ıÖ¸¶¨¹ÖÎï
-    /// </summary>
-    public void RemoveMonster(GameObject monster)
-    {
-        if (monster != null && spawnedMonsters.Contains(monster))
-        {
-            spawnedMonsters.Remove(monster);
-            Destroy(monster);
-        }
-    }
 
-    // »æÖÆGizmosÒÔ¿ÉÊÓ»¯Éú³É·¶Î§
+    // ç»˜åˆ¶Gizmosä»¥å¯è§†åŒ–ç”ŸæˆèŒƒå›´
     private void OnDrawGizmosSelected()
     {
         if (!drawGizmos) return;
 
         Gizmos.color = gizmosColor;
-
-        // ¼ÆËãÊÀ½ç¿Õ¼äÖĞµÄ·¶Î§ÖĞĞÄµã
         Vector3 worldCenter = spawnRange.useLocalPosition
             ? transform.TransformPoint(spawnRange.center)
             : spawnRange.center;
 
-        // ¸ù¾İĞÎ×´»æÖÆ²»Í¬µÄGizmos
+        // ä¿å­˜å½“å‰çŸ©é˜µçŠ¶æ€
+        Matrix4x4 originalMatrix = Gizmos.matrix;
+
+        // å¦‚æœæœ‰æ—‹è½¬è§’åº¦ï¼Œåº”ç”¨æ—‹è½¬çŸ©é˜µ
+        if (spawnRange.rotationAngle != 0 && spawnRange.shape != SpawnShape.Sphere)
+        {
+            Gizmos.matrix = Matrix4x4.TRS(worldCenter, Quaternion.Euler(0, spawnRange.rotationAngle, 0), Vector3.one);
+            worldCenter = Vector3.zero; // æ—‹è½¬åä½¿ç”¨æœ¬åœ°åæ ‡
+        }
+
         switch (spawnRange.shape)
         {
             case SpawnShape.Circle:
                 Gizmos.DrawWireSphere(worldCenter, spawnRange.size.x);
-                // »æÖÆ2DÆ½ÃæÖ¸Ê¾Æ÷
                 Gizmos.DrawLine(worldCenter, new Vector3(worldCenter.x + spawnRange.size.x, worldCenter.y, worldCenter.z));
                 Gizmos.DrawLine(worldCenter, new Vector3(worldCenter.x, worldCenter.y, worldCenter.z + spawnRange.size.x));
                 break;
@@ -195,5 +183,8 @@ public class MonsterSpawner : NetMonobehavior
                 Gizmos.DrawWireSphere(worldCenter, spawnRange.size.x);
                 break;
         }
+
+        // æ¢å¤åŸå§‹çŸ©é˜µ
+        Gizmos.matrix = originalMatrix;
     }
 }

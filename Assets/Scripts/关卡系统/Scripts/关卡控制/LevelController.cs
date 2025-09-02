@@ -8,7 +8,7 @@ public class LevelController : MonoBehaviour
 {
     public BlueprintObj levelInfo;
 
-    public int enemyNum;
+
 
 
     public virtual void Init(BlueprintObj levelInfo)
@@ -17,11 +17,5 @@ public class LevelController : MonoBehaviour
 
     }
 
-    public void IntantiateEnemy()
-    {
-        if (RoomManager.Instance.curRoom.hostId == PlayerManager.Instance.selfId)
-        {
 
-        }
-    }
 }
