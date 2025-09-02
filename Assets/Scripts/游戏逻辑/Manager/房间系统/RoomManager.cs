@@ -181,6 +181,7 @@ public class RoomManager : Singleton<RoomManager>
     {
         MsgQuitRoomCallback msg = msgBase as MsgQuitRoomCallback;
 
+       
         if (PlayerManager.Instance.selfId != msg.membersId)
         {
             if ((PlayerManager.Instance.curActivePlayer.ContainsKey(msg.membersId)))
@@ -188,8 +189,10 @@ public class RoomManager : Singleton<RoomManager>
 
                 TipManager.Instance.ShowTip(TipType.LogTip, msg.membersId.ToString() + "ÍË³ö·¿¼ä", null, 1f);
                 curRoom.roomMembers.Remove(msg.membersId);
-                PlayerManager.Instance.DeletePlayer(msg.membersId);
+                OnRoomUpdate?.Invoke();
 
+
+                PlayerManager.Instance.DeletePlayer(msg.membersId);
                 uiCtrl.UpdateRoomUI();
             }
         }
@@ -199,6 +202,7 @@ public class RoomManager : Singleton<RoomManager>
             MsgGetRoom msgGetRoom = new MsgGetRoom();
             msgGetRoom.checkId = msg.membersId;
             NetManager.Send(msgGetRoom);
+            PlayerManager.Instance.ClearAllPlayer();
         }
 
     }
@@ -218,7 +222,7 @@ public class RoomManager : Singleton<RoomManager>
     public void LoadToRoomScene()
     {
 
-        GameSceneManager.Instance.LoadSceneToServer(roomScene);
+        GameSceneManager.Instance.LoadSceneLocal(roomScene);
     }
 
     protected override void OnDestroy()

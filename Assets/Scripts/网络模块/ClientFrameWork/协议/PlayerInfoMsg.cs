@@ -53,23 +53,3 @@ public class MsgUpdateDataObj : MsgBase
     public CharacterDataObj characterDataObj;
 }
 
-public class MsgAddBuffObj : MsgBase
-{
-
-    public string buffModelName;
-
-    public string fromerNetId;
-    public string carrierNetId;
-
-    public MsgAddBuffObj(AddBuffInfo addBuffInfo)
-    {
-        protoName = "MsgAddBuffObj";
-        buffModelName = addBuffInfo.buffModel.buffName.ToString();
-
-        if (addBuffInfo.owner != null)
-            this.fromerNetId = addBuffInfo.owner.NetID;
-
-        this.carrierNetId = addBuffInfo.target.NetID;
-    }
-
-}

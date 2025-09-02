@@ -20,9 +20,7 @@ public class WaterRange : InstantiateObjBase
             {
                 AddBuffInfo addBuffInfo = new AddBuffInfo(BuffName.Ë®²¨ÎÆ.ToString(), item.target.GetComponent<CharacterController>(), ownerCBCtrl);
 
-                MsgAddBuffObj msg = new MsgAddBuffObj(addBuffInfo);
-
-                NetManager.Send(msg);
+                item.target.GetComponent<CharacterController>().curCharaData.buffController.AddBuff(addBuffInfo);
             }
         }
     }

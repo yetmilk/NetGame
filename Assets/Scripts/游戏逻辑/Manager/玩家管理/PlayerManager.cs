@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class PlayerManager : Singleton<PlayerManager>
@@ -14,7 +15,7 @@ public class PlayerManager : Singleton<PlayerManager>
 
     public Transform playerInstantiatePos;
 
-    public Action onPlayerChange;
+    public Action onPlayerCreate;
 
     [System.Serializable]
     public class PlayerInfo
@@ -61,7 +62,16 @@ public class PlayerManager : Singleton<PlayerManager>
 
         }
 
-        onPlayerChange?.Invoke();
+        //var list = new List<PlayerInfo>(curActivePlayer.Values.ToList());
+        //foreach (var member in list)
+        //{
+        //    if (!RoomManager.Instance.curRoom.roomMembers.Contains(member.name))
+        //    {
+        //        DeletePlayer(member.name);
+        //    }
+        //}
+
+
     }
 
     public void InitPlayer(string playerName, string netID = "", CharacterClacify clacify = CharacterClacify.ою©м)
@@ -108,6 +118,7 @@ public class PlayerManager : Singleton<PlayerManager>
         {
             player.GetComponent<NetMonobehavior>().ClientInit(curActivePlayer[playerId].netID, "Remote");
         }
+        onPlayerCreate?.Invoke();
         return player;
 
     }
@@ -116,11 +127,19 @@ public class PlayerManager : Singleton<PlayerManager>
     {
         if (curActivePlayer.ContainsKey(playerId))
         {
-
+            Destroy(curActivePlayer[playerId].playerObj.gameObject);
+            curPlayerInfos.Remove(GetPlayerInfoByName(playerId));
             curActivePlayer.Remove(playerId);
             activeplayerNameList.Remove(playerId);
 
         }
+    }
+
+    public void ClearAllPlayer()
+    {
+        curActivePlayer.Clear();
+        curPlayerInfos.Clear();
+        activeplayerNameList.Clear();
     }
 
     public PlayerInfo GetPlayerInfoByNetId(string netID)
@@ -130,6 +149,15 @@ public class PlayerManager : Singleton<PlayerManager>
 
             if (item.netID == netID)
                 return item;
+        }
+
+        return null;
+    }
+    public PlayerInfo GetPlayerInfoByName(string name)
+    {
+        if (curActivePlayer.ContainsKey(name))
+        {
+            return curActivePlayer[name];
         }
 
         return null;

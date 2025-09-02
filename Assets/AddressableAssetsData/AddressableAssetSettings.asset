@@ -49,6 +49,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 76678412db0d76e438965eb81d78dba2, type: 2}
   - {fileID: 11400000, guid: 15318055a62ed54449351764bf7cc4ce, type: 2}
   - {fileID: 11400000, guid: 495c800ccd0d23345a6983ef05b68c97, type: 2}
+  - {fileID: 11400000, guid: 80d4df15864092842b5a5330362d56bc, type: 2}
   m_BuildSettings:
     m_CompileScriptsInVirtualMode: 0
     m_CleanupStreamingAssetsAfterBuilds: 1
@@ -95,6 +96,7 @@ MonoBehaviour:
     - ActionInfo
     - ProbabilityConfig
     - BuffModule
+    - Rarebook
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: ce757ed3b1350334b86b43e8759c7356, type: 2}

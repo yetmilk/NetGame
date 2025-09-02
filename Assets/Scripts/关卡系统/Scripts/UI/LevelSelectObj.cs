@@ -23,7 +23,7 @@ public class LevelSelectObj : MonoBehaviour
 
         selectBtn.onClick.AddListener(() =>
         {
-            MapManager.Instance.SetRoom(index);
+            BattleManager.Instance.MapManager.SetRoom(index);
             TipManager.Instance.CloseTip(TipType.切换房间提示);
         });
     }

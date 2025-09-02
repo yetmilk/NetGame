@@ -2710,6 +2710,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2840350011418262814, guid: 8964d1d1094c6ef458581114271533ed,
         type: 3}
+      propertyPath: rotateSmoothSpeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2840350011418262814, guid: 8964d1d1094c6ef458581114271533ed,
+        type: 3}
       propertyPath: clipDistanceThreshold
       value: 15
       objectReference: {fileID: 0}
@@ -3867,7 +3872,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   logInPanel: {fileID: 845559931}
-  ConnectIp: 127.0.0.1
+  ConnectIp: 47.105.122.120
 --- !u!1 &1164361929
 GameObject:
   m_ObjectHideFlags: 0

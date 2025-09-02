@@ -25,7 +25,6 @@ public class GameSceneManager : Singleton<GameSceneManager>
 
     public void LoadSceneToServer(SceneName sceneName, Action onComplete = null)
     {
-        FadeIn();
         MsgTransScene msg = new MsgTransScene();
 
         msg.sceneName = "Scene_" + sceneName.ToString();
@@ -35,9 +34,11 @@ public class GameSceneManager : Singleton<GameSceneManager>
         this.onComplete += onComplete;
     }
 
+
+
     public void LoadSceneToServer(string sceneName, Action onComplete = null)
     {
-        FadeIn();
+
         MsgTransScene msg = new MsgTransScene();
 
         msg.sceneName = sceneName.ToString();
@@ -49,6 +50,7 @@ public class GameSceneManager : Singleton<GameSceneManager>
 
     private void LoadSceneFromServer(MsgBase msgBase)
     {
+        FadeIn();
         MsgTransScene msg = msgBase as MsgTransScene;
 
         var op = Addressables.LoadSceneAsync(msg.sceneName);
@@ -57,6 +59,30 @@ public class GameSceneManager : Singleton<GameSceneManager>
         {
             onComplete?.Invoke();
             curSceneName = msg.sceneName;
+            FadeOut();
+        };
+    }
+
+    public void LoadSceneLocal(SceneName sceneName, Action onComplete = null)
+    {
+        FadeIn();
+        string scene = "Scene_" + sceneName.ToString();
+        var op = Addressables.LoadSceneAsync(scene);
+        op.Completed += (op) =>
+        {
+            onComplete?.Invoke();
+            curSceneName = sceneName.ToString();
+            FadeOut();
+        };
+    }
+    public void LoadSceneLocal(string sceneName, Action onComplete = null)
+    {
+        FadeIn();
+        var op = Addressables.LoadSceneAsync(sceneName);
+        op.Completed += (op) =>
+        {
+            onComplete?.Invoke();
+            curSceneName = sceneName.ToString();
             FadeOut();
         };
     }

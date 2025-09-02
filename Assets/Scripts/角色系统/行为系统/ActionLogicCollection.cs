@@ -33,7 +33,7 @@ public static class ActionLogicCollection
     {
         CharacterController fromCBCtrl = questOwner as CharacterController;
         var rig = fromCBCtrl.GetComponent<Rigidbody>();
-       var transform = fromCBCtrl.transform;
+        var transform = fromCBCtrl.transform;
 
         Vector3 dir = Vector3.zero;
 
@@ -113,7 +113,7 @@ public static class ActionLogicCollection
         CharacterController fromObj = questOwner as CharacterController;
         if (!fromObj.IsLocal) return;
 
-        var vfxObj = LoadManager.Instance.NetInstantiate(vfxParam.vfxName, fromObj.transform,fromObj.NetID);
+        var vfxObj = LoadManager.Instance.NetInstantiate(vfxParam.vfxName, fromObj.transform, fromObj.NetID);
 
         if (vfxObj.GetComponent<IInstantiateObj>() != null)
             vfxObj.GetComponent<IInstantiateObj>().Init(fromObj, vfxParam.VfxLifeTime);
@@ -216,8 +216,7 @@ public static class ActionLogicCollection
     {
         CharacterController fromObj = questOwner as CharacterController;
 
-        fromObj.GetComponent<Rigidbody>().isKinematic = param.isKenamicActive;
-        fromObj.GetComponent<Collider>().enabled = param.colliderActive;
+        Physics.IgnoreLayerCollision(6, 8);
     }
 
     #region-------------------------������-------------------------------

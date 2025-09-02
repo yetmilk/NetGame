@@ -19,6 +19,7 @@ public class LoadManager : Singleton<LoadManager>
         LoadResourceByLabel<ActionCollection>("ActionInfo");
         LoadResourceByLabel<ProbabilityConfig>("ProbabilityConfig");
         LoadResourceByLabel<BuffModule>("BuffModule");
+        LoadResourceByLabel<RareBook>("Rarebook");
 
         NetManager.AddMsgListener("MsgInstantiateObj", InstantiateFromServer);
     }

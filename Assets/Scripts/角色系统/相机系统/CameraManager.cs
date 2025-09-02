@@ -38,8 +38,10 @@ public class CameraManager : Singleton<CameraManager>
 
     // 平滑移动参数
     [Header("平滑移动设置")]
-    public float smoothSpeed = 0.125f;
+    public float fllowSmoothSpeed = 0.125f;
+    public float rotateSmoothSpeed = 0.125f;
     private Vector3 velocity = Vector3.zero;
+    private Coroutine curRotateCoro;
 
     private PlayerInputAction input;
 
@@ -80,7 +82,7 @@ public class CameraManager : Singleton<CameraManager>
         // 平滑跟随目标并处理遮挡
         if (isFollowing && followTarget != null)
         {
-            HandleOcclusion(); // 处理遮挡
+            //HandleOcclusion(); // 处理遮挡
             FollowTarget();
         }
     }
@@ -98,7 +100,7 @@ public class CameraManager : Singleton<CameraManager>
                 cameraTransform.position,
                 targetPosition,
                 ref velocity,
-                smoothSpeed
+                fllowSmoothSpeed
             );
         }
     }
@@ -233,7 +235,7 @@ public class CameraManager : Singleton<CameraManager>
                 cameraTransform.position,
                 targetPosition,
                 ref velocity,
-                smoothSpeed
+                fllowSmoothSpeed
             );
         }
     }
@@ -337,7 +339,7 @@ public class CameraManager : Singleton<CameraManager>
 
         while (t < 1f)
         {
-            t += Time.deltaTime * smoothSpeed;
+            t += Time.deltaTime * fllowSmoothSpeed;
             cameraTransform.position = Vector3.Lerp(startPosition, targetPosition, t);
             yield return null;
         }
@@ -350,9 +352,11 @@ public class CameraManager : Singleton<CameraManager>
     /// </summary>
     public void SetCameraRotation(Quaternion rotation, bool smooth = true)
     {
+        if (curRotateCoro != null)
+            StopCoroutine(curRotateCoro);
         if (smooth)
         {
-            StartCoroutine(SmoothRotateToRotation(rotation));
+            curRotateCoro = StartCoroutine(SmoothRotateToRotation(rotation));
         }
         else
         {
@@ -373,7 +377,7 @@ public class CameraManager : Singleton<CameraManager>
 
         while (t < 1f)
         {
-            t += Time.deltaTime * smoothSpeed;
+            t += Time.deltaTime * rotateSmoothSpeed;
             currentXRotation = Mathf.Lerp(startX, targetX, t);
             currentXRotation = Mathf.Clamp(currentXRotation, minXRotation, maxXRotation);
             cameraTransform.rotation = Quaternion.Euler(currentXRotation, cameraTransform.eulerAngles.y, 0);

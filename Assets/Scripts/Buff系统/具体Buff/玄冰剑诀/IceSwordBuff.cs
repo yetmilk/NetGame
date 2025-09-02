@@ -12,7 +12,7 @@ public class IceSwordBuff : BuffObj
     public override void OnAttack(CharacterController target, CharacterController owner, ref DamageInfo damageInfo)
     {
         base.OnAttack(target, owner, ref damageInfo);
-        if(damageInfo.attackTag == ActionTag.NormalAttack)
+        if (damageInfo.attackTag == ActionTag.NormalAttack)
         {
             float random = Random.Range(0, 1);
 
@@ -20,9 +20,7 @@ public class IceSwordBuff : BuffObj
             {
                 AddBuffInfo addBuffInfo = new AddBuffInfo(BuffName.¼õËÙ.ToString(), target, owner);
 
-                MsgAddBuffObj msg = new MsgAddBuffObj(addBuffInfo);
-
-                NetManager.Send(msg);
+                target.curCharaData.buffController.AddBuff(addBuffInfo);
             }
         }
     }
