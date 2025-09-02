@@ -3867,7 +3867,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   logInPanel: {fileID: 845559931}
-  ConnectIp: 127.0.0.1
+  ConnectIp: 47.105.122.120
 --- !u!1 &1164361929
 GameObject:
   m_ObjectHideFlags: 0
