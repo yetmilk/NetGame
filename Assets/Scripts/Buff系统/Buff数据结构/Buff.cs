@@ -50,11 +50,4 @@ public struct AddBuffInfo
         this.target = target;
         this.owner = owner;
     }
-
-    public AddBuffInfo(MsgAddBuffObj msg)
-    {
-        buffModel = LoadManager.Instance.GetResourceByName<BuffModule>(msg.buffModelName);
-        this.target = (CharacterController)GameNetManager.Instance.GetNetObject(msg.fromerNetId);
-        this.owner = (CharacterController)GameNetManager.Instance.GetNetObject(msg.carrierNetId);
-    }
 }

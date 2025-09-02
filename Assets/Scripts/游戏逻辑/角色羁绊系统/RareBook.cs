@@ -2,21 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RareBook
+[CreateAssetMenu(fileName = "√ÿºÆ", menuName = "≈‰÷√/√ÿºÆ≈‰÷√")]
+public class RareBook : ScriptableObject
 {
     public RareBookName bookName;
 
-    public virtual void Enable()
-    {
+    public SectType type;
 
-    }
-    public virtual void Excute()
-    {
-
-    }
-
-    public virtual void Diable()
-    {
-
-    }
+    public List<BuffName> buff;
 }

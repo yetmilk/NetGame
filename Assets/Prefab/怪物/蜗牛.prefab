@@ -1072,8 +1072,8 @@ Transform:
   m_GameObject: {fileID: 6226288817724146991}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 5331998285537489500}
   - {fileID: 9087615019034053364}
@@ -1145,6 +1145,7 @@ MonoBehaviour:
   charaTag: 4
   audioSource: {fileID: 0}
   rb: {fileID: 0}
+  campFlag: {fileID: 0}
 --- !u!114 &7166037540925068248
 MonoBehaviour:
   m_ObjectHideFlags: 0

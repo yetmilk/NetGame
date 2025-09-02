@@ -7,7 +7,7 @@ using System;
 
 namespace Map
 {
-    public class MapManager : Singleton<MapManager>
+    public class MapManager : MonoBehaviour
     {
         public List<MapConfig> configs;
 
@@ -52,7 +52,7 @@ namespace Map
             curProgress.chapter = 0;
             progress.chapter = chapterToMap.Count;
             progress.level = chapterToMap[curProgress.chapter].LayerCount;
-            curProgress.level = -1;
+            curProgress.level = 0;
             CurrentMap = chapterToMap[curProgress.chapter];
 
         }

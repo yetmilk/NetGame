@@ -16,12 +16,12 @@ public class BuffController
     {
         this.buffCarrier = buffContainer;
         EventCenter.Subscribe(EventCenter.EventId.LogicFrameUpdate, OnCheckBuff);
-        NetManager.AddMsgListener("MsgAddBuffObj", AddBuffFormServer);
+
     }
     public void OnDisable()
     {
         EventCenter.Unsubscribe(EventCenter.EventId.LogicFrameUpdate, OnCheckBuff);
-        NetManager.RemoveMsgListener("MsgAddBuffObj", AddBuffFormServer);
+
     }
 
     public void UpdateBuffsOnAttack(CharacterController target, CharacterController fromer, ref DamageInfo damageInfo)
@@ -79,29 +79,19 @@ public class BuffController
 
     public void AddBuff(AddBuffInfo addBuffInfo)
     {
-        MsgAddBuffObj msg = new MsgAddBuffObj(addBuffInfo);
-
-        NetManager.Send(msg);
-
-    }
-
-    public void AddBuffFormServer(MsgBase msgBase)
-    {
-        MsgAddBuffObj msg = msgBase as MsgAddBuffObj;
-
-        if (msg.carrierNetId != buffCarrier.NetID || !buffCarrier.IsLocal) return;
-        AddBuffInfo addBuffInfo = new AddBuffInfo(msg);
 
         BuffModule newBuffModel = addBuffInfo.buffModel;
         BuffObj buff = BuffFactory.CreateBuff(addBuffInfo);
 
-        if (curBuffsList.Exists((a)=>a.module.buffName == addBuffInfo.buffModel.buffName)) return;
+        if (curBuffsList.Exists((a) => a.module.buffName == addBuffInfo.buffModel.buffName)) return;
 
         curBuffsList.Add(buff);
         curBuffsList.Sort((a, b) => b.module.priority.CompareTo(a.module.priority));
         //执行添加buff时的事件
         buff.onOccur?.Invoke(buff.target, buff.owner);
+
     }
+
 }
 public interface IBuffView
 {

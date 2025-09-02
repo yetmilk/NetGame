@@ -37,15 +37,13 @@ public class FlameBodyBuff : BuffObj
                 {
                     AddBuffInfo addBuffInfo = new AddBuffInfo(BuffName.×ÆÉÕ.ToString(), item.target.GetComponent<CharacterController>(), owner);
 
-                    MsgAddBuffObj msg = new MsgAddBuffObj(addBuffInfo);
-
-                    NetManager.Send(msg);
+                    item.target.GetComponent<CharacterController>().curCharaData.buffController.AddBuff(addBuffInfo);
                 }
             }
         }
     }
 
-    private void ParryExit(ActionTag actionTag, ActionObj actionObj,ActionObj nextActionObj)
+    private void ParryExit(ActionTag actionTag, ActionObj actionObj, ActionObj nextActionObj)
     {
         if (detector != null && actionTag == ActionTag.Parry)
             Object.Destroy(detector);
@@ -55,7 +53,7 @@ public class FlameBodyBuff : BuffObj
     {
         base.Disable();
         target.selfActionCtrl.OnActionEnter -= StartDetect;
-        target.selfActionCtrl.OnActionUpdate -= AddFlame;   
+        target.selfActionCtrl.OnActionUpdate -= AddFlame;
         target.selfActionCtrl.OnActionExit -= ParryExit;
     }
 }

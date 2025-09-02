@@ -55,7 +55,7 @@ public class TestEditor : MonoBehaviour
     #region----------------¿ªÆô¹Ø¿¨--------------------
     public void NextLevel()
     {
-        MapManager.Instance.GoToNextLevel();
+        BattleManager.Instance.MapManager.GoToNextLevel();
     }
     #endregion
 

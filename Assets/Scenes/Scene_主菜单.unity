@@ -2710,6 +2710,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2840350011418262814, guid: 8964d1d1094c6ef458581114271533ed,
         type: 3}
+      propertyPath: rotateSmoothSpeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2840350011418262814, guid: 8964d1d1094c6ef458581114271533ed,
+        type: 3}
       propertyPath: clipDistanceThreshold
       value: 15
       objectReference: {fileID: 0}

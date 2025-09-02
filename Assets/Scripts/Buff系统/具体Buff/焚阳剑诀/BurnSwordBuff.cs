@@ -15,8 +15,6 @@ public class BurnSwordBuff : BuffObj
 
         AddBuffInfo addBuffInfo = new AddBuffInfo(BuffName.×ÆÉÕ.ToString(), target, owner);
 
-        MsgAddBuffObj msg = new MsgAddBuffObj(addBuffInfo);
-
-        NetManager.Send(msg);
+        target.curCharaData.buffController.AddBuff(addBuffInfo);
     }
 }

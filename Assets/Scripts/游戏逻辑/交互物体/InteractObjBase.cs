@@ -36,14 +36,20 @@ public class InteractObjBase : MonoBehaviour
     }
     private void OnTriggerStay(Collider other)
     {
-        if (other.GetComponent<IDealActionCommand>() != null)
+        if (other.GetComponent<CharacterController>() != null)
         {
-            canInteract = true;
+            if (other.GetComponent<CharacterController>().IsLocal)
+                canInteract = true;
 
         }
     }
     private void OnTriggerExit(Collider other)
     {
-        canInteract = false;
+        if (other.GetComponent<CharacterController>() != null)
+        {
+            if (other.GetComponent<CharacterController>().IsLocal)
+                canInteract = false;
+
+        }
     }
 }

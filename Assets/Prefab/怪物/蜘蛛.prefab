@@ -395,6 +395,7 @@ GameObject:
   - component: {fileID: -7896092721496465070}
   - component: {fileID: 1527927184093643336}
   - component: {fileID: 4013386620338618772}
+  - component: {fileID: 8482281789841013507}
   m_Layer: 0
   m_Name: "\u8718\u86DB"
   m_TagString: Untagged
@@ -411,8 +412,8 @@ Transform:
   m_GameObject: {fileID: 4670803977510963887}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -9.51, y: -0.028, z: 4.2247844}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 7170202713290830234}
   - {fileID: 568521158671812527}
@@ -607,12 +608,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4de81e4006bb154aabdda97b48a0b2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data:
-    charaData: {fileID: 0}
+  dataObj:
+    maxhealth: 0
     curHealth: 0
-    faceDiraction: {x: 0, y: 0, z: 0}
-    moveDir: {x: 0, y: 0, z: 0}
-    rotationSpeed: 0
+    attackValue: 0
+    skillValue: 0
+    moveSpeed: 0
+    parrySpeed: 0
+    normalDefense: 0
+    skillDefense: 0
+  controller: {fileID: 0}
 --- !u!114 &731418746261646375
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -646,6 +651,7 @@ MonoBehaviour:
   charaTag: 2
   audioSource: {fileID: 0}
   rb: {fileID: 0}
+  campFlag: {fileID: 0}
 --- !u!114 &1527927184093643336
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -674,6 +680,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4adddb3183db5dd4f85845228982ae4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8482281789841013507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4670803977510963887}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fe0b70c3ffe0074e92c9ff9c3e31918, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &4933129640439567334

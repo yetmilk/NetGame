@@ -5,11 +5,11 @@ using UnityEngine;
 
 public class LevelSelectController : MonoBehaviour, ITip
 {
-    public  Transform insParent;
+    public Transform insParent;
 
     public void Close()
     {
-        
+
     }
 
     public void Show()
@@ -18,7 +18,7 @@ public class LevelSelectController : MonoBehaviour, ITip
         {
             Destroy(insParent.GetChild(i).gameObject);
         }
-        var infos = MapManager.Instance.CurrentMap.GetLayerNodes(MapManager.Instance.curProgress.level);
+        var infos = BattleManager.Instance.MapManager.CurrentMap.GetLayerNodes(BattleManager.Instance.MapManager.curProgress.level);
         var obj = LoadManager.Instance.GetResourceByName<GameObject>("¹Ø¿¨Ñ¡Ôñ²Û");
 
         for (int i = 0; i < infos.Length; i++)

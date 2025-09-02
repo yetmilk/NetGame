@@ -8,13 +8,18 @@ public class LevelController : MonoBehaviour
 {
     public BlueprintObj levelInfo;
 
+    public int enemyNum;
 
-    public void Init(BlueprintObj levelInfo)
+
+    public virtual void Init(BlueprintObj levelInfo)
     {
         this.levelInfo = levelInfo;
 
-        if (levelInfo.info.nodeType == NodeType.普通怪房 || levelInfo.info.nodeType == NodeType.精英怪房 ||
-            levelInfo.info.nodeType == NodeType.Boss房)
+    }
+
+    public void IntantiateEnemy()
+    {
+        if (RoomManager.Instance.curRoom.hostId == PlayerManager.Instance.selfId)
         {
 
         }

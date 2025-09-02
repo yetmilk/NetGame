@@ -14,7 +14,7 @@ public class FlameRange : InstantiateObjBase
     public override void Init(object owner, float lifeTime = -1)
     {
         base.Init(owner, lifeTime);
-       
+
     }
 
     protected override void Update()
@@ -28,9 +28,7 @@ public class FlameRange : InstantiateObjBase
             {
                 AddBuffInfo addBuffInfo = new AddBuffInfo(BuffName.×ÆÉÕ.ToString(), item.target.GetComponent<CharacterController>(), ownerCBCtrl);
 
-                MsgAddBuffObj msg = new MsgAddBuffObj(addBuffInfo);
-
-                NetManager.Send(msg);
+                item.target.GetComponent<CharacterController>().curCharaData.buffController.AddBuff(addBuffInfo);
             }
         }
 

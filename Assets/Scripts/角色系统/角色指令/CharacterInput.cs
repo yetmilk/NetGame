@@ -20,7 +20,6 @@ public class CharacterInput : MonoBehaviour
         commandCtrl = GetComponent<IDealActionCommand>();
         action = PlayerInputManager.Instance.action;
         character = GetComponent<NetMonobehavior>();
-        Enable();
         action.GamePlay.Move.started += Move_started;
         action.GamePlay.Move.canceled += Move_canceled;
         action.GamePlay.Parry.started += Parry_started;
@@ -120,16 +119,6 @@ public class CharacterInput : MonoBehaviour
     }
     #endregion
 
-    private void Enable()
-    {
-        action.Enable();
-    }
-
-    private void Disable()
-    {
-        action?.Disable();
-    }
-
 
     private void HandleInput(InputCommand command)
     {
@@ -180,7 +169,6 @@ public class CharacterInput : MonoBehaviour
         action.GamePlay.Parry.started -= Parry_started;
         action.GamePlay.NormalAttack.started -= NormalAttack_started;
         action.GamePlay.Parry.canceled -= Parry_canceled;
-        action.Disable();
         NetManager.RemoveMsgListener("MsgInputCommand", ExcuteCommand);
     }
 
