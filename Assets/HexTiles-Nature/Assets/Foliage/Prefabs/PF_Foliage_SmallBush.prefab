@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1081220596007781236}
   - component: {fileID: 5285919528359818245}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: PF_Foliage_SmallBush
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27,6 +27,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5529457320508439993}
   - {fileID: 3238369726490781691}
@@ -72,7 +73,7 @@ GameObject:
   - component: {fileID: 3238369726490781691}
   - component: {fileID: 6890606540187036245}
   - component: {fileID: 6299296744507669573}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Foliage_SmallBush_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -89,6 +90,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1081220596007781236}
   m_RootOrder: 1
@@ -112,10 +114,12 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -140,6 +144,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &5016168994958002623
 GameObject:
   m_ObjectHideFlags: 0
@@ -151,7 +156,7 @@ GameObject:
   - component: {fileID: 6370748327096625675}
   - component: {fileID: 2403362807011457858}
   - component: {fileID: 3445934477461023118}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Foliage_SmallBush_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -168,6 +173,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1081220596007781236}
   m_RootOrder: 2
@@ -191,10 +197,12 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -219,6 +227,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &7873239833577353311
 GameObject:
   m_ObjectHideFlags: 0
@@ -230,7 +239,7 @@ GameObject:
   - component: {fileID: 5529457320508439993}
   - component: {fileID: 7821730384496892174}
   - component: {fileID: 1723334889330549008}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Foliage_SmallBush_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -247,6 +256,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -2.5091039e-15, y: 0, z: 3.5527135e-16}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1081220596007781236}
   m_RootOrder: 0
@@ -270,10 +280,12 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -298,3 +310,4 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}

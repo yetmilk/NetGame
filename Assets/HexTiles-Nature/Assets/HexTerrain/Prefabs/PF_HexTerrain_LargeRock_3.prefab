@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 955967580126069075}
   - component: {fileID: 5412861502551684642}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: PF_HexTerrain_LargeRock_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27,6 +27,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1973147041431410017}
   - {fileID: 7663914963121417615}
@@ -77,7 +78,7 @@ GameObject:
   - component: {fileID: 1973147041431410017}
   - component: {fileID: 398562533483800248}
   - component: {fileID: 8944180129018075814}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: HexTerrain_LargeRock_3_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,6 +95,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 3.5527135e-16, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 955967580126069075}
   m_RootOrder: 0
@@ -117,10 +119,12 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -145,6 +149,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &6152574173914313560
 GameObject:
   m_ObjectHideFlags: 0
@@ -156,7 +161,7 @@ GameObject:
   - component: {fileID: 7663914963121417615}
   - component: {fileID: 5541134531667835224}
   - component: {fileID: 6640649418767705181}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: HexTerrain_LargeRock_3_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -173,6 +178,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 3.5527135e-16, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 955967580126069075}
   m_RootOrder: 1
@@ -196,10 +202,12 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -224,6 +232,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &6606720731840141065
 GameObject:
   m_ObjectHideFlags: 0
@@ -235,7 +244,7 @@ GameObject:
   - component: {fileID: 8133630216015800490}
   - component: {fileID: 2226886725713714916}
   - component: {fileID: 8494107570627289845}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: HexTerrain_LargeRock_3_LOD3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -252,6 +261,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 3.5527135e-16, z: 0}
   m_LocalScale: {x: 1.1806954, y: 1, z: 1.1806954}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 955967580126069075}
   m_RootOrder: 3
@@ -275,10 +285,12 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -303,6 +315,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &8776790985290030319
 GameObject:
   m_ObjectHideFlags: 0
@@ -314,7 +327,7 @@ GameObject:
   - component: {fileID: 1742868373562996186}
   - component: {fileID: 1048755178613632473}
   - component: {fileID: 7687007421231914819}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: HexTerrain_LargeRock_3_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -331,6 +344,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 3.5527135e-16, z: 0}
   m_LocalScale: {x: 1.0521108, y: 1, z: 1.0521108}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 955967580126069075}
   m_RootOrder: 2
@@ -354,10 +368,12 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -382,3 +398,4 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}

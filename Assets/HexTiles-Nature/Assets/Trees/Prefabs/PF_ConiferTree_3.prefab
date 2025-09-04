@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 704377135626761220}
   - component: {fileID: 5736579788500239221}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: PF_ConiferTree_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27,6 +27,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3260666443874810503}
   - {fileID: 2309115367755256826}
@@ -78,7 +79,7 @@ GameObject:
   - component: {fileID: 6724818056055730184}
   - component: {fileID: 3553440154866740707}
   - component: {fileID: 6309216066717080340}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ConiferTree_3_Trunk_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,6 +96,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 704377135626761220}
   m_RootOrder: 5
@@ -118,10 +120,12 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -146,6 +150,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &3092525314144912290
 GameObject:
   m_ObjectHideFlags: 0
@@ -157,7 +162,7 @@ GameObject:
   - component: {fileID: 3982565857227699998}
   - component: {fileID: 6830277196486729268}
   - component: {fileID: 4024120245026356526}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ConiferTree_3_Trunk_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -174,6 +179,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 704377135626761220}
   m_RootOrder: 3
@@ -197,10 +203,12 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -225,6 +233,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &5449205869301583750
 GameObject:
   m_ObjectHideFlags: 0
@@ -236,7 +245,7 @@ GameObject:
   - component: {fileID: 9063393168486434767}
   - component: {fileID: 5657149093718170657}
   - component: {fileID: 4669856756020953693}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ConiferTree_3_Leaves_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -253,6 +262,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.0036283014, y: 7.9872203, z: -0.021553896}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 704377135626761220}
   m_RootOrder: 2
@@ -276,10 +286,12 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -304,6 +316,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &5704945991873937386
 GameObject:
   m_ObjectHideFlags: 0
@@ -315,7 +328,7 @@ GameObject:
   - component: {fileID: 2309115367755256826}
   - component: {fileID: 3994107725010246664}
   - component: {fileID: 5394640776777676196}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ConiferTree_3_Leaves_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -332,6 +345,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.0036283014, y: 7.9872203, z: -0.021553896}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 704377135626761220}
   m_RootOrder: 1
@@ -355,10 +369,12 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -383,6 +399,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &5783721103203663277
 GameObject:
   m_ObjectHideFlags: 0
@@ -394,7 +411,7 @@ GameObject:
   - component: {fileID: 8747163519158110173}
   - component: {fileID: 3304817400631284206}
   - component: {fileID: 8254434019840473714}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ConiferTree_3_Trunk_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -411,6 +428,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 704377135626761220}
   m_RootOrder: 4
@@ -434,10 +452,12 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -462,6 +482,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &5981639236655865434
 GameObject:
   m_ObjectHideFlags: 0
@@ -473,7 +494,7 @@ GameObject:
   - component: {fileID: 3260666443874810503}
   - component: {fileID: 2542557429131238687}
   - component: {fileID: 2541822560328845144}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ConiferTree_3_Leaves_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -490,6 +511,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.0036283014, y: 8.210234, z: -0.021553896}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 704377135626761220}
   m_RootOrder: 0
@@ -513,10 +535,12 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -542,3 +566,4 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}

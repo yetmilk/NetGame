@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7408404686806016587}
   - component: {fileID: 3216698205063509059}
   - component: {fileID: 3984767889070984214}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Mushroom_SmallCluster_1_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28,6 +28,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.007243752, y: -0.01074967, z: 0.15717702}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2003344103585496767}
   m_RootOrder: 1
@@ -51,10 +52,12 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -79,6 +82,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &1190813379043156997
 GameObject:
   m_ObjectHideFlags: 0
@@ -89,7 +93,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2003344103585496767}
   - component: {fileID: 6743948509610281422}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: PF_mushroom_SmallCluster
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -106,6 +110,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7082411252360228593}
   - {fileID: 7408404686806016587}
@@ -158,7 +163,7 @@ GameObject:
   - component: {fileID: 19177594301480602}
   - component: {fileID: 872184555059926219}
   - component: {fileID: 6158404363711273178}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Mushroom_SmallCluster_4_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -175,6 +180,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.010722362, y: -0.0056688245, z: -0.16149443}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2003344103585496767}
   m_RootOrder: 7
@@ -198,10 +204,12 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -226,6 +234,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &2894379411280618229
 GameObject:
   m_ObjectHideFlags: 0
@@ -237,7 +246,7 @@ GameObject:
   - component: {fileID: 6364063919730562286}
   - component: {fileID: 4756906474712145688}
   - component: {fileID: 4822769200863466662}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Mushroom_SmallCluster_2_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -254,6 +263,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.11094156, y: -0.00314905, z: -0.011918591}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2003344103585496767}
   m_RootOrder: 2
@@ -277,10 +287,12 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -305,6 +317,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &3784533415632271162
 GameObject:
   m_ObjectHideFlags: 0
@@ -316,7 +329,7 @@ GameObject:
   - component: {fileID: 8164050679555625703}
   - component: {fileID: 7625993615211255114}
   - component: {fileID: 7187023239727859479}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Mushroom_SmallCluster_3_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -333,6 +346,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.11129758, y: -0.0053989054, z: -0.010174226}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2003344103585496767}
   m_RootOrder: 4
@@ -356,10 +370,12 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -384,6 +400,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &4115065878392530874
 GameObject:
   m_ObjectHideFlags: 0
@@ -395,7 +412,7 @@ GameObject:
   - component: {fileID: 7082411252360228593}
   - component: {fileID: 4525152843893448281}
   - component: {fileID: 2006910655319312399}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Mushroom_SmallCluster_1_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -412,6 +429,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.007243752, y: -0.01074967, z: 0.15717702}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2003344103585496767}
   m_RootOrder: 0
@@ -435,10 +453,12 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -463,6 +483,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &4938294408528038327
 GameObject:
   m_ObjectHideFlags: 0
@@ -474,7 +495,7 @@ GameObject:
   - component: {fileID: 2221738476090646926}
   - component: {fileID: 3906519931477133986}
   - component: {fileID: 1606183827820363560}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Mushroom_SmallCluster_3_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -491,6 +512,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.11129758, y: -0.0053989054, z: -0.010174226}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2003344103585496767}
   m_RootOrder: 5
@@ -514,10 +536,12 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -542,6 +566,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &4945812644259893796
 GameObject:
   m_ObjectHideFlags: 0
@@ -553,7 +578,7 @@ GameObject:
   - component: {fileID: 5195085509071473598}
   - component: {fileID: 941604076441454859}
   - component: {fileID: 503753622443368037}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Mushroom_SmallCluster_4_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -570,6 +595,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.010722362, y: -0.0056688245, z: -0.16149443}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2003344103585496767}
   m_RootOrder: 6
@@ -593,10 +619,12 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -621,6 +649,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &5064338648415435702
 GameObject:
   m_ObjectHideFlags: 0
@@ -632,7 +661,7 @@ GameObject:
   - component: {fileID: 5215806455902435066}
   - component: {fileID: 8738128996446712807}
   - component: {fileID: 8990887871776364468}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Mushroom_SmallCluster_2_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -649,6 +678,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.11094156, y: -0.00314905, z: -0.011918591}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2003344103585496767}
   m_RootOrder: 3
@@ -672,10 +702,12 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -700,3 +732,4 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
