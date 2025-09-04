@@ -51,8 +51,8 @@ public class BuffObj
 
         this.paramDic = new Dictionary<string, object>();
 
-        this.owner = buffInfo.target;
-        this.target = buffInfo.owner;
+        this.owner = buffInfo.owner;
+        this.target = buffInfo.target;
         OnEnable();
 
     }
@@ -108,7 +108,7 @@ public class BuffObj
         onOccur -= OnOccur;
         onRemove -= OnRemove;
         onTimeTick -= OnTimeTick;
-            onHurt -= OnHurt;
+        onHurt -= OnHurt;
         onBeKillled -= OnBeKillled;
         onKill -= OnKill;
         onAttack -= OnAttack;

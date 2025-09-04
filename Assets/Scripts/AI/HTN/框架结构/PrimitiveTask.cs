@@ -13,7 +13,7 @@ public class PrimitiveTask : Task
 {
     public WorldState _state;
     public override bool IsPrimitive => true;
-    public Effect effect;
+    public List<Effect> effects;
     public string ActionName;
     public string className;
     public ActionWithCallback executeAction;

@@ -19,9 +19,12 @@ MonoBehaviour:
     - variableName: "\u9700\u8981\u4F11\u606F"
       compareValue: False
       comparisonOperator: 0
+    - variableName: "\u654C\u4EBA\u8DDD\u79BB"
+      compareValue: 8
+      comparisonOperator: 5
   _state: {fileID: 11400000, guid: 26fd2bac538689542965850ba81afdca, type: 2}
-  effect:
-    worldStateName: "\u9700\u8981\u4F11\u606F"
+  effects:
+  - worldStateName: "\u9700\u8981\u4F11\u606F"
     changeValue: True
   ActionName: Attack
-  className: "\u8717\u725B"
+  className: "\u8718\u86DB"

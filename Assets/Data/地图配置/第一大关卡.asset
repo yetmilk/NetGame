@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeBlueprints:
   - {fileID: 11400000, guid: 504e6e3d6a198704bbe7e715c28a78f0, type: 2}
-  - {fileID: 11400000, guid: 0f17435199e45c54ab6786bd6f4c1ed5, type: 2}
-  - {fileID: 11400000, guid: 45b365e996a268f48974c6a23ded1781, type: 2}
   - {fileID: 11400000, guid: aa412ab6de5a7b240beb75521be71552, type: 2}
-  - {fileID: 11400000, guid: 1a14cb81488bee146b65b4871a91757e, type: 2}
   - {fileID: 11400000, guid: 4c557dd749c8d1842a8022d8416c64ff, type: 2}
+  - {fileID: 11400000, guid: 1a14cb81488bee146b65b4871a91757e, type: 2}
+  - {fileID: 11400000, guid: 45b365e996a268f48974c6a23ded1781, type: 2}
+  - {fileID: 11400000, guid: 1a14cb81488bee146b65b4871a91757e, type: 2}
   randomNodes:
   - nodeType: 1
     startChance: 55
@@ -30,20 +30,14 @@ MonoBehaviour:
   - nodeType: 2
     startChance: 20
     effect: []
-  - nodeType: 3
-    startChance: 10
-    effect: []
-  - nodeType: 5
-    startChance: 15
-    effect: []
   layers:
   - nodeNum: 1
-    nodeType: 01000000
-    nodeBlueprint: {fileID: 11400000, guid: aa412ab6de5a7b240beb75521be71552, type: 2}
+    nodeType: 03000000
+    nodeBlueprint: {fileID: 11400000, guid: 45b365e996a268f48974c6a23ded1781, type: 2}
     randomizeEdges: 0
-  - nodeNum: 2
-    nodeType: 
-    nodeBlueprint: {fileID: 0}
+  - nodeNum: 1
+    nodeType: 06000000
+    nodeBlueprint: {fileID: 11400000, guid: 1a14cb81488bee146b65b4871a91757e, type: 2}
     randomizeEdges: 1
   - nodeNum: 2
     nodeType: 
@@ -62,7 +56,7 @@ MonoBehaviour:
     nodeBlueprint: {fileID: 0}
     randomizeEdges: 1
   - nodeNum: 3
-    nodeType: 05000000
+    nodeType: 
     nodeBlueprint: {fileID: 0}
     randomizeEdges: 1
   - nodeNum: 1

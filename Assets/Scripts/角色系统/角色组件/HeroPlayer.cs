@@ -24,7 +24,7 @@ public class HeroPlayer : CharacterController
                 go = LoadManager.Instance.NetInstantiate("VFX_剑_攻击_连招1", transform, NetID);
                 go.GetComponent<CollisionDetector>().Init(this.gameObject);
 
-                go.transform.position =new Vector3((transform.position+transform.forward*1f).x,go.transform.position.y, (transform.position + transform.forward * 1f).z);
+                go.transform.position = new Vector3((transform.position + transform.forward * 1f).x, go.transform.position.y, (transform.position + transform.forward * 1f).z);
                 var dectectList = go.GetComponent<CollisionDetector>().PerformDetection();
 
                 Attack(dectectList, DamageFormulaType.通用, ActionTag.NormalAttack);
@@ -98,6 +98,7 @@ public class HeroPlayer : CharacterController
     private GameObject skill_1_Vfx;
     protected override void OnSkill_1_Enter(ActionObj curActionObj)
     {
+        base.OnSkill_1_Enter(curActionObj);
         if (IsLocal)
         {
             skill_1_Vfx = LoadManager.Instance.NetInstantiate("侠客技能1", transform, NetID);
@@ -107,10 +108,12 @@ public class HeroPlayer : CharacterController
     }
     protected override void OnSkill_1_Update(ActionObj curActionObj)
     {
+        base.OnSkill_1_Update(curActionObj);
     }
 
     protected override void OnSkill_1_Exit(ActionObj curActionObj, ActionObj nextActionObj)
     {
+        base.OnSkill_1_Exit(curActionObj, nextActionObj);
         if ((IsLocal))
         {
             if (skill_1_Vfx != null)
@@ -165,12 +168,13 @@ public class HeroPlayer : CharacterController
     private GameObject skill_2_Vfx;
     protected override void OnSkill_2_Enter(ActionObj curActionObj)
     {
-
+        base.OnSkill_2_Enter(curActionObj);
 
 
     }
     protected override void OnSkill_2_Update(ActionObj curActionObj)
     {
+        base.OnSkill_2_Update(curActionObj);
         if (IsLocal)
         {
             if (curActionObj.curLifeFrame == 40)
@@ -191,6 +195,7 @@ public class HeroPlayer : CharacterController
 
     protected override void OnSkill_2_Exit(ActionObj curActionObj, ActionObj nextActionObj)
     {
+        base.OnSkill_2_Exit(curActionObj, nextActionObj);
         if (IsLocal)
         {
             if (skill_2_Vfx != null)
@@ -215,7 +220,7 @@ public class HeroPlayer : CharacterController
             if (curActionObj.curLifeFrame == 40)
             {
 
-                var go = LoadManager.Instance.NetInstantiate("侠客_技能三_特效", transform, NetID);
+                var go = LoadManager.Instance.NetInstantiate("VFX_火焰", transform, NetID);
 
                 go.transform.parent = transform;
 

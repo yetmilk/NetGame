@@ -10,4 +10,8 @@ public class RareBook : ScriptableObject
     public SectType type;
 
     public List<BuffName> buff;
+
+    public Sprite Sprite;
+
+    public string description;
 }

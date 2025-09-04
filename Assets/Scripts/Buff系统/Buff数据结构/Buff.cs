@@ -7,7 +7,7 @@ using Utility;
 [System.Serializable]
 public struct PropMod
 {
-    public CharaDataEnum name;
+    public string name;
     public bool isPercent;//按照百分比来记录数值
     [Header("使用百分比数值范围0-1，不使用时任意范围")]
     public float value;//数值

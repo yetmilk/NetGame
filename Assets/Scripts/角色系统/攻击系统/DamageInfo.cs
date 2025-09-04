@@ -14,6 +14,8 @@ public class DamageInfo
 
     public ActionTag attackTag;
 
+    public DamageFormulaType damageFormulaType;
+
     public DamageInfo(MsgDamageInfo msgDamageInfo)
     {
         damageValue = msgDamageInfo.damageValue;

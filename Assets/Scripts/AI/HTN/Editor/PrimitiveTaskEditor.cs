@@ -16,32 +16,40 @@ public class PrimitiveTaskEditor : Editor
     private Assembly targetAssembly;
     private bool isDataLoaded = false;
 
+    // 保存当前选中的类名和方法名，避免切换资源时重置
+    private string currentSelectedClass;
+    private string currentSelectedMethod;
+
     private void OnEnable()
     {
         try
         {
-            // 尝试加载游戏程序集
             targetAssembly = Assembly.Load("Assembly-CSharp");
         }
         catch
         {
-            // 回退到当前程序集
             targetAssembly = Assembly.GetExecutingAssembly();
         }
 
         RefreshClassAndMethodLists();
+
+        // 加载目标对象已保存的值
+        PrimitiveTask primitiveTask = (PrimitiveTask)target;
+        currentSelectedClass = primitiveTask.className;
+        currentSelectedMethod = primitiveTask.ActionName;
+
+        // 恢复之前的选择状态
+        RestoreSelectionState();
     }
 
     private void RefreshClassAndMethodLists()
     {
         try
         {
-            // 获取所有带有 PrimitiveTaskClassAttribute 的类
             var types = targetAssembly.GetTypes()
                .Where(t => t.IsDefined(typeof(PrimitiveTaskClassAttribute), true))
                .ToList();
 
-            // 获取所有类名
             List<string> classNamesList = new List<string>();
             classMethods = new Dictionary<string, List<string>>();
 
@@ -77,16 +85,34 @@ public class PrimitiveTaskEditor : Editor
             }
 
             classNames = classNamesList.ToArray();
-            selectedClassIndex = 0;
             isDataLoaded = true;
-
-            // 确保初始方法列表正确
             UpdateMethodNames();
         }
         catch (Exception ex)
         {
-            Debug.LogError($"加载任务类和方法时出错: {ex.Message}");
+            Debug.LogError($"加载类和方法时出错: {ex.Message}");
             isDataLoaded = false;
+        }
+    }
+
+    // 恢复之前保存的选择状态
+    private void RestoreSelectionState()
+    {
+        if (!isDataLoaded || classNames == null || classNames.Length == 0) return;
+
+        // 恢复类选择
+        selectedClassIndex = Array.IndexOf(classNames, currentSelectedClass);
+        if (selectedClassIndex == -1)
+            selectedClassIndex = 0;
+
+        UpdateMethodNames();
+
+        // 恢复方法选择
+        if (methodNames != null && methodNames.Length > 0)
+        {
+            selectedMethodIndex = Array.IndexOf(methodNames, currentSelectedMethod);
+            if (selectedMethodIndex == -1)
+                selectedMethodIndex = 0;
         }
     }
 
@@ -100,24 +126,15 @@ public class PrimitiveTaskEditor : Editor
 
         string selectedClassName = classNames[selectedClassIndex];
 
-        // 检查字典中是否存在该键
         if (!classMethods.ContainsKey(selectedClassName))
         {
-            Debug.LogError($"未找到类名 '{selectedClassName}' 的方法列表");
+            Debug.LogError($"未找到类 '{selectedClassName}' 的方法列表");
             methodNames = new string[0];
             selectedMethodIndex = 0;
             return;
         }
 
         methodNames = classMethods[selectedClassName].ToArray();
-        PrimitiveTask primitiveTask = (PrimitiveTask)target;
-
-        // 确保 selectedMethodIndex 有效
-        selectedMethodIndex = Array.IndexOf(methodNames, primitiveTask.ActionName);
-        if (selectedMethodIndex == -1)
-        {
-            selectedMethodIndex = 0;
-        }
     }
 
     public override void OnInspectorGUI()
@@ -126,17 +143,16 @@ public class PrimitiveTaskEditor : Editor
 
         PrimitiveTask primitiveTask = (PrimitiveTask)target;
 
-        // 检查数据是否加载成功
         if (!isDataLoaded)
         {
-            EditorGUILayout.HelpBox("无法加载任务数据，请检查程序集和特性配置。", MessageType.Error);
+            EditorGUILayout.HelpBox("无法加载类和方法数据，请检查代码或重新编译。", MessageType.Error);
             return;
         }
 
-        // 显示类名选择
+        // 显示类选择
         if (classNames == null || classNames.Length == 0)
         {
-            EditorGUILayout.HelpBox("无可用的任务类", MessageType.Info);
+            EditorGUILayout.HelpBox("无可用的类", MessageType.Info);
         }
         else
         {
@@ -146,6 +162,8 @@ public class PrimitiveTaskEditor : Editor
             if (EditorGUI.EndChangeCheck())
             {
                 UpdateMethodNames();
+                // 更新当前选择的类名
+                currentSelectedClass = classNames[selectedClassIndex];
             }
         }
 
@@ -156,15 +174,24 @@ public class PrimitiveTaskEditor : Editor
         }
         else
         {
+            EditorGUI.BeginChangeCheck();
             selectedMethodIndex = EditorGUILayout.Popup("Action Name", selectedMethodIndex, methodNames);
-            // 更新数据
-            if (GUI.changed)
+            if (EditorGUI.EndChangeCheck())
             {
-                primitiveTask.ActionName = methodNames[selectedMethodIndex];
-                primitiveTask.className = classNames[selectedClassIndex];
-                primitiveTask.InitializeExecuteAction();
-                EditorUtility.SetDirty(target);
+                // 更新当前选择的方法名
+                currentSelectedMethod = methodNames[selectedMethodIndex];
             }
+        }
+
+        // 添加赋值按钮
+        if (GUILayout.Button("应用选择到字段"))
+        {
+            primitiveTask.ActionName = currentSelectedMethod;
+            primitiveTask.className = currentSelectedClass;
+            primitiveTask.InitializeExecuteAction();
+            EditorUtility.SetDirty(target);
+            AssetDatabase.SaveAssets(); // 立即保存更改
+            Debug.Log($"已应用: {currentSelectedClass}.{currentSelectedMethod}");
         }
     }
 }

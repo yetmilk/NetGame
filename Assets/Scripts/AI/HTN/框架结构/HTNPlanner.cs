@@ -27,7 +27,7 @@ public class Planner
                     }
                     var primitiveTask = task as PrimitiveTask;
                     plan.primitiveTasks.Add(primitiveTask);
-                    state.ApplyEffect(primitiveTask.effect,true);
+                    state.ApplyEffect(primitiveTask.effects,true);
 
                 }
                 else

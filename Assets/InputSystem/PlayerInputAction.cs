@@ -489,6 +489,15 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""OpenFetter"",
+                    ""type"": ""Button"",
+                    ""id"": ""3476c5a4-6616-46fb-852e-7cfe2ea5949f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -913,11 +922,22 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""d99fdff1-4357-45b1-a0ca-539b799dcd92"",
-                    ""path"": ""<Keyboard>/tab"",
+                    ""path"": ""<Keyboard>/c"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";KeyBoard"",
                     ""action"": ""OpenChat"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bfb30804-80da-477a-8e66-d07223674efb"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""OpenFetter"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -961,6 +981,7 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
         m_UI_TrackedDevicePosition = m_UI.FindAction("TrackedDevicePosition", throwIfNotFound: true);
         m_UI_TrackedDeviceOrientation = m_UI.FindAction("TrackedDeviceOrientation", throwIfNotFound: true);
         m_UI_OpenChat = m_UI.FindAction("OpenChat", throwIfNotFound: true);
+        m_UI_OpenFetter = m_UI.FindAction("OpenFetter", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1143,6 +1164,7 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
     private readonly InputAction m_UI_TrackedDevicePosition;
     private readonly InputAction m_UI_TrackedDeviceOrientation;
     private readonly InputAction m_UI_OpenChat;
+    private readonly InputAction m_UI_OpenFetter;
     public struct UIActions
     {
         private @PlayerInputAction m_Wrapper;
@@ -1158,6 +1180,7 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
         public InputAction @TrackedDevicePosition => m_Wrapper.m_UI_TrackedDevicePosition;
         public InputAction @TrackedDeviceOrientation => m_Wrapper.m_UI_TrackedDeviceOrientation;
         public InputAction @OpenChat => m_Wrapper.m_UI_OpenChat;
+        public InputAction @OpenFetter => m_Wrapper.m_UI_OpenFetter;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1200,6 +1223,9 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
             @OpenChat.started += instance.OnOpenChat;
             @OpenChat.performed += instance.OnOpenChat;
             @OpenChat.canceled += instance.OnOpenChat;
+            @OpenFetter.started += instance.OnOpenFetter;
+            @OpenFetter.performed += instance.OnOpenFetter;
+            @OpenFetter.canceled += instance.OnOpenFetter;
         }
 
         private void UnregisterCallbacks(IUIActions instance)
@@ -1237,6 +1263,9 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
             @OpenChat.started -= instance.OnOpenChat;
             @OpenChat.performed -= instance.OnOpenChat;
             @OpenChat.canceled -= instance.OnOpenChat;
+            @OpenFetter.started -= instance.OnOpenFetter;
+            @OpenFetter.performed -= instance.OnOpenFetter;
+            @OpenFetter.canceled -= instance.OnOpenFetter;
         }
 
         public void RemoveCallbacks(IUIActions instance)
@@ -1297,5 +1326,6 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
         void OnTrackedDevicePosition(InputAction.CallbackContext context);
         void OnTrackedDeviceOrientation(InputAction.CallbackContext context);
         void OnOpenChat(InputAction.CallbackContext context);
+        void OnOpenFetter(InputAction.CallbackContext context);
     }
 }

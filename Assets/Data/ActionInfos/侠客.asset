@@ -255,7 +255,7 @@ MonoBehaviour:
       - {x: 0, y: 40}
       canCancelTag: 2
       proprity: 10
-      nextActionStartPercent: 0
+      nextActionStartPercent: 0.2
     - canBeCancelRange:
       - {x: 0, y: 40}
       canCancelTag: 3
@@ -331,7 +331,7 @@ MonoBehaviour:
       RigidbodyParam:
         isKenamicActive: 0
         colliderActive: 0
-    - eventLifeRange: {x: 25, y: 30}
+    - eventLifeRange: {x: 25, y: 25}
       actionName: Move
       MoveFunctionParam:
         useRig: 1
@@ -494,7 +494,7 @@ MonoBehaviour:
       RigidbodyParam:
         isKenamicActive: 0
         colliderActive: 0
-    - eventLifeRange: {x: 20, y: 25}
+    - eventLifeRange: {x: 20, y: 20}
       actionName: Move
       MoveFunctionParam:
         useRig: 1
@@ -503,7 +503,7 @@ MonoBehaviour:
         moveDir: {x: 0, y: 0, z: 0}
         useDataSpeed: 0
         dataName: 0
-        speed: 5
+        speed: 3
       SubmitFuncParam:
         submitTag: 2
         actionId: "\u653B\u51FB_\u8FDE\u62DB3"
@@ -589,7 +589,7 @@ MonoBehaviour:
       RigidbodyParam:
         isKenamicActive: 0
         colliderActive: 0
-    - eventLifeRange: {x: 20, y: 25}
+    - eventLifeRange: {x: 20, y: 20}
       actionName: Move
       MoveFunctionParam:
         useRig: 1
@@ -598,7 +598,7 @@ MonoBehaviour:
         moveDir: {x: 0, y: 0, z: 0}
         useDataSpeed: 0
         dataName: 0
-        speed: 5
+        speed: 3
       SubmitFuncParam:
         submitTag: 0
         actionId: 
@@ -747,105 +747,6 @@ MonoBehaviour:
       RigidbodyParam:
         isKenamicActive: 0
         colliderActive: 0
-    - eventLifeRange: {x: 1, y: 1}
-      actionName: SubmitActionChangeQuest
-      MoveFunctionParam:
-        useRig: 0
-        useLocalSpace: 0
-        useActionDir: 0
-        moveDir: {x: 0, y: 0, z: 0}
-        useDataSpeed: 0
-        dataName: 0
-        speed: 0
-      SubmitFuncParam:
-        submitTag: 3
-        actionId: 
-        cantTranslate: 1
-        waitFrame: 30
-        delay: 0
-      RotateFuncParam:
-        useActionDir: 1
-        rotateDir: {x: 0, y: 0, z: 0}
-        useSmooth: 1
-        rotationSpeed: 1500
-      OnInstantiateObjFunctionParam:
-        vfxName: 
-        startDirection: {x: 0, y: 0, z: 0}
-        distance: 0
-        selfAsparent: 0
-        useMousePosition: 0
-        instantiatePos: {x: 0, y: 0, z: 0}
-        VfxLifeTime: -1
-        destroyByActionEnd: 1
-      RigidbodyParam:
-        isKenamicActive: 0
-        colliderActive: 0
-    - eventLifeRange: {x: 1, y: 1}
-      actionName: SetRigidBody
-      MoveFunctionParam:
-        useRig: 0
-        useLocalSpace: 0
-        useActionDir: 0
-        moveDir: {x: 0, y: 0, z: 0}
-        useDataSpeed: 0
-        dataName: 0
-        speed: 0
-      SubmitFuncParam:
-        submitTag: 3
-        actionId: 
-        cantTranslate: 1
-        waitFrame: 30
-        delay: 0
-      RotateFuncParam:
-        useActionDir: 1
-        rotateDir: {x: 0, y: 0, z: 0}
-        useSmooth: 1
-        rotationSpeed: 1500
-      OnInstantiateObjFunctionParam:
-        vfxName: 
-        startDirection: {x: 0, y: 0, z: 0}
-        distance: 0
-        selfAsparent: 0
-        useMousePosition: 0
-        instantiatePos: {x: 0, y: 0, z: 0}
-        VfxLifeTime: -1
-        destroyByActionEnd: 1
-      RigidbodyParam:
-        isKenamicActive: 1
-        colliderActive: 0
-    - eventLifeRange: {x: 5, y: 5}
-      actionName: SetRigidBody
-      MoveFunctionParam:
-        useRig: 0
-        useLocalSpace: 0
-        useActionDir: 0
-        moveDir: {x: 0, y: 0, z: 0}
-        useDataSpeed: 0
-        dataName: 0
-        speed: 0
-      SubmitFuncParam:
-        submitTag: 3
-        actionId: 
-        cantTranslate: 1
-        waitFrame: 30
-        delay: 0
-      RotateFuncParam:
-        useActionDir: 1
-        rotateDir: {x: 0, y: 0, z: 0}
-        useSmooth: 1
-        rotationSpeed: 1500
-      OnInstantiateObjFunctionParam:
-        vfxName: 
-        startDirection: {x: 0, y: 0, z: 0}
-        distance: 0
-        selfAsparent: 0
-        useMousePosition: 0
-        instantiatePos: {x: 0, y: 0, z: 0}
-        VfxLifeTime: -1
-        destroyByActionEnd: 1
-      RigidbodyParam:
-        isKenamicActive: 0
-        colliderActive: 1
     tag: 3
     canCancelTags:
     - canBeCancelRange:
@@ -856,6 +757,11 @@ MonoBehaviour:
     - canBeCancelRange:
       - {x: 0, y: 10}
       canCancelTag: 7
+      proprity: 2
+      nextActionStartPercent: 0.25
+    - canBeCancelRange:
+      - {x: 5, y: 10}
+      canCancelTag: 3
       proprity: 1
       nextActionStartPercent: 0.25
     priority: 2

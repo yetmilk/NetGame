@@ -22,6 +22,11 @@ public class BuffController
     {
         EventCenter.Unsubscribe(EventCenter.EventId.LogicFrameUpdate, OnCheckBuff);
 
+        foreach (BuffObj obj in curBuffsList)
+        {
+            obj.onRemove?.Invoke(obj.target, obj.owner);
+        }
+
     }
 
     public void UpdateBuffsOnAttack(CharacterController target, CharacterController fromer, ref DamageInfo damageInfo)

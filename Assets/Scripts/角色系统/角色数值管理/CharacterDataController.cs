@@ -10,9 +10,13 @@ public class CharacterDataController : MonoBehaviour, IDataContainer
 
     [SerializeField] private CharacterDataObj dataObj;
 
+    public CharacterState characterState;
+
     public CharacterController controller;
 
     public BuffController buffController;
+
+    public Transform uiParent;
 
     public CharacterDataObj GetDataModule()
     {
@@ -27,19 +31,30 @@ public class CharacterDataController : MonoBehaviour, IDataContainer
     /// <summary>
     /// 组件的初始化函数
     /// </summary>
-    public void Init(CharacterClacify character, CharacterController charaObj)
+    public void Init(ref CharacterDataObj dataObj, CharacterController charaObj, bool initUI)
     {
         controller = charaObj;
-        CharacterDataSO dataSO = LoadManager.Instance.GetResourceByName<CharacterDataSO>(character.ToString());
-        if (dataSO != default)
+        characterState = new CharacterState();
+
+        if (dataObj != null)
         {
-            dataModule = new CharacterDataObj(dataSO);
             buffController = new BuffController(controller);
-            dataObj = new CharacterDataObj(dataModule);
+            this.dataObj = dataObj;
 
             NetManager.AddMsgListener("MsgUpdateDataObj", UpdateDataFromServer);
 
             StartCoroutine(UpdateDataCoro());
+
+            if (initUI)
+            {
+                var go = LoadManager.Instance.GetResourceByName<GameObject>("血条");
+                var obj = Instantiate(go, uiParent);
+                obj.GetComponent<UIHp>().Init(ref dataObj);
+            }
+
+            if (PlayerManager.Instance.GetPlayerInfoByNetId(controller.NetID) != null
+                && PlayerManager.Instance.GetPlayerInfoByNetId(controller.NetID).name == PlayerManager.Instance.selfId)
+                BattleManager.Instance.FettersManager.SetPlayer(controller);
         }
     }
     IEnumerator UpdateDataCoro()
@@ -50,15 +65,33 @@ public class CharacterDataController : MonoBehaviour, IDataContainer
             msg.characterDataObj = dataObj;
             msg.netId = controller.NetID;
             NetManager.Send(msg);
-            yield return new WaitForSeconds(.5f);
+            yield return new WaitForSeconds(1f);
         }
+    }
+    private void Update()
+    {
+        UpdateSkillValue();
+    }
+
+    public void UpdateSkillValue()
+    {
+        if (dataObj == null) return;
+        dataObj.curEnergyValue += (Time.deltaTime * dataObj.skillResumeSpeed);
+        if (dataObj.curEnergyValue > dataObj.energyValue)
+            dataObj.curEnergyValue = dataObj.energyValue;
+        if (dataObj.skill1ResumeTimer > 0)
+            dataObj.skill1ResumeTimer -= Time.deltaTime;
+        if (dataObj.skill2ResumeTimer > 0)
+            dataObj.skill2ResumeTimer -= Time.deltaTime;
+        if (dataObj.skill3ResumeTimer > 0)
+            dataObj.skill3ResumeTimer -= Time.deltaTime;
     }
 
     public void UpdateDataFromServer(MsgBase msgBase)
     {
         MsgUpdateDataObj msg = (MsgUpdateDataObj)msgBase;
 
-        if (msg.netId == controller.NetID)
+        if (msg.netId == controller.NetID && !controller.IsLocal)
         {
             dataObj = msg.characterDataObj;
         }
@@ -81,6 +114,7 @@ public class CharacterDataController : MonoBehaviour, IDataContainer
     private void OnDestroy()
     {
         buffController.OnDisable();
+        NetManager.RemoveMsgListener("MsgUpdateDataObj", UpdateDataFromServer);
     }
 }
 

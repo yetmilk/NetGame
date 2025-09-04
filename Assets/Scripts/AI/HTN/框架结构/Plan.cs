@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class Plan
 {
     public List<PrimitiveTask> primitiveTasks = new List<PrimitiveTask>();
@@ -26,7 +27,7 @@ public class Plan
                 task.GetExecuteAction()?.Invoke(agent, () =>
                 {
                     isExecuting = false;
-                    agent.state.ApplyEffect(task.effect);
+                    agent.state.ApplyEffect(task.effects);
                 });
             }
             while (isExecuting)

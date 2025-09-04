@@ -12,9 +12,11 @@ public class LevelSelectObj : MonoBehaviour
     public TMP_Text text3;
     public Button selectBtn;
 
+    public GameObject selectObj;
+
     public int index;
 
-    public void Init(int index, string text1, string text2 = "", string text3 = "")
+    public void Init(LevelSelectController controller,int index, string text1, string text2 = "", string text3 = "")
     {
         this.index = index;
         this.text1.text = text1;
@@ -23,8 +25,7 @@ public class LevelSelectObj : MonoBehaviour
 
         selectBtn.onClick.AddListener(() =>
         {
-            BattleManager.Instance.MapManager.SetRoom(index);
-            TipManager.Instance.CloseTip(TipType.切换房间提示);
+            controller.SetIndex(index);
         });
     }
 

@@ -58,6 +58,7 @@ public class GameSceneManager : Singleton<GameSceneManager>
         op.Completed += (op) =>
         {
             onComplete?.Invoke();
+            onComplete = null;
             curSceneName = msg.sceneName;
             FadeOut();
         };

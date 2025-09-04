@@ -37,11 +37,6 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Rarebook
-  - m_GUID: 2de1f01db8251b84f8b8c42384c62e2a
-    m_Address: "\u60CA\u96F7\u5251\u610F"
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Rarebook
   - m_GUID: 092277fdecf59ea43830529b0ee7db79
     m_Address: "\u51C0\u6C34\u8BC0"
     m_ReadOnly: 0

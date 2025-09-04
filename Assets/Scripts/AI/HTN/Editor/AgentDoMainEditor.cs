@@ -58,7 +58,7 @@ public class AgentDoMainEditor : Editor
         PrimitiveTask primitiveTask = ScriptableObject.CreateInstance<PrimitiveTask>();
         primitiveTask.taskName = "New Primitive Task";
         primitiveTask.precondition = null;
-        primitiveTask.effect = null;
+        primitiveTask.effects = null;
         primitiveTask.executeAction = null;
         primitiveTask._state = agentDoMain.state;
 

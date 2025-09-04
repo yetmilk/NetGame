@@ -51,7 +51,17 @@ MonoBehaviour:
     actionLifeRange: {x: 0, y: 124}
     frameIndexEvent: []
     tag: 2
-    canCancelTags: []
+    canCancelTags:
+    - canBeCancelRange:
+      - {x: 0, y: 50}
+      canCancelTag: 6
+      proprity: 0
+      nextActionStartPercent: 0
+    - canBeCancelRange:
+      - {x: 0, y: 124}
+      canCancelTag: 7
+      proprity: 1
+      nextActionStartPercent: 0
     priority: 5
   - id: "\u79FB\u52A8"
     nextActionIds: "\u5F85\u673A"
@@ -69,11 +79,6 @@ MonoBehaviour:
         useDataSpeed: 1
         dataName: 1
         speed: 0
-        layerMask:
-          serializedVersion: 2
-          m_Bits: 0
-        moveTransform: {fileID: 0}
-        moveRig: {fileID: 0}
       SubmitFuncParam:
         submitTag: 0
         actionId: 
@@ -107,11 +112,6 @@ MonoBehaviour:
         useDataSpeed: 1
         dataName: 1
         speed: 0
-        layerMask:
-          serializedVersion: 2
-          m_Bits: 0
-        moveTransform: {fileID: 0}
-        moveRig: {fileID: 0}
       SubmitFuncParam:
         submitTag: 0
         actionId: 
@@ -142,6 +142,16 @@ MonoBehaviour:
       canCancelTag: 2
       proprity: 0
       nextActionStartPercent: 0
+    - canBeCancelRange:
+      - {x: 0, y: 60}
+      canCancelTag: 6
+      proprity: 1
+      nextActionStartPercent: 0
+    - canBeCancelRange:
+      - {x: 0, y: 60}
+      canCancelTag: 7
+      proprity: 2
+      nextActionStartPercent: 0
     priority: 1
   - id: "\u6B7B\u4EA1"
     nextActionIds: 
@@ -159,5 +169,9 @@ MonoBehaviour:
     actionLifeRange: {x: 0, y: 60}
     frameIndexEvent: []
     tag: 6
-    canCancelTags: []
+    canCancelTags:
+    - canBeCancelRange: []
+      canCancelTag: 7
+      proprity: 1
+      nextActionStartPercent: 0
     priority: 5

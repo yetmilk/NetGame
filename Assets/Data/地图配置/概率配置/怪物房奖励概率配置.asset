@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   proporityList:
   - type: 1
-    propority: 40
+    propority: 100
   - type: 2
-    propority: 20
+    propority: 0
   - type: 3
-    propority: 15
+    propority: 0
   - type: 4
-    propority: 20
+    propority: 0
   - type: 5
-    propority: 5
+    propority: 0

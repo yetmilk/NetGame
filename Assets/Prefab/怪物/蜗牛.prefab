@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4710719888742802077}
   - component: {fileID: 3662519352083725290}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Snail_Shell
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,7 +95,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6271500736269870873}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Tail_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -128,7 +128,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7258798876867447731}
   - component: {fileID: 7592677074673694992}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Snail_Shell_Spiked
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -213,7 +213,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 185979359276081296}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Eyelid_Inner_L_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -245,7 +245,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5930584052903673194}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Eye_R_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -277,7 +277,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5590841219689957655}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Eyelid_Outer_L_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -309,7 +309,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1514163496847117796}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Eyelid_Outer_L_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -341,7 +341,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9087615019034053364}
   - component: {fileID: 6510923777050993426}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Snail_Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -455,7 +455,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5212859151012695746}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Spine_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -487,7 +487,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7759030890795379870}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Eye_L_05
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -520,7 +520,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2932464283496849168}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Shell
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -551,7 +551,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7630186940931421845}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Eyelid_Inner_R_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -583,7 +583,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6309627719473410795}
   - component: {fileID: 5822723843629387038}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sensor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -619,6 +619,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyTag: Player
   detectionRange: 10
+  layer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &2580997788743268929
 GameObject:
   m_ObjectHideFlags: 0
@@ -628,7 +631,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1677400779281174426}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Eye_L_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -660,7 +663,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5331998285537489500}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Root
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -692,7 +695,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7040369877048215142}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Tail_04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -725,7 +728,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3304468921063623701}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Spine_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -757,7 +760,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 353879926261862815}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Eyelid_Inner_R_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -789,7 +792,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1944433771117933850}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Tail_05
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -820,7 +823,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2413359931102366521}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Eye_R_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -852,7 +855,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4860366121413113584}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Eyelid_Outer_R_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -883,7 +886,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2877004298408903474}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Tail_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -915,7 +918,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6248111923234608314}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Tail_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -947,7 +950,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3780127094561611525}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Eye_R_04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -979,7 +982,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6901753061306485387}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Pelvis
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1013,7 +1016,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2135750942107996280}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Eye_R_05
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1056,7 +1059,7 @@ GameObject:
   - component: {fileID: 9052461889454629510}
   - component: {fileID: -594663897951185033}
   - component: {fileID: -4235690350389600562}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: "\u8717\u725B"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1072,7 +1075,7 @@ Transform:
   m_GameObject: {fileID: 6226288817724146991}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 5331998285537489500}
@@ -1353,7 +1356,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2524694893210784812}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Eye_L_04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1386,7 +1389,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3672840022616911745}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1419,7 +1422,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8653625526514969489}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Eye_L_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1451,7 +1454,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5672123636120458008}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Eyelid_Inner_L_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1482,7 +1485,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5663926518575471552}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Eye_L_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1514,7 +1517,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7809611375558214983}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Spine_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1546,7 +1549,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1773505945756632845}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Eyelid_Outer_R_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1578,7 +1581,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 814355617597447034}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Eye_R_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1610,7 +1613,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6030519934517317321}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Neck
   m_TagString: Untagged
   m_Icon: {fileID: 0}

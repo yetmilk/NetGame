@@ -71,12 +71,19 @@ public class CharacterController : NetMonobehavior, IDealActionCommand, ICanInte
     {
 
         charaTag = character;
-        curCharaData.Init(character, this);
 
-        PlayerManager.PlayerInfo playerInfo = PlayerManager.Instance.GetPlayerInfoByNetId(NetID);
-        if (playerInfo != null)
+
+        PlayerManager.PlayerInfo playerInfo = PlayerManager.Instance.GetPlayerInfoByName(PlayerManager.Instance.selfId);
+        if (playerInfo != null && IsLocal && playerInfo.character == charaTag)
         {
-            playerInfo.playerObj = this;
+            curCharaData.Init(ref playerInfo.characterData, this, false);
+            BattleManager.Instance.uiManager.Initilize(ref playerInfo.characterData, curCharaData.uiParent);
+        }
+        else
+        {
+            CharacterDataSO data = LoadManager.Instance.GetResourceByName<CharacterDataSO>(charaTag.ToString());
+            CharacterDataObj dataObj = new CharacterDataObj(data);
+            curCharaData.Init(ref dataObj, this, true);
         }
 
         selfActionCtrl.InitializeAction(character, this);
@@ -277,10 +284,23 @@ public class CharacterController : NetMonobehavior, IDealActionCommand, ICanInte
     #endregion
 
     #region Parry
-    protected virtual void OnParryEnter(ActionObj curActionObj) { }
+    float eneryResumeSpeed = 0;
+    protected virtual void OnParryEnter(ActionObj curActionObj)
+    {
+        curCharaData.characterState.isInvincible = true;
+        eneryResumeSpeed = curCharaData.GetDataObj().skillResumeSpeed;
+        curCharaData.GetDataObj().skillResumeSpeed = 0;
+        Physics.IgnoreLayerCollision(6, 8, true);
+    }
     protected virtual void OnParryUpdate(ActionObj curActionObj) { }
 
-    protected virtual void OnParryExit(ActionObj curActionObj, ActionObj nextActionObj) { }
+    protected virtual void OnParryExit(ActionObj curActionObj, ActionObj nextActionObj)
+    {
+        curCharaData.characterState.isInvincible = false;
+        Physics.IgnoreLayerCollision(6, 8, false);
+        curCharaData.GetDataObj().curEnergyValue -= curCharaData.GetDataObj().parrySpendValue;
+        curCharaData.GetDataObj().skillResumeSpeed = eneryResumeSpeed;
+    }
     #endregion
 
     #region Hurt
@@ -298,20 +318,29 @@ public class CharacterController : NetMonobehavior, IDealActionCommand, ICanInte
     #region Skill_1
     protected virtual void OnSkill_1_Enter(ActionObj curActionObj) { }
     protected virtual void OnSkill_1_Update(ActionObj curActionObj) { }
-    protected virtual void OnSkill_1_Exit(ActionObj curActionObj, ActionObj nextActionObj) { }
+    protected virtual void OnSkill_1_Exit(ActionObj curActionObj, ActionObj nextActionObj)
+    {
+        curCharaData.GetDataObj().skill1ResumeTimer = curCharaData.GetDataObj().skill1ResumeTime;
+    }
 
     #endregion
 
     #region Skill_2
     protected virtual void OnSkill_2_Enter(ActionObj curActionObj) { }
     protected virtual void OnSkill_2_Update(ActionObj curActionObj) { }
-    protected virtual void OnSkill_2_Exit(ActionObj curActionObj, ActionObj nextActionObj) { }
+    protected virtual void OnSkill_2_Exit(ActionObj curActionObj, ActionObj nextActionObj)
+    {
+        curCharaData.GetDataObj().skill2ResumeTimer = curCharaData.GetDataObj().skill2ResumeTime;
+    }
     #endregion
 
     #region Skill_3
     protected virtual void OnSkill_3_Enter(ActionObj curActionObj) { }
     protected virtual void OnSkill_3_Update(ActionObj curActionObj) { }
-    protected virtual void OnSkill_3_Exit(ActionObj curActionObj, ActionObj nextActionObj) { }
+    protected virtual void OnSkill_3_Exit(ActionObj curActionObj, ActionObj nextActionObj)
+    {
+        curCharaData.GetDataObj().skill3ResumeTimer = curCharaData.GetDataObj().skill3ResumeTime;
+    }
     #endregion
 
     #region Skill_1_Start
@@ -345,6 +374,7 @@ public class CharacterController : NetMonobehavior, IDealActionCommand, ICanInte
                 selfActionCtrl.AddCommand("", ActionTag.Idle, selfActionCtrl.curActionObj.direction);
                 return;
             case ActionTag.Move:
+                if (curCharaData.characterState.cantMove) return;
                 selfActionCtrl.AddCommand("", ActionTag.Move, command.direction);
                 return;
             case ActionTag.NormalAttack:
@@ -352,6 +382,9 @@ public class CharacterController : NetMonobehavior, IDealActionCommand, ICanInte
                 selfActionCtrl.AddCommand("", ActionTag.NormalAttack, attackDir);
                 return;
             case ActionTag.Parry:
+                if (curCharaData.GetDataObj().curEnergyValue - curCharaData.GetDataObj().parrySpendValue <= 0)
+                    return;
+
                 Vector3 dir = command.direction == Vector3.zero ? selfActionCtrl.curActionObj.direction : command.direction;
                 selfActionCtrl.AddCommand("", ActionTag.Parry, dir);
                 return;
@@ -372,12 +405,21 @@ public class CharacterController : NetMonobehavior, IDealActionCommand, ICanInte
                 selfActionCtrl.AddCommand("", ActionTag.Skill3, command.direction);
                 break;
             case ActionTag.Skill1_Start:
+                if (curCharaData.GetDataObj().skill1ResumeTimer > 0)
+                    return;
+
                 selfActionCtrl.AddCommand("", ActionTag.Skill1_Start, command.direction);
                 return;
             case ActionTag.Skill2_Start:
+                if (curCharaData.GetDataObj().skill2ResumeTimer > 0)
+                    return;
+
                 selfActionCtrl.AddCommand("", ActionTag.Skill2_Start, command.direction);
                 return;
             case ActionTag.Skill3_Start:
+                if (curCharaData.GetDataObj().skill3ResumeTimer > 0)
+                    return;
+
                 selfActionCtrl.AddCommand("", ActionTag.Skill2, command.direction);
                 return;
             default:
@@ -391,11 +433,13 @@ public class CharacterController : NetMonobehavior, IDealActionCommand, ICanInte
                 selfActionCtrl.AddCommand("", ActionTag.Idle, selfActionCtrl.curActionObj.direction);
                 break;
             case InputCommandType.移动:
-
+                if (curCharaData.characterState.cantMove) return;
                 selfActionCtrl.AddCommand("", ActionTag.Move, command.direction);
                 break;
             case InputCommandType.闪避:
-
+                if (curCharaData.GetDataObj().curEnergyValue - curCharaData.GetDataObj().parrySpendValue <= 0)
+                    return;
+                //curCharaData.GetDataObj().curEnergyValue -= curCharaData.GetDataObj().parrySpendValue;
                 Vector3 dir = command.direction == Vector3.zero ? selfActionCtrl.curActionObj.direction : command.direction;
                 selfActionCtrl.AddCommand("", ActionTag.Parry, dir);
                 break;
@@ -409,7 +453,9 @@ public class CharacterController : NetMonobehavior, IDealActionCommand, ICanInte
                 break;
 
             case InputCommandType.技能1_起势:
-
+                if (curCharaData.GetDataObj().skill1ResumeTimer > 0)
+                    return;
+                //curCharaData.GetDataObj().skill1ResumeTimer = curCharaData.GetDataObj().skill1ResumeTime;
                 selfActionCtrl.AddCommand("", ActionTag.Skill1_Start, command.direction);
                 break;
             case InputCommandType.技能1:
@@ -418,7 +464,9 @@ public class CharacterController : NetMonobehavior, IDealActionCommand, ICanInte
                 selfActionCtrl.AddCommand("", ActionTag.Skill1, command.direction);
                 break;
             case InputCommandType.技能2_起势:
-
+                if (curCharaData.GetDataObj().skill2ResumeTimer > 0)
+                    return;
+                //curCharaData.GetDataObj().skill2ResumeTimer = curCharaData.GetDataObj().skill2ResumeTime;
 
                 selfActionCtrl.AddCommand("", ActionTag.Skill2_Start, command.direction);
                 break;
@@ -427,6 +475,9 @@ public class CharacterController : NetMonobehavior, IDealActionCommand, ICanInte
                 selfActionCtrl.AddCommand("", ActionTag.Skill2, command.direction);
                 break;
             case InputCommandType.技能3_起势:
+                if (curCharaData.GetDataObj().skill3ResumeTimer > 0)
+                    return;
+                //curCharaData.GetDataObj().skill3ResumeTimer = curCharaData.GetDataObj().skill3ResumeTime;
                 selfActionCtrl.AddCommand("", ActionTag.Skill3_Start, command.direction);
                 break;
             default:
@@ -435,6 +486,30 @@ public class CharacterController : NetMonobehavior, IDealActionCommand, ICanInte
     }
     public void HandleInputCommand(string actionName, ActionTag actionTag, Vector3 dir)
     {
+        if (actionTag == ActionTag.Parry)
+        {
+            if (curCharaData.GetDataObj().curEnergyValue - curCharaData.GetDataObj().parrySpendValue <= 0)
+                return;
+            //curCharaData.GetDataObj().curEnergyValue -= curCharaData.GetDataObj().parrySpendValue;
+        }
+        else if (actionTag == ActionTag.Skill1_Start)
+        {
+            if (curCharaData.GetDataObj().skill1ResumeTimer > 0)
+                return;
+            //curCharaData.GetDataObj().skill1ResumeTimer = curCharaData.GetDataObj().skill1ResumeTime;
+        }
+        else if (actionTag == ActionTag.Skill2_Start)
+        {
+            if (curCharaData.GetDataObj().skill2ResumeTimer > 0)
+                return;
+            //curCharaData.GetDataObj().skill2ResumeTimer = curCharaData.GetDataObj().skill2ResumeTime;
+        }
+        else if (actionTag == ActionTag.Skill3_Start)
+        {
+            if (curCharaData.GetDataObj().skill3ResumeTimer > 0)
+                return;
+            //curCharaData.GetDataObj().skill3ResumeTimer = curCharaData.GetDataObj().skill3ResumeTime;
+        }
         selfActionCtrl.AddCommand(actionName, actionTag, dir);
     }
 
@@ -468,12 +543,29 @@ public class CharacterController : NetMonobehavior, IDealActionCommand, ICanInte
             }
         }
     }
+    public void Attack(List<CollisionDetector.DetectionInfo> detectList, DamageInfo damageInfo)
+    {
+
+        foreach (var item in detectList)
+        {
+            if (item.target.GetComponent<IDataContainer>() != null
+                && !item.target.GetComponent<CampFlag>().CheckIsFriendly(campFlag.CampType))
+            {
+
+                curCharaData.buffController.UpdateBuffsOnAttack(item.target.GetComponent<CharacterController>(), this, ref damageInfo);
+
+                MsgDamageInfo msg = new MsgDamageInfo(damageInfo);
+
+                NetManager.Send(msg);
+            }
+        }
+    }
     public virtual void GetDamage(MsgBase msgBase)
     {
         MsgDamageInfo msg = msgBase as MsgDamageInfo;
 
         DamageInfo damageInfo = new DamageInfo(msg);
-
+        if (curCharaData.characterState.isInvincible) return;
         if (damageInfo.targetNetId != NetID) return;
         HandleInputCommand("", ActionTag.Hurt, -damageInfo.DamageDir);
         //TODO:数据同步
@@ -504,7 +596,9 @@ public class CharacterController : NetMonobehavior, IDealActionCommand, ICanInte
 
     private void OnDestroy()
     {
+        NetDestroy(NetID, gameObject);
         EventCenter.Unsubscribe(EventCenter.EventId.LogicFrameUpdate, LogicUpdate);
+        NetManager.RemoveMsgListener("MsgDamageInfo", GetDamage);
     }
 
 

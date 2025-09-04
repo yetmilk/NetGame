@@ -23,6 +23,7 @@ public class PlayerManager : Singleton<PlayerManager>
         public string name;
         public string netID;
         public CharacterClacify character;
+        public CharacterDataObj characterData;
         public CharacterController playerObj;
     }
 
@@ -93,6 +94,8 @@ public class PlayerManager : Singleton<PlayerManager>
         {
             info.netID = netID;
         }
+        var dataModule = LoadManager.Instance.GetResourceByName<CharacterDataSO>(info.character.ToString());
+        info.characterData = new CharacterDataObj(dataModule);
         curPlayerInfos.Add(info);
         curActivePlayer.Add(playerName, info);
         OnPlayerInit?.Invoke();

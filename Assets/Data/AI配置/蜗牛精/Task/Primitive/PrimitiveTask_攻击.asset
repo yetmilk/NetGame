@@ -17,11 +17,9 @@ MonoBehaviour:
     logicOperator: 0
     conditions:
     - variableName: "\u654C\u4EBA\u8DDD\u79BB"
-      compareValue: 4
+      compareValue: 2
       comparisonOperator: 3
   _state: {fileID: 11400000, guid: 4453a6dc39bcdd744a1df506bbbbd505, type: 2}
-  effect:
-    worldStateName: "\u654C\u4EBA\u8DDD\u79BB"
-    changeValue: 
+  effects: []
   ActionName: Attack
   className: "\u8717\u725B"

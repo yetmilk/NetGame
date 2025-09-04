@@ -89,9 +89,11 @@ public class TipManager : Singleton<TipManager>
     {
         if (tipDictionary.TryGetValue(tipType, out Tip tip) && tip.tipObj.activeSelf)
         {
+            tip.tipObj.GetComponent<ITip>().Close();
             // 停止协程
             if (tip.currentCoroutine != null)
             {
+                
                 StopCoroutine(tip.currentCoroutine);
                 tip.currentCoroutine = null;
             }

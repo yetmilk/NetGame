@@ -31,13 +31,6 @@ MonoBehaviour:
         useDataSpeed: 0
         dataName: 0
         speed: 5
-        layerMask:
-          serializedVersion: 2
-          m_Bits: 0
-        moveTransform: {fileID: 2682329012647313844, guid: 20e27ff0e5616c8418168bf3bd3d90e4,
-          type: 3}
-        moveRig: {fileID: 7565246372528035915, guid: 20e27ff0e5616c8418168bf3bd3d90e4,
-          type: 3}
       SubmitFuncParam:
         submitTag: 0
         actionId: 
@@ -71,11 +64,6 @@ MonoBehaviour:
         useDataSpeed: 0
         dataName: 0
         speed: 0
-        layerMask:
-          serializedVersion: 2
-          m_Bits: 0
-        moveTransform: {fileID: 0}
-        moveRig: {fileID: 0}
       SubmitFuncParam:
         submitTag: 0
         actionId: 
@@ -110,7 +98,7 @@ MonoBehaviour:
       - {x: 0, y: 600}
       canCancelTag: 2
       proprity: 2
-      nextActionStartPercent: 0.2
+      nextActionStartPercent: 0
     - canBeCancelRange:
       - {x: 0, y: 600}
       canCancelTag: 6
@@ -143,13 +131,6 @@ MonoBehaviour:
         useDataSpeed: 0
         dataName: 0
         speed: 5
-        layerMask:
-          serializedVersion: 2
-          m_Bits: 0
-        moveTransform: {fileID: 2682329012647313844, guid: 20e27ff0e5616c8418168bf3bd3d90e4,
-          type: 3}
-        moveRig: {fileID: 7565246372528035915, guid: 20e27ff0e5616c8418168bf3bd3d90e4,
-          type: 3}
       SubmitFuncParam:
         submitTag: 0
         actionId: 
@@ -183,11 +164,6 @@ MonoBehaviour:
         useDataSpeed: 0
         dataName: 0
         speed: 0
-        layerMask:
-          serializedVersion: 2
-          m_Bits: 0
-        moveTransform: {fileID: 0}
-        moveRig: {fileID: 0}
       SubmitFuncParam:
         submitTag: 0
         actionId: 
@@ -222,7 +198,7 @@ MonoBehaviour:
       - {x: 0, y: 180}
       canCancelTag: 2
       proprity: 2
-      nextActionStartPercent: 0.2
+      nextActionStartPercent: 0
     - canBeCancelRange:
       - {x: 0, y: 180}
       canCancelTag: 6
@@ -255,11 +231,6 @@ MonoBehaviour:
         useDataSpeed: 1
         dataName: 1
         speed: 5
-        layerMask:
-          serializedVersion: 2
-          m_Bits: 0
-        moveTransform: {fileID: 0}
-        moveRig: {fileID: 0}
       SubmitFuncParam:
         submitTag: 0
         actionId: 
@@ -293,11 +264,6 @@ MonoBehaviour:
         useDataSpeed: 0
         dataName: 0
         speed: 0
-        layerMask:
-          serializedVersion: 2
-          m_Bits: 0
-        moveTransform: {fileID: 0}
-        moveRig: {fileID: 0}
       SubmitFuncParam:
         submitTag: 0
         actionId: 
@@ -332,7 +298,7 @@ MonoBehaviour:
       - {x: 0, y: 120}
       canCancelTag: 2
       proprity: 2
-      nextActionStartPercent: 0.2
+      nextActionStartPercent: 0
     - canBeCancelRange:
       - {x: 0, y: 120}
       canCancelTag: 0
@@ -359,17 +325,12 @@ MonoBehaviour:
       actionName: Move
       MoveFunctionParam:
         useRig: 1
-        useLocalSpace: 1
-        useActionDir: 1
+        useLocalSpace: 0
+        useActionDir: 0
         moveDir: {x: 0, y: 0, z: -1}
-        useDataSpeed: 1
+        useDataSpeed: 0
         dataName: 1
-        speed: 5
-        layerMask:
-          serializedVersion: 2
-          m_Bits: 0
-        moveTransform: {fileID: 0}
-        moveRig: {fileID: 0}
+        speed: 3
       SubmitFuncParam:
         submitTag: 0
         actionId: 
@@ -403,11 +364,6 @@ MonoBehaviour:
         useDataSpeed: 0
         dataName: 0
         speed: 15
-        layerMask:
-          serializedVersion: 2
-          m_Bits: 0
-        moveTransform: {fileID: 0}
-        moveRig: {fileID: 0}
       SubmitFuncParam:
         submitTag: 0
         actionId: 
@@ -442,7 +398,7 @@ MonoBehaviour:
       - {x: 0, y: 120}
       canCancelTag: 2
       proprity: 2
-      nextActionStartPercent: 0.2
+      nextActionStartPercent: 0
     - canBeCancelRange:
       - {x: 0, y: 120}
       canCancelTag: 0
@@ -490,8 +446,8 @@ MonoBehaviour:
     audioInfos: []
     actionLifeRange: {x: 0, y: 50}
     frameIndexEvent:
-    - eventLifeRange: {x: 20, y: 20}
-      actionName: InstantiateObj
+    - eventLifeRange: {x: 0, y: 50}
+      actionName: Rotate
       MoveFunctionParam:
         useRig: 0
         useLocalSpace: 0
@@ -500,11 +456,6 @@ MonoBehaviour:
         useDataSpeed: 0
         dataName: 0
         speed: 0
-        layerMask:
-          serializedVersion: 2
-          m_Bits: 0
-        moveTransform: {fileID: 0}
-        moveRig: {fileID: 0}
       SubmitFuncParam:
         submitTag: 0
         actionId: 
@@ -512,18 +463,18 @@ MonoBehaviour:
         waitFrame: 0
         delay: 0
       RotateFuncParam:
-        useActionDir: 0
+        useActionDir: 1
         rotateDir: {x: 0, y: 0, z: 0}
-        useSmooth: 1
-        rotationSpeed: 1500
+        useSmooth: 0
+        rotationSpeed: 0
       OnInstantiateObjFunctionParam:
-        vfxName: AttackBox
-        startDirection: {x: 0, y: 0, z: 1}
-        distance: 1
+        vfxName: 
+        startDirection: {x: 0, y: 0, z: 0}
+        distance: 0
         selfAsparent: 0
         useMousePosition: 0
         instantiatePos: {x: 0, y: 0, z: 0}
-        VfxLifeTime: 0.5
+        VfxLifeTime: 0
         destroyByActionEnd: 0
       RigidbodyParam:
         isKenamicActive: 0

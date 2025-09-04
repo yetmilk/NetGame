@@ -46,7 +46,7 @@ public class Agent : MonoBehaviour
         {
             Plan();
         }
-        if (currentPlan == null)
+        if (currentPlan == null|| currentTask == null)
         {
             //Debug.Log("当前plan是否为空:" + currentPlan == null);
             Plan();
@@ -65,8 +65,7 @@ public class Agent : MonoBehaviour
         // 生成计划
         var newPlan = planner.CreatePlan(state, doMainModule.rootTasks);
 
-        if (currentPlan != null)
-            if (newPlan.IsEqual(currentPlan)) return;
+        
 
         StopAllCoroutines();
 

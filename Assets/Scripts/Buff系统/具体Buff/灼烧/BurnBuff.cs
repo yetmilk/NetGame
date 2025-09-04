@@ -11,15 +11,16 @@ public class BurnBuff : BuffObj
     }
 
     #region---------------ÖØÐ´------------
+    NetMonobehavior vfx;
     public override void OnOccur(CharacterController target, CharacterController owner)
     {
-
-
+        var go = LoadManager.Instance.NetInstantiate("VFX_»ðÑæ", target.transform, target.NetID, true);
+        vfx = go.GetComponent<NetMonobehavior>();
     }
 
     public override void OnRemove(CharacterController target, CharacterController owner)
     {
-
+        vfx.NetDestroy(vfx.NetID, vfx.gameObject);
     }
 
     public override void OnTimeTick(CharacterController target, CharacterController owner)

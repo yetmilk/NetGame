@@ -172,6 +172,26 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Prefab
+  - m_GUID: 61d1412613e23644c876c1db05591fe9
+    m_Address: "VFX_\u8718\u86DB_\u653B\u51FB"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Prefab
+  - m_GUID: 7e5d4a68a10390447bda7d424f833897
+    m_Address: "\u79D8\u7C4D\u4FE1\u606F\u6761"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Prefab
+  - m_GUID: 8e91b56d694fe094c9e922655be23adf
+    m_Address: "\u7CBE\u529B\u6761"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Prefab
+  - m_GUID: afca5e9b3d91d8e44ac2c45703c7a997
+    m_Address: "\u8840\u6761"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Prefab
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: b498f2f0c88c8af46a2b8ee8949bf3f3, type: 2}
   m_SchemaSet:

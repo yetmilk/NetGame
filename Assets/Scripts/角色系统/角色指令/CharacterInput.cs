@@ -169,6 +169,12 @@ public class CharacterInput : MonoBehaviour
         action.GamePlay.Parry.started -= Parry_started;
         action.GamePlay.NormalAttack.started -= NormalAttack_started;
         action.GamePlay.Parry.canceled -= Parry_canceled;
+        action.GamePlay.Skill1.started -= Skill1_started;
+        action.GamePlay.Skill1.canceled -= Skill1_canceled;
+        action.GamePlay.Skill2.started -= Skill2_started;
+        action.GamePlay.Skill2.canceled -= Skill2_canceled;
+        action.GamePlay.Skill3.started -= Skill3_started;
+        action.GamePlay.Skill3.canceled -= Skill3_canceled;
         NetManager.RemoveMsgListener("MsgInputCommand", ExcuteCommand);
     }
 

@@ -1,3 +1,4 @@
+using PixPlays.ElementalVFX;
 using System;
 using System.Collections;
 using UnityEngine;
@@ -5,43 +6,17 @@ using UnityEngine;
 [PrimitiveTaskClass("蜘蛛")]
 public class SpiderEnemy : CharacterController
 {
+    public Transform attackTransform;
+    #region ---------------AI---------------------
     [SelectableMethod]
     public static void MoveTo(Agent agent, Action onComplete)
     {
         if (!agent.GetComponent<NetMonobehavior>().IsLocal) return;
-        agent.StartCoroutine(MoveCoro(agent, onComplete));
-        //Debug.LogWarning(111);
-    }
-
-    static IEnumerator MoveCoro(Agent agent, Action onComplete)
-    {
         Vector3 targetPos = agent.state.GetState<Vector3>("敌人位置");
+        Vector3 dir = (targetPos - agent.transform.position).normalized;
+        Debug.Log(dir);
 
-
-        float maxMoveTime = 10f; // 设置最大移动时间
-        float startTime = Time.time;
-
-        while (Vector3.Distance(agent.transform.position, agent.state.GetState<Vector3>("敌人位置")) > 2f)
-        {
-            targetPos = agent.state.GetState<Vector3>("敌人位置");
-            // 超时退出
-            //if (Time.time - startTime > maxMoveTime)
-            //{
-            //    Debug.Log("Move timed out");
-            //    //agent.Plan();
-            //    break;
-            //}
-
-            Vector3 dir = (targetPos - agent.transform.position).normalized;
-            Debug.Log(dir);
-            //agent.GetComponent<IDealActionCommand>().HandleInputCommand(new InputCommand(InputCommandType.移动, dir));
-            PlayerInputManager.Instance.HandleInput(new InputCommand(InputCommandType.移动, dir), agent.GetComponent<NetMonobehavior>().NetID);
-
-            yield return null;
-        }
-        //agent.GetComponent<IDealActionCommand>().HandleInputCommand(new InputCommand(InputCommandType.移动));
-        //PlayerInputManager.Instance.HandleInput(new InputCommand(InputCommandType.待机), agent.GetComponent<NetMonobehavior>().NetID);
-        Debug.Log("Arrived at enemy position");
+        PlayerInputManager.Instance.HandleInput(new InputCommand(InputCommandType.移动, dir), agent.GetComponent<NetMonobehavior>().NetID);
         onComplete?.Invoke();
     }
 
@@ -50,8 +25,8 @@ public class SpiderEnemy : CharacterController
     {
 
         if (!agent.GetComponent<NetMonobehavior>().IsLocal) return;
-        Vector3 attackDir = (agent.state.GetState<Vector3>("敌人位置") - agent.transform.position).normalized;
-        PlayerInputManager.Instance.HandleInput(new InputCommand(InputCommandType.普通攻击, attackDir), agent.GetComponent<NetMonobehavior>().NetID);
+        Vector3 targetPos = agent.state.GetState<Vector3>("敌人位置");
+        PlayerInputManager.Instance.HandleInput(new InputCommand(InputCommandType.普通攻击, targetPos), agent.GetComponent<NetMonobehavior>().NetID);
         onComplete?.Invoke();
     }
     [SelectableMethod]
@@ -92,5 +67,42 @@ public class SpiderEnemy : CharacterController
         agent.state.SetState("当前休息时间", 0.0);
         Debug.Log("休息结束！！！");
         onComplete?.Invoke();
+    }
+
+    #endregion
+
+
+    protected override void OnAttackEnter(ActionObj curActionObj)
+    {
+        base.OnAttackEnter(curActionObj);
+
+        
+
+
+    }
+
+    protected override void OnAttackUpdate(ActionObj curActionObj)
+    {
+        base.OnAttackUpdate(curActionObj);
+
+        if(curActionObj.curLifeFrame ==10&&IsLocal)
+        {
+            var go = LoadManager.Instance.NetInstantiate("VFX_蜘蛛_攻击");
+
+            DamageInfo damageInfo = new DamageInfo()
+            {
+                damageFormulaType = DamageFormulaType.通用,
+                attackTag = ActionTag.NormalAttack,
+            };
+            go.GetComponent<InstantiateObjBase>().Init(this);
+
+            VfxData newData = new VfxData(attackTransform, curActionObj.direction, 3f, .5f, damageInfo);
+            go.GetComponent<BaseVfx>().Play(newData);
+        }
+    }
+
+    protected override void OnAttackExit(ActionObj curActionObj, ActionObj nextActionObj)
+    {
+        base.OnAttackExit(curActionObj, nextActionObj);
     }
 }

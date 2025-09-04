@@ -15,3 +15,5 @@ MonoBehaviour:
   bookName: 4
   type: 0
   buff: 05000000
+  Sprite: {fileID: 0}
+  description: "\u6BCF\u6B21\u666E\u653B\u6709\u51E0\u7387\uFF0820%\uFF09\u89E6\u53D1\u96F7\u7535\u5728\u654C\u4EBA\u4E4B\u95F4\u5F39\u5C04"

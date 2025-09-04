@@ -43,7 +43,7 @@ public class CompoundTask : Task
                             requireTask.Add(pair.tasks[i]);
                             if (pair.tasks[i] is PrimitiveTask primitiveTask)
                             {
-                                worldState.ApplyEffect(primitiveTask.effect,true);
+                                worldState.ApplyEffect(primitiveTask.effects,true);
                             }
                         }
                     }

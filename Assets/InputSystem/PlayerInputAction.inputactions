@@ -467,6 +467,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "OpenFetter",
+                    "type": "Button",
+                    "id": "3476c5a4-6616-46fb-852e-7cfe2ea5949f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -891,11 +900,22 @@
                 {
                     "name": "",
                     "id": "d99fdff1-4357-45b1-a0ca-539b799dcd92",
-                    "path": "<Keyboard>/tab",
+                    "path": "<Keyboard>/c",
                     "interactions": "",
                     "processors": "",
                     "groups": ";KeyBoard",
                     "action": "OpenChat",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "bfb30804-80da-477a-8e66-d07223674efb",
+                    "path": "<Keyboard>/tab",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "OpenFetter",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

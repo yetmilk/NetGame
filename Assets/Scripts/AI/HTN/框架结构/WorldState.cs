@@ -110,15 +110,18 @@ public class WorldState : ScriptableObject, ISerializationCallbackReceiver
         return clone;
     }
 
-    public void ApplyEffect(Effect effect, bool isPlan = false)
+    public void ApplyEffect(List<Effect> effects, bool isPlan = false)
     {
-        Value value = GetValue(effect.worldStateName);
-        if (value != null)
+        if (effects == null && effects.Count == 0) return;
+        foreach (var effect in effects)
         {
-            var ChangeValue = StringConversionHelper.ConvertStringToType(effect.changeValue, value.value);
-            SetState(effect.worldStateName, ChangeValue, isPlan);
+            Value value = GetValue(effect.worldStateName);
+            if (value != null)
+            {
+                var ChangeValue = StringConversionHelper.ConvertStringToType(effect.changeValue, value.value);
+                SetState(effect.worldStateName, ChangeValue, isPlan);
+            }
         }
-
     }
 
     public override string ToString()

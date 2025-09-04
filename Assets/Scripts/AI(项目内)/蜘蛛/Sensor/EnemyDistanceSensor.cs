@@ -1,4 +1,5 @@
 ﻿
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyDistanceSensor : MonoBehaviour, ISensor
@@ -8,11 +9,14 @@ public class EnemyDistanceSensor : MonoBehaviour, ISensor
     private Agent agent;
     private GameObject enemy;
 
+    public LayerMask layer;
+
     public void Initialize(Agent agent)
     {
         this.agent = agent;
         enemy = GameObject.FindWithTag(enemyTag);
     }
+
 
     public void UpdateSensor()
     {
@@ -21,6 +25,25 @@ public class EnemyDistanceSensor : MonoBehaviour, ISensor
             //agent.doMain.state.SetState("enemyInRange", false);
             agent.state.SetState("敌人距离", float.MaxValue);
             return;
+        }
+        else
+        {
+            var cols = Physics.OverlapSphere(transform.position, detectionRange, layer);
+
+            float minDis = float.MaxValue;
+            GameObject enemy = this.enemy;
+            foreach (var item in cols)
+            {
+                float curDis = Vector3.Distance(item.transform.position, transform.position);
+                if(curDis< minDis)
+                {
+                    minDis = curDis;
+                    enemy = item.gameObject;
+                }
+            }
+
+            this.enemy = enemy;
+
         }
 
         float distance = Vector3.Distance(transform.position, enemy.transform.position);
@@ -36,5 +59,10 @@ public class EnemyDistanceSensor : MonoBehaviour, ISensor
         //{
         //    agent.worldState.SetState("enemyHealth", enemyHealthComponent.currentHealth);
         //}
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.DrawSphere(transform.position, detectionRange);
     }
 }

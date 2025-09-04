@@ -20,8 +20,8 @@ MonoBehaviour:
       compareValue: True
       comparisonOperator: 0
   _state: {fileID: 11400000, guid: 26fd2bac538689542965850ba81afdca, type: 2}
-  effect:
-    worldStateName: "\u9700\u8981\u4F11\u606F"
+  effects:
+  - worldStateName: "\u9700\u8981\u4F11\u606F"
     changeValue: False
   ActionName: Rest
   className: "\u8718\u86DB"

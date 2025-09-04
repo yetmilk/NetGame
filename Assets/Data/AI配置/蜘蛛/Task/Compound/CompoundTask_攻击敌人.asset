@@ -18,27 +18,6 @@ MonoBehaviour:
     conditions: []
   _state: {fileID: 11400000, guid: 26fd2bac538689542965850ba81afdca, type: 2}
   decompositionMethodReferences:
-  - groupName: "\u79FB\u52A8\u5230\u76EE\u6807\u653B\u51FB"
-    pairs:
-    - condition:
-        logicOperator: 0
-        conditions:
-        - variableName: "\u9700\u8981\u4F11\u606F"
-          compareValue: False
-          comparisonOperator: 0
-        - variableName: "\u654C\u4EBA\u8DDD\u79BB"
-          compareValue: 4
-          comparisonOperator: 4
-      tasks:
-      - {fileID: 11400000, guid: 7724c93a2e08b774a8b66c46ff0d0b5f, type: 2}
-    - condition:
-        logicOperator: 0
-        conditions:
-        - variableName: "\u654C\u4EBA\u8DDD\u79BB"
-          compareValue: 4
-          comparisonOperator: 5
-      tasks:
-      - {fileID: 11400000, guid: 817d4cce25d359e47abe9fd312301b87, type: 2}
   - groupName: "\u76F4\u63A5\u653B\u51FB"
     pairs:
     - condition:

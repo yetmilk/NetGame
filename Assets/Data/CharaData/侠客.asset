@@ -14,8 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxhealth: 100
   attackValue: 5
-  skillValue: 5
+  skillAttackValue: 0
   moveSpeed: 5
   parrySpeed: 20
   normalDefense: 5
   skillDefense: 5
+  skillValue: 10
+  parrySpendValue: 5
+  skillResumeSpeed: 1
+  skill1ResumeTime: 5
+  skill2ResumeTime: 5
+  skill3ResumeTime: 30
