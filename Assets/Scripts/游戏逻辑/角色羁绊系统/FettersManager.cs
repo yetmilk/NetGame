@@ -63,6 +63,7 @@ public class FettersManager : MonoBehaviour
 
         obj.GetComponent<RarebookUIObj>().Init(rareBook.bookName.ToString(), rareBook.description);
         curBooks.Add(rareBook);
+        SetRareBookToTarget();
     }
 
     public void AddRareBook(RareBook rareBook)
@@ -73,6 +74,7 @@ public class FettersManager : MonoBehaviour
 
         obj.GetComponent<RarebookUIObj>().Init(rareBook.bookName.ToString(), rareBook.description);
         curBooks.Add(rareBook);
+        SetRareBookToTarget();
     }
 }
 

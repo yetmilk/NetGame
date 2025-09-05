@@ -846,6 +846,37 @@ Transform:
   m_Father: {fileID: 5930584052903673194}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4585148152901442054
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4872719113202758371}
+  m_Layer: 0
+  m_Name: UIParent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4872719113202758371
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4585148152901442054}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.648, z: 0}
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6931991359062128444}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5186958659130360732
 GameObject:
   m_ObjectHideFlags: 0
@@ -1075,7 +1106,7 @@ Transform:
   m_GameObject: {fileID: 6226288817724146991}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 5331998285537489500}
@@ -1083,6 +1114,7 @@ Transform:
   - {fileID: 4710719888742802077}
   - {fileID: 7258798876867447731}
   - {fileID: 6309627719473410795}
+  - {fileID: 4872719113202758371}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1123,12 +1155,23 @@ MonoBehaviour:
     maxhealth: 0
     curHealth: 0
     attackValue: 0
-    skillValue: 0
+    skillAttackValue: 0
     moveSpeed: 0
     parrySpeed: 0
     normalDefense: 0
     skillDefense: 0
+    energyValue: 0
+    curEnergyValue: 0
+    parrySpendValue: 0
+    skillResumeSpeed: 0
+    skill1ResumeTime: 0
+    skill1ResumeTimer: 0
+    skill2ResumeTime: 0
+    skill2ResumeTimer: 0
+    skill3ResumeTime: 0
+    skill3ResumeTimer: 0
   controller: {fileID: 0}
+  uiParent: {fileID: 4872719113202758371}
 --- !u!114 &-381417188001770794
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1341,7 +1384,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9da9a517d6a6c9b41844d762ebe59c34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  doMainModule: {fileID: 11400000, guid: 0f71c67fbcb96ed49b377a603418ff3b, type: 2}
+  doMainModule: {fileID: 0}
   currentTask: {fileID: 0}
   isPlanning: 0
   replanInterval: 5

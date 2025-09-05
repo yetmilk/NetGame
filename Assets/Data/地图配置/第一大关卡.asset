@@ -38,7 +38,7 @@ MonoBehaviour:
   - nodeNum: 1
     nodeType: 06000000
     nodeBlueprint: {fileID: 11400000, guid: 1a14cb81488bee146b65b4871a91757e, type: 2}
-    randomizeEdges: 1
+    randomizeEdges: 0
   - nodeNum: 2
     nodeType: 
     nodeBlueprint: {fileID: 0}
@@ -62,8 +62,4 @@ MonoBehaviour:
   - nodeNum: 1
     nodeType: 04000000
     nodeBlueprint: {fileID: 11400000, guid: 504e6e3d6a198704bbe7e715c28a78f0, type: 2}
-    randomizeEdges: 0
-  - nodeNum: 1
-    nodeType: 06000000
-    nodeBlueprint: {fileID: 11400000, guid: 1a14cb81488bee146b65b4871a91757e, type: 2}
     randomizeEdges: 0

@@ -325,12 +325,12 @@ MonoBehaviour:
       actionName: Move
       MoveFunctionParam:
         useRig: 1
-        useLocalSpace: 0
+        useLocalSpace: 1
         useActionDir: 0
         moveDir: {x: 0, y: 0, z: -1}
         useDataSpeed: 0
         dataName: 1
-        speed: 3
+        speed: 2
       SubmitFuncParam:
         submitTag: 0
         actionId: 

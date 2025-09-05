@@ -7,7 +7,7 @@ using UnityEngine.AddressableAssets;
 
 public enum SceneName
 {
-    主菜单, 玩家房间, 地牢, 怪物房_火
+    主菜单, 玩家房间, 地牢, 怪物房_火, 初始_教学_火,
 }
 public class GameSceneManager : Singleton<GameSceneManager>
 {

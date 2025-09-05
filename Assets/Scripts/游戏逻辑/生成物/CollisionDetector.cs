@@ -80,7 +80,12 @@ public class CollisionDetector : MonoBehaviour
     public void ClearDetectionResults()
     {
         CurrentDetections.Clear();
+
         OnDetectionUpdated?.Invoke(CurrentDetections);
+    }
+    public void ResetDetection()
+    {
+        _processedColliders.Clear();
     }
 
     private void Update()

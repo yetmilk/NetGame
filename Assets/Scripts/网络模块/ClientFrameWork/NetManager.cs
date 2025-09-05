@@ -44,7 +44,7 @@ public static class NetManager
     static Thread dispatchThread;
 
     //每一次Update处理的消息量
-    readonly static int MAX_MESSAGE_FIRE = 60;
+    readonly static int MAX_MESSAGE_FIRE = 200;
 
     //是否启用心跳
     public static bool isUsePing = true;
