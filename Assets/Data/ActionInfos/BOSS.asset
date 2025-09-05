@@ -1,0 +1,182 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac33f3d1c00aa4d4cbc80173680c5a65, type: 3}
+  m_Name: BOSS
+  m_EditorClassIdentifier: 
+  characterActionClacify: 5
+  actionClacify: 0
+  ActionInfos:
+  - id: "\u5F85\u673A"
+    nextActionIds: "\u5F85\u673A"
+    animationName: {fileID: 7400000, guid: 981684e4d0e201d4784afb8d2f5b2234, type: 2}
+    audioInfos: []
+    actionLifeRange: {x: 0, y: 120}
+    frameIndexEvent: []
+    tag: 0
+    canCancelTags:
+    - canBeCancelRange:
+      - {x: 0, y: 120}
+      canCancelTag: 1
+      proprity: 1
+      nextActionStartPercent: 0
+    - canBeCancelRange:
+      - {x: 0, y: 120}
+      canCancelTag: 2
+      proprity: 2
+      nextActionStartPercent: 0
+    - canBeCancelRange:
+      - {x: 0, y: 120}
+      canCancelTag: 6
+      proprity: 3
+      nextActionStartPercent: 0
+    - canBeCancelRange:
+      - {x: 0, y: 120}
+      canCancelTag: 7
+      proprity: 4
+      nextActionStartPercent: 0
+    priority: 0
+  - id: "\u8FD1\u6218\u8F7B\u51FB"
+    nextActionIds: "\u5F85\u673A"
+    animationName: {fileID: 7400000, guid: e19f4d848ab834b4bade51d49cb08109, type: 2}
+    audioInfos: []
+    actionLifeRange: {x: 0, y: 60}
+    frameIndexEvent: []
+    tag: 2
+    canCancelTags:
+    - canBeCancelRange:
+      - {x: 0, y: 60}
+      canCancelTag: 7
+      proprity: 0
+      nextActionStartPercent: 0
+    priority: 5
+  - id: "\u8FD1\u6218\u91CD\u51FB"
+    nextActionIds: "\u5F85\u673A"
+    animationName: {fileID: 7400000, guid: 840a4ea536c515642a1e0d2bade45e35, type: 2}
+    audioInfos: []
+    actionLifeRange: {x: 0, y: 60}
+    frameIndexEvent: []
+    tag: 2
+    canCancelTags:
+    - canBeCancelRange:
+      - {x: 0, y: 60}
+      canCancelTag: 7
+      proprity: 0
+      nextActionStartPercent: 0
+    priority: 5
+  - id: "\u543C\u53EB"
+    nextActionIds: "\u51B2\u523A"
+    animationName: {fileID: 7400000, guid: ba0bc6e7feb92c7408ce512deedb0b3f, type: 2}
+    audioInfos: []
+    actionLifeRange: {x: 0, y: 120}
+    frameIndexEvent: []
+    tag: 2
+    canCancelTags:
+    - canBeCancelRange:
+      - {x: 0, y: 120}
+      canCancelTag: 7
+      proprity: 0
+      nextActionStartPercent: 0
+    priority: 5
+  - id: "\u51B2\u523A"
+    nextActionIds: "\u5F85\u673A"
+    animationName: {fileID: 7400000, guid: 01568e8cc77b0e4418f69ca60af5c9cb, type: 2}
+    audioInfos: []
+    actionLifeRange: {x: 0, y: 60}
+    frameIndexEvent: []
+    tag: 2
+    canCancelTags:
+    - canBeCancelRange:
+      - {x: 0, y: 60}
+      canCancelTag: 7
+      proprity: 0
+      nextActionStartPercent: 0
+    priority: 5
+  - id: "\u540E\u8DF3"
+    nextActionIds: "\u5F85\u673A"
+    animationName: {fileID: 7400000, guid: 24f2dd3609443ab4695c8fb306f1ab17, type: 2}
+    audioInfos: []
+    actionLifeRange: {x: 0, y: 60}
+    frameIndexEvent: []
+    tag: 2
+    canCancelTags:
+    - canBeCancelRange:
+      - {x: 0, y: 60}
+      canCancelTag: 7
+      proprity: 0
+      nextActionStartPercent: 0
+    priority: 6
+  - id: "\u8FDC\u7A0B\u653B\u51FB"
+    nextActionIds: "\u5F85\u673A"
+    animationName: {fileID: 7400000, guid: 6ecf6fed9f6afb348ab76b7c0a84c239, type: 2}
+    audioInfos: []
+    actionLifeRange: {x: 0, y: 76}
+    frameIndexEvent: []
+    tag: 2
+    canCancelTags:
+    - canBeCancelRange:
+      - {x: 0, y: 76}
+      canCancelTag: 7
+      proprity: 0
+      nextActionStartPercent: 0
+    priority: 5
+  - id: "\u79FB\u52A8"
+    nextActionIds: "\u5F85\u673A"
+    animationName: {fileID: 7400000, guid: df2bf4b0f973c674a9c61f4395327c9a, type: 2}
+    audioInfos: []
+    actionLifeRange: {x: 0, y: 60}
+    frameIndexEvent: []
+    tag: 1
+    canCancelTags:
+    - canBeCancelRange:
+      - {x: 0, y: 60}
+      canCancelTag: 2
+      proprity: 1
+      nextActionStartPercent: 0
+    - canBeCancelRange:
+      - {x: 0, y: 60}
+      canCancelTag: 6
+      proprity: 2
+      nextActionStartPercent: 0
+    - canBeCancelRange:
+      - {x: 0, y: 60}
+      canCancelTag: 7
+      proprity: 3
+      nextActionStartPercent: 0
+    - canBeCancelRange:
+      - {x: 0, y: 60}
+      canCancelTag: 0
+      proprity: 0
+      nextActionStartPercent: 0
+    priority: 1
+  - id: "\u53D7\u51FB"
+    nextActionIds: "\u5F85\u673A"
+    animationName: {fileID: 7400000, guid: 09d1ed27e76e77e45b31a6a1b118991a, type: 2}
+    audioInfos: []
+    actionLifeRange: {x: 0, y: 40}
+    frameIndexEvent: []
+    tag: 6
+    canCancelTags:
+    - canBeCancelRange:
+      - {x: 0, y: 40}
+      canCancelTag: 7
+      proprity: 0
+      nextActionStartPercent: 0
+    priority: 5
+  - id: "\u6B7B\u4EA1"
+    nextActionIds: "\u5F85\u673A"
+    animationName: {fileID: 7400000, guid: 20a241f018b0bff4eab9152c21f26920, type: 2}
+    audioInfos: []
+    actionLifeRange: {x: 0, y: 78}
+    frameIndexEvent: []
+    tag: 7
+    canCancelTags: []
+    priority: 10
