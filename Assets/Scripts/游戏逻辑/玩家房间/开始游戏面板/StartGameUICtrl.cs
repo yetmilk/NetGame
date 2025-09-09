@@ -11,13 +11,18 @@ public class StartGameUICtrl : MonoBehaviour
     public Button startGameBtn;
     public TMP_Text curplayerText;
     public TMP_Text roomMemberText;
+    public Button learnLevelBtn;
+
 
     public int curPlayerNum = 0;
     public int roomMemberNum = 0;
 
     private void Start()
     {
+        startGameBtn = transform.GetChild(0).GetComponent<Button>();
+        learnLevelBtn = transform.GetChild(1).GetComponent<Button>();
         startGameBtn.onClick.AddListener(OnStartGAmeBtnClick);
+        learnLevelBtn.onClick.AddListener(OnLearnBtnClicked);
         OnRoomUpdate();
         RoomManager.Instance.OnRoomUpdate += OnRoomUpdate;
     }
@@ -45,8 +50,20 @@ public class StartGameUICtrl : MonoBehaviour
         curplayerText.text = curPlayerNum.ToString();
     }
 
-    private void OnStartGAmeBtnClick()
+    public void OnStartGAmeBtnClick()
     {
         BattleManager.Instance.StarGame();
+    }
+
+    private void OnLearnBtnClicked()
+    {
+        if (RoomManager.Instance.curRoom.roomMembers.Count == 1)
+        {
+            GameSceneManager.Instance.LoadSceneLocal(SceneName.初始_教学_火);
+        }
+        else
+        {
+            TipManager.Instance.ShowTip(TipType.LogTip, "房间有其他玩家，无法进入教学关卡", null, 3f);
+        }
     }
 }

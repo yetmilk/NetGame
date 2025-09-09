@@ -34164,8 +34164,8 @@ Transform:
   m_GameObject: {fileID: 5971203435228136222}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.5, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2551150032712820049}
   - {fileID: 3533792829121685772}
@@ -34192,7 +34192,7 @@ MonoBehaviour:
   useBox: 1
   useRay: 0
   sphereRadius: 1.32
-  boxSize: {x: 1, y: 1, z: 2}
+  boxSize: {x: 5, y: 1, z: 5}
   boxCenter: {x: 0, y: 0, z: 1}
   boxRotation: {x: 0, y: 0, z: 0}
   rayDirection: {x: 0, y: 0, z: 1}
@@ -34210,6 +34210,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca5da8c19ab424a45abf1595528ff894, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  netId: 
+  netFlag: 
+  lifeTime: 0.5
+  detector: {fileID: 0}
 --- !u!1 &6238066411134263459
 GameObject:
   m_ObjectHideFlags: 0
@@ -48798,6 +48802,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a960bc488c2f3048a90116f91a3eaea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  netId: 
+  netFlag: 
+  lifeTime: 0.5
   _SafetyDestroy: 3
   _DestoyDelay: 1
   _LocationEffect: {fileID: 1322050110289944647}
@@ -58525,6 +58532,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a960bc488c2f3048a90116f91a3eaea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  netId: 
+  netFlag: 
+  lifeTime: 0.5
   _SafetyDestroy: 3
   _DestoyDelay: 1
   _LocationEffect: {fileID: 8375196514264607540}

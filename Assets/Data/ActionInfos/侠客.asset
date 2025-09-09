@@ -211,7 +211,7 @@ MonoBehaviour:
       RigidbodyParam:
         isKenamicActive: 0
         colliderActive: 0
-    - eventLifeRange: {x: 1, y: 2}
+    - eventLifeRange: {x: 0, y: 40}
       actionName: Move
       MoveFunctionParam:
         useRig: 1
@@ -769,7 +769,7 @@ MonoBehaviour:
     nextActionIds: "\u6280\u80FD1"
     animationName: {fileID: 7400000, guid: ec620f44f626f164a97fd64ec76afdc3, type: 2}
     audioInfos: []
-    actionLifeRange: {x: 0, y: 30}
+    actionLifeRange: {x: 0, y: 60}
     frameIndexEvent:
     - eventLifeRange: {x: 0, y: 30}
       actionName: Rotate
@@ -807,7 +807,7 @@ MonoBehaviour:
     tag: 11
     canCancelTags:
     - canBeCancelRange:
-      - {x: 0, y: 10}
+      - {x: 0, y: 60}
       canCancelTag: 6
       proprity: 2
       nextActionStartPercent: 0.2
@@ -817,12 +817,12 @@ MonoBehaviour:
       proprity: 3
       nextActionStartPercent: 0.25
     - canBeCancelRange:
-      - {x: 0, y: 10}
+      - {x: 0, y: 60}
       canCancelTag: 8
       proprity: 1
       nextActionStartPercent: 0
     - canBeCancelRange:
-      - {x: 0, y: 10}
+      - {x: 0, y: 60}
       canCancelTag: 11
       proprity: 0
       nextActionStartPercent: 0
@@ -869,17 +869,17 @@ MonoBehaviour:
     tag: 8
     canCancelTags:
     - canBeCancelRange:
-      - {x: 0, y: 22}
+      - {x: 0, y: 30}
       canCancelTag: 6
       proprity: 1
       nextActionStartPercent: 0.2
     - canBeCancelRange:
-      - {x: 0, y: 22}
+      - {x: 0, y: 30}
       canCancelTag: 7
       proprity: 2
       nextActionStartPercent: 0.25
     - canBeCancelRange:
-      - {x: 0, y: 22}
+      - {x: 0, y: 30}
       canCancelTag: 8
       proprity: 0
       nextActionStartPercent: 0.25
@@ -888,7 +888,7 @@ MonoBehaviour:
     nextActionIds: "\u6280\u80FD2_\u8D77\u52BF"
     animationName: {fileID: 7400000, guid: 03f353d7656bea148967c9ddbf304366, type: 2}
     audioInfos: []
-    actionLifeRange: {x: 0, y: 30}
+    actionLifeRange: {x: 0, y: 60}
     frameIndexEvent:
     - eventLifeRange: {x: 1, y: 30}
       actionName: Rotate
@@ -926,22 +926,22 @@ MonoBehaviour:
     tag: 12
     canCancelTags:
     - canBeCancelRange:
-      - {x: 0, y: 30}
+      - {x: 0, y: 60}
       canCancelTag: 6
       proprity: 2
-      nextActionStartPercent: 0.2
+      nextActionStartPercent: 0
     - canBeCancelRange:
-      - {x: 0, y: 30}
+      - {x: 0, y: 60}
       canCancelTag: 7
       proprity: 3
-      nextActionStartPercent: 0.25
+      nextActionStartPercent: 0
     - canBeCancelRange:
-      - {x: 0, y: 30}
+      - {x: 0, y: 60}
       canCancelTag: 9
       proprity: 1
       nextActionStartPercent: 0
     - canBeCancelRange:
-      - {x: 0, y: 30}
+      - {x: 0, y: 60}
       canCancelTag: 12
       proprity: 0
       nextActionStartPercent: 0
@@ -996,12 +996,12 @@ MonoBehaviour:
       - {x: 0, y: 50}
       canCancelTag: 7
       proprity: 2
-      nextActionStartPercent: 0.25
+      nextActionStartPercent: 0
     - canBeCancelRange:
       - {x: 0, y: 50}
       canCancelTag: 9
       proprity: 0
-      nextActionStartPercent: 0.25
+      nextActionStartPercent: 0
     priority: 3
   - id: "\u6280\u80FD3_\u8D77\u52BF"
     nextActionIds: "\u5F85\u673A"
@@ -1048,5 +1048,5 @@ MonoBehaviour:
       - {x: 0, y: 50}
       canCancelTag: 7
       proprity: 1
-      nextActionStartPercent: 0.25
+      nextActionStartPercent: 0
     priority: 3

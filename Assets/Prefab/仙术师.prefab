@@ -6113,8 +6113,8 @@ GameObject:
   - component: {fileID: 566339580452865336}
   - component: {fileID: 7708241647698095814}
   - component: {fileID: 4237735331302499700}
-  - component: {fileID: 7182450816698314688}
   - component: {fileID: 5955029897107398476}
+  - component: {fileID: -2747294842818833562}
   m_Layer: 0
   m_Name: "\u4ED9\u672F\u5E08"
   m_TagString: Untagged
@@ -6227,12 +6227,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4de81e4006bb154aabdda97b48a0b2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data:
-    charaData: {fileID: 0}
+  dataObj:
+    maxhealth: 0
     curHealth: 0
-    faceDiraction: {x: 0, y: 0, z: 0}
-    moveDir: {x: 0, y: 0, z: 0}
-    rotationSpeed: 0
+    attackValue: 0
+    skillAttackValue: 0
+    moveSpeed: 0
+    parrySpeed: 0
+    normalDefense: 0
+    skillDefense: 0
+    energyValue: 0
+    curEnergyValue: 0
+    parrySpendValue: 0
+    skillResumeSpeed: 0
+    skill1ResumeTime: 0
+    skill1ResumeTimer: 0
+    skill2ResumeTime: 0
+    skill2ResumeTimer: 0
+    skill3ResumeTime: 0
+    skill3ResumeTimer: 0
+  controller: {fileID: 0}
+  uiParent: {fileID: 0}
 --- !u!54 &566339580452865334
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -6390,21 +6405,9 @@ MonoBehaviour:
   selfActionCtrl: {fileID: 0}
   curCharaData: {fileID: 0}
   charaTag: 1
-  charaType: 0
   audioSource: {fileID: 0}
   rb: {fileID: 0}
---- !u!114 &7182450816698314688
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6360968229610983836}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9fe0b70c3ffe0074e92c9ff9c3e31918, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  campFlag: {fileID: 0}
 --- !u!114 &5955029897107398476
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6417,6 +6420,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e94736d487a8cc44e97c85e14f62fbcd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-2747294842818833562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6360968229610983836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fe0b70c3ffe0074e92c9ff9c3e31918, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  positionThreshold: 0.5
+  rotationThreshold: 1
+  minSyncInterval: 0.5
 --- !u!1 &6361539438073912535
 GameObject:
   m_ObjectHideFlags: 0

@@ -48,8 +48,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
-  checkInterval: 0
+    m_Bits: 64
+  detectInterval: 0
+  useSphere: 1
+  useBox: 0
+  useRay: 0
+  sphereRadius: 0.5
+  boxSize: {x: 1, y: 1, z: 1}
+  boxCenter: {x: 0, y: 0, z: 0}
+  boxRotation: {x: 0, y: 0, z: 0}
+  rayDirection: {x: 0, y: 0, z: 1}
+  rayDistance: 5
+  rayWidth: 0
 --- !u!135 &3653779609316810268
 SphereCollider:
   m_ObjectHideFlags: 0

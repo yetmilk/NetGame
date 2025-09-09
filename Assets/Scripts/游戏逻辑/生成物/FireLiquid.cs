@@ -13,6 +13,8 @@ public class FireLiquid : MonoBehaviour
     // 记录当前在触发范围内的目标
     private HashSet<Collider> _targetsInRange = new HashSet<Collider>();
 
+    public BuffName addBuffName = BuffName.灼烧;
+
     private void Awake()
     {
         // 确保碰撞体是触发器
@@ -70,12 +72,12 @@ public class FireLiquid : MonoBehaviour
         if (target == null) return;
 
         AddBuffInfo addBuffInfo = new AddBuffInfo(
-            BuffName.灼烧.ToString(),
+            addBuffName.ToString(),
             target,
             target
         );
 
-        if (target.IsLocal&&target.selfActionCtrl.curActionObj.curActionInfo.tag!=ActionTag.Parry)
+        if (target.IsLocal && target.selfActionCtrl.curActionObj.curActionInfo.tag != ActionTag.Parry)
         {
             target.curCharaData.buffController.AddBuff(addBuffInfo);
         }

@@ -14,6 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: {fileID: 11400000, guid: 26fd2bac538689542965850ba81afdca, type: 2}
   rootTasks:
-  - {fileID: 11400000, guid: d6ef6de9564517240b1b7e7cc43eb67f, type: 2}
-  - {fileID: 11400000, guid: 7724c93a2e08b774a8b66c46ff0d0b5f, type: 2}
   - {fileID: 11400000, guid: 817d4cce25d359e47abe9fd312301b87, type: 2}

@@ -12,10 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0f75173204ce304f932a68990e15937, type: 3}
   m_Name: "\u8718\u86DB"
   m_EditorClassIdentifier: 
-  maxhealth: 100
+  maxhealth: 50
   attackValue: 5
-  skillValue: 5
+  skillAttackValue: 0
   moveSpeed: 5
   parrySpeed: 20
   normalDefense: 5
   skillDefense: 5
+  skillValue: 5
+  parrySpendValue: 0
+  skillResumeSpeed: 0
+  skill1ResumeTime: 0
+  skill2ResumeTime: 0
+  skill3ResumeTime: 0

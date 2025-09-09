@@ -37,6 +37,14 @@ MonoBehaviour:
     m_Address: "Scene_\u521D\u59CB_\u6559\u5B66_\u706B"
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 99c9720ab356a0642a771bea13969a05
+    m_Address: "Scene_\u602A\u7269\u623F_\u6728"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 82837f5a1f02e40498b4463929f3644a
+    m_Address: "Scene_\u602A\u7269\u623F_\u6C34"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: b498f2f0c88c8af46a2b8ee8949bf3f3, type: 2}
   m_SchemaSet:

@@ -444,7 +444,7 @@ MonoBehaviour:
     nextActionIds: "\u5F85\u673A"
     animationName: {fileID: 7400000, guid: b84453309a91cb840b9fa6932388e1d7, type: 2}
     audioInfos: []
-    actionLifeRange: {x: 0, y: 50}
+    actionLifeRange: {x: 0, y: 120}
     frameIndexEvent:
     - eventLifeRange: {x: 0, y: 50}
       actionName: Rotate
@@ -482,8 +482,13 @@ MonoBehaviour:
     tag: 2
     canCancelTags:
     - canBeCancelRange:
-      - {x: 0, y: 50}
+      - {x: 0, y: 120}
       canCancelTag: 7
+      proprity: 1
+      nextActionStartPercent: 0
+    - canBeCancelRange:
+      - {x: 0, y: 120}
+      canCancelTag: 6
       proprity: 0
       nextActionStartPercent: 0
     priority: 5

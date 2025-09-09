@@ -32,7 +32,7 @@ public class CharacterInput : MonoBehaviour
         action.GamePlay.Skill3.started += Skill3_started;
         action.GamePlay.Skill3.canceled += Skill3_canceled;
         EventCenter.Subscribe(EventCenter.EventId.LogicFrameUpdate, LogicUpdate);
-        NetManager.AddMsgListener("MsgInputCommand", ExcuteCommand);
+        NetManager.AddMsgListener("MsgCmdCollection", ExcuteCommand);
     }
 
 
@@ -128,23 +128,27 @@ public class CharacterInput : MonoBehaviour
 
     public void ExcuteCommand(MsgBase msgBase)
     {
-        MsgInputCommand msg = msgBase as MsgInputCommand;
+        MsgCmdCollection msg = msgBase as MsgCmdCollection;
 
-        if (msg.NetId == character.NetID)
+        foreach (var cmd in msg.cmds)
         {
-            if (msg.type != -1)
+            if (cmd.NetId == character.NetID)
             {
-                Vector3 dir = new Vector3(msg.directionX, msg.directionY, msg.directionZ);
-                InputCommand command = new InputCommand((InputCommandType)msg.type, dir);
-                commandCtrl.HandleInputCommand(command);
-            }
-            else
-            {
-                Vector3 dir = new Vector3(msg.directionX, msg.directionY, msg.directionZ);
-                commandCtrl.HandleInputCommand(msg.actionName, (ActionTag)msg.actionTag, dir);
-            }
+                if (cmd.type != -1)
+                {
+                    Vector3 dir = new Vector3(cmd.directionX, cmd.directionY, cmd.directionZ);
+                    InputCommand command = new InputCommand((InputCommandType)cmd.type, dir);
+                    commandCtrl.HandleInputCommand(command);
+                }
+                else
+                {
+                    Vector3 dir = new Vector3(cmd.directionX, cmd.directionY, cmd.directionZ);
+                    commandCtrl.HandleInputCommand(cmd.actionName, (ActionTag)cmd.actionTag, dir);
+                }
 
+            }
         }
+
 
     }
 
@@ -175,7 +179,7 @@ public class CharacterInput : MonoBehaviour
         action.GamePlay.Skill2.canceled -= Skill2_canceled;
         action.GamePlay.Skill3.started -= Skill3_started;
         action.GamePlay.Skill3.canceled -= Skill3_canceled;
-        NetManager.RemoveMsgListener("MsgInputCommand", ExcuteCommand);
+        NetManager.RemoveMsgListener("MsgCmdCollection", ExcuteCommand);
     }
 
 }

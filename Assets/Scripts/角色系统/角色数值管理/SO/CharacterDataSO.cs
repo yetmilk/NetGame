@@ -168,6 +168,24 @@ public class CharacterDataObj
         skill3ResumeTime = obj.skill3ResumeTime;
     }
 
+    public void UpdateData(CharacterDataObj obj)
+    {
+        if (obj == null) return;
+        curHealth = obj.curHealth;
+        maxhealth = obj.maxhealth;
+        attackValue = obj.attackValue;
+        energyValue = obj.energyValue;
+        moveSpeed = obj.moveSpeed;
+        parrySpeed = obj.parrySpeed;
+        normalDefense = obj.normalDefense;
+        skillDefense = obj.skillDefense;
+        skillAttackValue = obj.skillAttackValue;
+        skillResumeSpeed = obj.skillResumeSpeed;
+        parrySpendValue = obj.parrySpendValue;
+        skill1ResumeTime = obj.skill1ResumeTime;
+        skill2ResumeTime = obj.skill2ResumeTime;
+        skill3ResumeTime = obj.skill3ResumeTime;
+    }
     public float GetDataByEnum(CharaDataEnum enumValue)
     {
         switch (enumValue)

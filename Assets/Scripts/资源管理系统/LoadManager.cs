@@ -1,4 +1,5 @@
 
+using Map;
 using System;
 using System.Collections.Generic;
 using UnityEditor;
@@ -20,6 +21,7 @@ public class LoadManager : Singleton<LoadManager>
         LoadResourceByLabel<ProbabilityConfig>("ProbabilityConfig");
         LoadResourceByLabel<BuffModule>("BuffModule");
         LoadResourceByLabel<RareBook>("Rarebook");
+        LoadResourceByLabel<MapConfig>("MapConfig");
 
         NetManager.AddMsgListener("MsgInstantiateObj", InstantiateFromServer);
     }

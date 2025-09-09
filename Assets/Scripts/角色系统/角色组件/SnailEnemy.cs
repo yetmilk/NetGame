@@ -24,7 +24,17 @@ public class SnailEnemy : CharacterController
         if (!agent.GetComponent<NetMonobehavior>().IsLocal) return;
         Vector3 targetPos = agent.state.GetState<Vector3>("敌人位置");
         PlayerInputManager.Instance.HandleInput(new InputCommand(InputCommandType.普通攻击, targetPos), agent.GetComponent<NetMonobehavior>().NetID);
-        onComplete?.Invoke();
+        agent.GetComponent<CharacterController>().selfActionCtrl.OnActionExit += (a, b, c) =>
+        {
+            if (a == ActionTag.NormalAttack)
+                onComplete?.Invoke();
+        };
+
     }
     #endregion
+
+    protected override void OnAttackUpdate(ActionObj curActionObj)
+    {
+        base.OnAttackUpdate(curActionObj);
+    }
 }

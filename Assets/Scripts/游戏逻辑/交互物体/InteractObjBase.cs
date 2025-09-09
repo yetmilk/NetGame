@@ -52,4 +52,8 @@ public class InteractObjBase : MonoBehaviour
 
         }
     }
+    private void OnDestroy()
+    {
+        PlayerInputManager.Instance.action.GamePlay.Interact.started -= Interact_started;
+    }
 }

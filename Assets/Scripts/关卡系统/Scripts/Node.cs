@@ -6,6 +6,7 @@ using UnityEngine;
 
 namespace Map
 {
+    [System.Serializable]
     public class Node
     {
         // 节点对应的二维整数坐标点

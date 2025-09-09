@@ -14,37 +14,39 @@ public class EnemyDistanceSensor : MonoBehaviour, ISensor
     public void Initialize(Agent agent)
     {
         this.agent = agent;
-        enemy = GameObject.FindWithTag(enemyTag);
+        //enemy = GameObject.FindWithTag(enemyTag);
     }
 
 
     public void UpdateSensor()
     {
-        if (enemy == null)
+
+        var cols = Physics.OverlapSphere(transform.position, detectionRange, layer);
+        float minDis = float.MaxValue;
+        GameObject enemy = null;
+        foreach (var item in cols)
         {
-            //agent.doMain.state.SetState("enemyInRange", false);
-            agent.state.SetState("敌人距离", float.MaxValue);
-            return;
+            float curDis = Vector3.Distance(item.transform.position, transform.position);
+            if (curDis < minDis && item.CompareTag("Player"))
+            {
+                minDis = curDis;
+                enemy = item.gameObject;
+
+            }
+        }
+        if (enemy != null)
+        {
+            agent.state.SetState("有敌人", true);
+            this.enemy = enemy;
         }
         else
         {
-            var cols = Physics.OverlapSphere(transform.position, detectionRange, layer);
-
-            float minDis = float.MaxValue;
-            GameObject enemy = this.enemy;
-            foreach (var item in cols)
-            {
-                float curDis = Vector3.Distance(item.transform.position, transform.position);
-                if(curDis< minDis)
-                {
-                    minDis = curDis;
-                    enemy = item.gameObject;
-                }
-            }
-
-            this.enemy = enemy;
-
+            agent.state.SetState("敌人距离", float.MaxValue);
+            agent.state.SetState("有敌人", false);
+            return;
         }
+
+        if (enemy == null) return;
 
         float distance = Vector3.Distance(transform.position, enemy.transform.position);
         bool inRange = distance <= detectionRange;

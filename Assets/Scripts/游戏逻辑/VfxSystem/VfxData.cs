@@ -23,7 +23,7 @@ namespace PixPlays.ElementalVFX
         private Vector3 _groundPos;
         public DamageInfo damageInfo;
 
-        public VfxData(Vector3 source, Vector3 target, float duration, float radius, DamageInfo damageInfo)
+        public VfxData(Vector3 source = default, Vector3 target = default, float duration = 100, float radius = 0, DamageInfo damageInfo = default)
         {
             _radius = radius;
             _sourcePos = source;

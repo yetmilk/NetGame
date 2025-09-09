@@ -35,13 +35,16 @@ namespace Map
         private void Start()
         {
 
-            Init();
+            RoomHostInit();
 
         }
 
-        protected void Init()
+        protected void RoomHostInit()
         {
+            if (RoomManager.Instance.curRoom.hostId != PlayerManager.Instance.selfId) return;
 
+            var mapconfigs = LoadManager.Instance.GetResourcesByLabel<MapConfig>("MapConfig");
+            configs = mapconfigs;
             //初始化章节
             for (int i = 0; i < configs.Count; i++)
             {
@@ -59,7 +62,7 @@ namespace Map
 
         public Map GenerateNewChapter(int index)
         {
-            Map map = MapGenerator.GetMap(Utility.ObjectCloner.Clone<MapConfig>(configs[index]));
+            Map map = MapGenerator.GetMap(Utility.ObjectCloner.Clone(configs[index]));
 
             for (int i = 0; i < map.LayerCount; i++)
             {
@@ -92,26 +95,26 @@ namespace Map
         public void GoToNextLevel()
         {
 
-            curProgress.level++;
-            if (curProgress.level >= progress.level)
+            if (RoomManager.Instance.curRoom.hostId == PlayerManager.Instance.selfId)
             {
-                curProgress.level = 0;
-                curProgress.chapter++;
-                if (curProgress.chapter >= progress.chapter)
+                curProgress.level++;
+                if (curProgress.level >= progress.level)
                 {
-                    ChapterEnd();
-                    return;
+                    curProgress.level = 0;
+                    curProgress.chapter++;
+                    if (curProgress.chapter >= progress.chapter)
+                    {
+                        ChapterEnd();
+                        return;
+                    }
+
+                    CurrentMap = chapterToMap[curProgress.chapter];
+
+
                 }
-
-                CurrentMap = chapterToMap[curProgress.chapter];
-
-
             }
-            TipManager.Instance.ShowTip(TipType.切换房间提示, "");
-
-
-
-
+            SetRoom(0);
+            //TipManager.Instance.ShowTip(TipType.切换房间提示, "");
         }
 
         public void SetRoom(int index)
@@ -120,8 +123,8 @@ namespace Map
 
             GameSceneManager.Instance.LoadSceneToServer(obj.info.scene, () =>
             {
-                GameObject.FindFirstObjectByType<LevelController>().Init(obj);
-                curRoom = obj;
+                //GameObject.FindFirstObjectByType<LevelController>().Init(obj);
+                //curRoom = obj;
             });
         }
 
@@ -132,7 +135,7 @@ namespace Map
             GameSceneManager.Instance.LoadSceneToServer(SceneName.玩家房间);
 
             chapterToMap.Clear();
-            Init();
+            RoomHostInit();
         }
         public BlueprintObj[] InitRoom(Node[] nodes)
         {

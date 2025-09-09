@@ -68,16 +68,16 @@ public class GameNetManager : Singleton<GameNetManager>
 
     public NetMonobehavior GetNetObject(string netId)
     {
-        if(netIdToObject.ContainsKey(netId))
+        if (netIdToObject.ContainsKey(netId))
         {
             return netIdToObject[netId];
         }
         return null;
     }
 
-    public void SubbmitNetObject(string netId,NetMonobehavior netObj)
+    public void SubbmitNetObject(string netId, NetMonobehavior netObj)
     {
-        if(!netIdToObject.ContainsKey(netId))
+        if (!netIdToObject.ContainsKey(netId))
         {
             netIdToObject.Add(netId, netObj);
         }
@@ -89,7 +89,7 @@ public class GameNetManager : Singleton<GameNetManager>
 
     public void UnSubmitNetObj(string netId)
     {
-        if(netIdToObject.ContainsKey(netId))
+        if (netIdToObject.ContainsKey(netId))
         {
             netIdToObject.Remove(netId);
         }

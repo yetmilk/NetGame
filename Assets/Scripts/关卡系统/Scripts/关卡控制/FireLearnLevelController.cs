@@ -209,8 +209,21 @@ public class FireLearnLevelController : LevelController
     {
         targetAnimator.CrossFade("A_关卡目标_目标4", 0);
         textComponent.ShowText("在将每个关卡的怪物清理完毕后，你将会获得宝箱中珍藏的秘籍");
-        box.Rotate(new Vector3(-120, 0, 0));
+        float targetAngleX = -90f;
+        float angleTolerance = 0.5f;
+        while (true)
+        {
+            box.Rotate(new Vector3(-5, 0, 0));
 
+            float currentAngleX = box.eulerAngles.x;
+            if (currentAngleX > 180) currentAngleX -= 360;
+
+            if (Mathf.Abs(currentAngleX - targetAngleX) <= angleTolerance)
+            {
+                box.eulerAngles = new Vector3(targetAngleX, 0, 0);
+                break;
+            }
+        }
         BattleManager.Instance.FettersManager.AddRareBook(RareBookName.凝水身法);
         yield return wait4s;
         textComponent.ShowText("你可以通过按下Tab键查看当前所持有的秘籍，再次按下Tab关闭面板");
@@ -238,7 +251,7 @@ public class FireLearnLevelController : LevelController
             yield return null;
         }
 
-        textComponent.ShowText("本次教学关卡的所有内容已经结束，即将返回玩家房间");
+        textComponent.ShowText("本次教学关卡的所有内容已经结束，即将返回玩家房间", true);
 
         yield return wait4s;
         GameSceneManager.Instance.LoadSceneLocal(SceneName.玩家房间);

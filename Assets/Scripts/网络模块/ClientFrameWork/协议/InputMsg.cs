@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class MsgInputCommand : MsgBase
 {
     public MsgInputCommand(int type, Vector3 direction)
@@ -30,4 +31,11 @@ public class MsgInputCommand : MsgBase
 
 
 
+}
+
+public class MsgCmdCollection : MsgBase
+{
+    public MsgCmdCollection() { protoName = "MsgCmdCollection"; }
+
+    public MsgInputCommand[] cmds;
 }

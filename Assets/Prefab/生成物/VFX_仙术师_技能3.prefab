@@ -21759,6 +21759,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02a3cd4c2493c53408a8a696f7e89ee5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  netId: 
+  netFlag: 
   lifeTime: 0.5
 --- !u!114 &-5904553319347961828
 MonoBehaviour:
@@ -21772,6 +21774,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fe0b70c3ffe0074e92c9ff9c3e31918, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  positionThreshold: 0.5
+  rotationThreshold: 1
+  minSyncInterval: 0.1
 --- !u!1 &8823902326937846734
 GameObject:
   m_ObjectHideFlags: 0

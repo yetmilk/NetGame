@@ -5,6 +5,7 @@ using UnityEngine;
 
 namespace Map
 {
+    [System.Serializable]
     public class Map
     {
         public List<Node> nodes;
@@ -43,6 +44,7 @@ namespace Map
 
         public Node[] GetLayerNodes(int layerIndex)
         {
+            if (!layerNodesDic.ContainsKey(layerIndex)) return null;
             return layerNodesDic[layerIndex].ToArray();
         }
 

@@ -21,7 +21,7 @@ MonoBehaviour:
   skillDefense: 5
   skillValue: 10
   parrySpendValue: 5
-  skillResumeSpeed: 1
+  skillResumeSpeed: 2
   skill1ResumeTime: 5
   skill2ResumeTime: 5
   skill3ResumeTime: 30

@@ -29,14 +29,18 @@ public class SpiderEnemy : CharacterController
         PlayerInputManager.Instance.HandleInput(new InputCommand(InputCommandType.普通攻击, targetPos), agent.GetComponent<NetMonobehavior>().NetID);
         onComplete?.Invoke();
     }
+
+    static bool isRest = false;
     [SelectableMethod]
     public static void Rest(Agent agent, Action onComplete)
     {
         if (!agent.GetComponent<NetMonobehavior>().IsLocal) return;
         agent.StartCoroutine(RestCoro(agent, onComplete));
+
     }
     static IEnumerator RestCoro(Agent agent, Action onComplete)
     {
+        agent.state.SetState("正在休息", true);
         float maxRestTime = (float)agent.state.GetState<double>("休息时间");
         float startTime = Time.time;
 
@@ -62,6 +66,7 @@ public class SpiderEnemy : CharacterController
 
             yield return null;
         }
+        agent.state.SetState("正在休息", false);
 
         // 休息结束，重置状态
         agent.state.SetState("当前休息时间", 0.0);
@@ -76,7 +81,7 @@ public class SpiderEnemy : CharacterController
     {
         base.OnAttackEnter(curActionObj);
 
-        
+
 
 
     }
@@ -85,7 +90,7 @@ public class SpiderEnemy : CharacterController
     {
         base.OnAttackUpdate(curActionObj);
 
-        if(curActionObj.curLifeFrame ==10&&IsLocal)
+        if (curActionObj.curLifeFrame == 10 && IsLocal)
         {
             var go = LoadManager.Instance.NetInstantiate("VFX_蜘蛛_攻击");
 

@@ -21,6 +21,15 @@ namespace PixPlays.ElementalVFX
         private bool _isCollided = false;
         private VfxData vfxData;
 
+        protected override void Start()
+        {
+            base.Start();
+            if (!IsLocal)
+            {
+                Play(new VfxData());
+            }
+        }
+
         public override void Play(VfxData data)
         {
             base.Play(data);

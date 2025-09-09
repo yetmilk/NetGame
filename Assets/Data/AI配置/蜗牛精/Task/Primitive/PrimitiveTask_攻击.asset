@@ -16,9 +16,12 @@ MonoBehaviour:
   precondition:
     logicOperator: 0
     conditions:
+    - variableName: "\u6709\u654C\u4EBA"
+      compareValue: True
+      comparisonOperator: 0
     - variableName: "\u654C\u4EBA\u8DDD\u79BB"
-      compareValue: 2
-      comparisonOperator: 3
+      compareValue: 1.5
+      comparisonOperator: 5
   _state: {fileID: 11400000, guid: 4453a6dc39bcdd744a1df506bbbbd505, type: 2}
   effects: []
   ActionName: Attack

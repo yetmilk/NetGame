@@ -93,7 +93,7 @@ public class CharacterDataController : MonoBehaviour, IDataContainer
 
         if (msg.netId == controller.NetID && !controller.IsLocal)
         {
-            dataObj = msg.characterDataObj;
+            dataObj.UpdateData(msg.characterDataObj);
         }
     }
 

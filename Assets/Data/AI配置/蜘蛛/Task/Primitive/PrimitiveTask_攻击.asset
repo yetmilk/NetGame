@@ -16,11 +16,11 @@ MonoBehaviour:
   precondition:
     logicOperator: 0
     conditions:
-    - variableName: "\u9700\u8981\u4F11\u606F"
-      compareValue: False
+    - variableName: "\u6709\u654C\u4EBA"
+      compareValue: True
       comparisonOperator: 0
     - variableName: "\u654C\u4EBA\u8DDD\u79BB"
-      compareValue: 8
+      compareValue: 15
       comparisonOperator: 5
   _state: {fileID: 11400000, guid: 26fd2bac538689542965850ba81afdca, type: 2}
   effects:

@@ -86,7 +86,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &6638289609925977066
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -147,7 +147,8 @@ MonoBehaviour:
     skill2ResumeTimer: 0
     skill3ResumeTime: 0
     skill3ResumeTimer: 0
-  barSlider: {fileID: 2492527512291853641}
+  fillImg: {fileID: 0}
+  Slider: {fileID: 2492527512291853641}
 --- !u!1 &2474728718393051137
 GameObject:
   m_ObjectHideFlags: 0

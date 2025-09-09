@@ -21,11 +21,14 @@ public class EnemyLevelController : LevelController
     private List<GameObject> spawnedMonsters = new List<GameObject>();  // 已生成的怪物
 
     int curTime;//当前波次
-
+    private void Start()
+    {
+        IntantiateEnemy();
+    }
     public override void Init(BlueprintObj levelInfo)
     {
         base.Init(levelInfo);
-        IntantiateEnemy();
+
     }
 
     public void IntantiateEnemy()
@@ -113,17 +116,15 @@ public class EnemyLevelController : LevelController
     }
     public void LevelReward()
     {
-        EnemyLevelObj enemyLevelObj = levelInfo as EnemyLevelObj;
-        if (enemyLevelObj.rewardType == Map.RewardType.秘籍)
-        {
-            var rareBooks = LoadManager.Instance.GetResourcesByLabel<RareBook>("Rarebook");
-            if (rareBooks != null)
-            {
-                RareBook rareBook = rareBooks.Random();
 
-                BattleManager.Instance.FettersManager.AddRareBook(rareBook);
-            }
+        var rareBooks = LoadManager.Instance.GetResourcesByLabel<RareBook>("Rarebook");
+        if (rareBooks != null)
+        {
+            RareBook rareBook = rareBooks.Random();
+
+            BattleManager.Instance.FettersManager.AddRareBook(rareBook);
         }
+
 
         BattleManager.Instance.GotoNextLevel();
     }

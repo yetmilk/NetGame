@@ -22,4 +22,6 @@ MonoBehaviour:
     153.277756\r\n    },\r\n    \"changeTriggerReplan\": false\r\n  },\r\n  \"\u9700\u8981\u4F11\u606F\":
     {\r\n    \"value\": true,\r\n    \"changeTriggerReplan\": true\r\n  },\r\n  \"\u4F11\u606F\u65F6\u95F4\":
     {\r\n    \"value\": 5.0,\r\n    \"changeTriggerReplan\": false\r\n  },\r\n  \"\u5F53\u524D\u4F11\u606F\u65F6\u95F4\":
-    {\r\n    \"value\": 1.59983826,\r\n    \"changeTriggerReplan\": false\r\n  }\r\n}"
+    {\r\n    \"value\": 1.59983826,\r\n    \"changeTriggerReplan\": false\r\n  },\r\n 
+    \"\u6709\u654C\u4EBA\": {\r\n    \"value\": false,\r\n    \"changeTriggerReplan\":
+    true\r\n  }\r\n}"

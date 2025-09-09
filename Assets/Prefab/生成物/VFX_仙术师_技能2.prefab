@@ -33947,6 +33947,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fe0b70c3ffe0074e92c9ff9c3e31918, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  positionThreshold: 0.5
+  rotationThreshold: 1
+  minSyncInterval: 0.1
 --- !u!1 &1910334406089272
 GameObject:
   m_ObjectHideFlags: 0

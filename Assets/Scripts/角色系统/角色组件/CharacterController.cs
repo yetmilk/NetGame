@@ -596,7 +596,6 @@ public class CharacterController : NetMonobehavior, IDealActionCommand, ICanInte
 
     private void OnDestroy()
     {
-        NetDestroy(NetID, gameObject);
         EventCenter.Unsubscribe(EventCenter.EventId.LogicFrameUpdate, LogicUpdate);
         NetManager.RemoveMsgListener("MsgDamageInfo", GetDamage);
     }
